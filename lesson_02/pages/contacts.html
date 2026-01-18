@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -30,6 +30,52 @@
           <p><strong>Phone:</strong> +555 1234</p>
           <p><strong>Location:</strong> Somewhere on Earth 🌍</p>
         </div>
+      </div>
+
+      <div class="feedback-form-container">
+        <h2 class="contacts-feedback-title"><b>We are curios to hear what you think</b></h2>
+        <form class="feedback-form" action="#" method="post">
+          <label><span>Name</span><input type="text" id="name" name="name" placeholder="Marty McFly" required /></label>
+
+          <label
+            ><span>Email</span
+            ><input type="email" id="email" name="email" placeholder="martymcfly@delorian.com" required
+          /></label>
+
+          <label
+            ><span>Movie name</span
+            ><select name="film" id="film">
+              <option value="">Back to the Future</option>
+              <option value="The Fifth Element">The Fifth Element</option>
+              <option value="La La Land">La La Land</option>
+              <option value="Rick and Morty">Rick and Morty</option>
+              <option value="Snatch">Snatch</option>
+              <option value="Fight Club">Fight Club</option>
+              <option value="Scarface">Scarface</option>
+            </select></label
+          >
+
+          <label
+            ><span>Subject</span><input type="text" id="subject" name="subject" placeholder="Time travels"
+          /></label>
+
+          <label
+            ><span>Message</span
+            ><textarea id="message" name="message" placeholder="Doc, we gotta ease on those..." required></textarea>
+          </label>
+
+          <button
+            type="button"
+            onclick="
+              alert(
+                'Thank you for using our feedback feature! This is all the functionality until the JS is learned...',
+              )
+            "
+            class="contacts-feedback-button"
+          >
+            Send Message
+          </button>
+        </form>
       </div>
     </main>
     <footer>
