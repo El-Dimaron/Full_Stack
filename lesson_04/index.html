@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/lesson_04/assets/styles/reset.css" />
+    <link rel="stylesheet" href="/lesson_04/assets/styles/style.css" />
+    <title>Lesson 4</title>
+  </head>
+  <body>
+    <div class="index-main-container">
+      <div class="index-logical-divider">
+        <h1 class="index-title">Home page - властивості застосовуються лише для цього класу index-title, вага 10</h1>
+        <p>Селектор застосовується для тегів p, без вкладень, вага 1.</p>
+        <p id="index-title-unique-paragraph">Селектор застосовується лише для цього id (унікальний), вага 100.</p>
+      </div>
+
+      <div class="index-logical-divider">
+        <form action="#">
+          <label>Random text field <input type="text" placeholder="Just write something" /></label>
+          <input
+            type="button"
+            onclick="alert('Sup')"
+            value="Я кнопка, властивості застосовуються лише для тегу input, атрибута type, значення button, моя вага 11"
+          />
+        </form>
+      </div>
+
+      <div class="index-logical-divider">
+        <h2 class="creepy-stories">Creepy stories title</h2>
+        <p>Я переймаю властивості від послідовного селектора creepy-stories, моя вага 11</p>
+        <p>Я переймаю властивості від послідовного селектора creepy-stories, моя вага 11</p>
+        <p>Я переймаю властивості від послідовного селектора creepy-stories, моя вага 11</p>
+      </div>
+
+      <div class="index-logical-divider">
+        <h2 class="drama-stories">Drama stories title</h2>
+        <p>Я переймаю властивості від послідовного селектора drama-stories, моя вага 11</p>
+        <p>Я переймаю властивості від базового селектора p, моя вага 1</p>
+        <p>Я переймаю властивості від базового селектора p, моя вага 1</p>
+      </div>
+
+      <div class="index-logical-divider">
+        <section>
+          <h3>Section Title</h3>
+          <p>
+            Я переймаю властивості від дочірнього селектора section > p (глибші p не отримають властивості), моя вага 2
+          </p>
+          <div>
+            <p>
+              Я переймаю властивості від контекстного селектора section p (всі p всередині section отримають мої
+              властивості), моя вага 2
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
