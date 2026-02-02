@@ -1,0 +1,123 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bubble-link {
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  margin: 20px;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: black;
+  border: 2px solid rgba(0, 0, 0, 0.504);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.bubble-link:hover {
+  transform: scale(1.05);
+  background-color: rgb(224, 240, 255);
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.general-container {
+  background-color: antiquewhite;
+  text-align: center;
+  margin: 20px;
+  overflow: auto;
+}
+
+.general-container span {
+  font-weight: 700;
+  font-style: italic;
+}
+
+#second-container {
+  background-color: aliceblue;
+}
+
+.result-container {
+  text-align: center;
+}
+
+.inner-container {
+  display: flex;
+  gap: 10px;
+}
+
+.inner-container img {
+  width: 50%;
+  border: 5px solid rgb(0, 0, 0);
+  flex: 2;
+}
+
+.inner-container p {
+  flex: 1;
+}
+
+#drunk_span {
+  display: block;
+}
+
+#experimental-container h2,
+#experimental-container h3 {
+  display: inline-block;
+}
+
+.floaty-image {
+  max-width: 50%;
+  max-height: 500px;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.test-text {
+  font-size: 32px;
+}
+
+.limited {
+  max-height: 500px;
+  overflow: auto;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.image-container {
+  position: relative;
+}
+
+.experiment-text {
+  position: absolute;
+  color: white;
+  font-size: 50px;
+  top: 0.5em;
+  /* left: 0.5em; */
+  right: 0.5em;
+  border: 2px solid white;
+  border-radius: 50px;
+  padding: 10px 5px;
+}
+
+.annoying-ad {
+  font-size: 24px;
+  position: fixed;
+  right: 20px;
+  bottom: 50px;
+  background-color: red;
+  padding: 20px 5px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
