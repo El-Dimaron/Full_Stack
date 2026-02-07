@@ -1,0 +1,162 @@
+html,
+body {
+  height: auto;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
+  margin: 50px auto;
+  text-align: center;
+  gap: 50px;
+}
+
+.page__title {
+  font-size: 48px;
+}
+
+.section__title {
+  font-size: 36px;
+}
+
+.section {
+  gap: 10px;
+}
+
+.section--flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.layout {
+  background-color: rgb(230, 230, 230);
+  border: 2px grey solid;
+  min-height: 50px;
+  height: auto;
+  padding: 7px 15px;
+  gap: 10px;
+}
+
+.layout--flex {
+  display: flex;
+  align-items: center;
+}
+
+.section--grid {
+  display: grid;
+}
+
+.layout--grid {
+  display: grid;
+  align-items: center;
+  align-items: stretch;
+  gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.layout__rectangle {
+  width: auto;
+  min-width: 90px;
+  height: auto;
+  min-height: 30px;
+  background-color: rgb(193, 193, 193);
+  border: 1px grey solid;
+}
+
+.layout__rectangle--tall {
+  min-height: 70px;
+}
+
+.layout__rectangle--wide {
+  min-width: 135px;
+}
+
+.layout__inner {
+  display: flex;
+  gap: 10px;
+}
+
+.layout__inner--vertical {
+  flex-direction: column;
+}
+
+.layout--first,
+.layout--second,
+.layout--third {
+  justify-content: space-between;
+}
+
+.layout--fourth {
+  justify-content: flex-end;
+}
+
+.layout--fifth {
+  justify-content: center;
+}
+
+.layout--grid.layout--first {
+  grid-template-areas: "box-1 . . . box-2";
+}
+
+.layout--grid.layout--second {
+  grid-template-areas: "box-1 . box-2 box-3 box-4";
+}
+
+.layout--grid.layout--third {
+  grid-template-areas: "box-1 box-2 . box-3 box-4";
+}
+
+.layout--grid.layout--forth {
+  grid-template-areas:
+    ". . . box-1 box-2"
+    ". . . box-1 box-3";
+}
+
+.layout--grid.layout--fifth {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    ". box-1 box-2 ."
+    ". box-1 box-3 .";
+}
+
+.layout--mondrian {
+  display: grid;
+  height: 800px;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(18, 1fr);
+  gap: 0;
+}
+
+.layout--mondrian .layout__rectangle {
+  background-color: white;
+  border: 5px solid black;
+
+  justify-self: stretch;
+  align-self: stretch;
+
+  display: grid;
+  place-items: center;
+
+  vertical-align: middle;
+
+  min-width: 0;
+  min-height: 0;
+}
+
+.layout__rectangle.layout__rectangle--yellow {
+  background-color: #ffd915;
+}
+
+.layout__rectangle.layout__rectangle--red {
+  background-color: #f7150b;
+}
+
+.layout__rectangle.layout__rectangle--black {
+  background-color: #020202;
+}
+
+.layout__rectangle.layout__rectangle--blue {
+  background-color: #0d0ab6;
+}

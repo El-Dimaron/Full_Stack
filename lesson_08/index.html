@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/styles/reset.css" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <title>Flex</title>
+  </head>
+  <body class="page">
+    <h1 class="page__title">Rectangles</h1>
+
+    <!-- Container 1: Flex -->
+    <section class="section section--flex">
+      <h2 class="section__title">Flex</h2>
+
+      <div class="layout layout--flex layout--first">
+        <div class="layout__rectangle"></div>
+        <div class="layout__rectangle"></div>
+      </div>
+
+      <div class="layout layout--flex layout--second">
+        <div class="layout__inner">
+          <div class="layout__rectangle"></div>
+        </div>
+        <div class="layout__inner">
+          <div class="layout__rectangle"></div>
+          <div class="layout__rectangle"></div>
+          <div class="layout__rectangle"></div>
+        </div>
+      </div>
+
+      <div class="layout layout--flex layout--third">
+        <div class="layout__inner">
+          <div class="layout__rectangle"></div>
+          <div class="layout__rectangle"></div>
+        </div>
+        <div class="layout__inner">
+          <div class="layout__rectangle"></div>
+          <div class="layout__rectangle"></div>
+        </div>
+      </div>
+
+      <div class="layout layout--flex layout--fourth">
+        <div class="layout__rectangle layout__rectangle--tall"></div>
+        <div class="layout__inner layout__inner--vertical">
+          <div class="layout__rectangle"></div>
+          <div class="layout__rectangle"></div>
+        </div>
+      </div>
+
+      <div class="layout layout--flex layout--fifth">
+        <div class="layout__rectangle layout__rectangle--tall layout__rectangle--wide"></div>
+        <div class="layout__inner layout__inner--vertical">
+          <div class="layout__rectangle layout__rectangle--wide"></div>
+          <div class="layout__rectangle layout__rectangle--wide"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Container 2: Grid -->
+    <section class="section section--grid">
+      <h2 class="section__title">Grid</h2>
+      <div class="layout layout--grid layout--first">
+        <div class="layout__rectangle" style="grid-area: box-1"></div>
+        <div class="layout__rectangle" style="grid-area: box-2"></div>
+      </div>
+
+      <div class="layout layout--grid layout--second">
+        <div class="layout__rectangle" style="grid-area: box-1"></div>
+        <div class="layout__rectangle" style="grid-area: box-2"></div>
+        <div class="layout__rectangle" style="grid-area: box-3"></div>
+        <div class="layout__rectangle" style="grid-area: box-4"></div>
+      </div>
+
+      <div class="layout layout--grid layout--third">
+        <div class="layout__rectangle" style="grid-area: box-1"></div>
+        <div class="layout__rectangle" style="grid-area: box-2"></div>
+        <div class="layout__rectangle" style="grid-area: box-3"></div>
+        <div class="layout__rectangle" style="grid-area: box-4"></div>
+      </div>
+
+      <div class="layout layout--grid layout--forth">
+        <div class="layout__rectangle" style="grid-area: box-1"></div>
+        <div class="layout__rectangle" style="grid-area: box-2"></div>
+        <div class="layout__rectangle" style="grid-area: box-3"></div>
+      </div>
+
+      <div class="layout layout--grid layout--fifth">
+        <div class="layout__rectangle" style="grid-area: box-1"></div>
+        <div class="layout__rectangle" style="grid-area: box-2"></div>
+        <div class="layout__rectangle" style="grid-area: box-3"></div>
+      </div>
+    </section>
+
+    <!-- Container 3: Mondrian Tables -->
+    <section class="section">
+      <h2 class="section__title">Mondrian Table</h2>
+      <div class="layout--mondrian">
+        <div class="layout__rectangle" style="grid-column: 1 / 5; grid-row: 1 / span 2">1</div>
+        <div class="layout__rectangle" style="grid-column: 5 / 11; grid-row: 1 / span 2">2</div>
+        <div class="layout__rectangle layout__rectangle--yellow" style="grid-column: 11 / 15; grid-row: 1 / span 2">
+          3
+        </div>
+        <div class="layout__rectangle" style="grid-column: 15 / 16; grid-row: 1 / span 14">4</div>
+        <div class="layout__rectangle" style="grid-column: 1 / 3; grid-row: 3 / span 5">5</div>
+        <div class="layout__rectangle layout__rectangle--red" style="grid-column: 3 / 11; grid-row: 3 / span 10">6</div>
+        <div class="layout__rectangle layout__rectangle--yellow" style="grid-column: 11 / 15; grid-row: 3 / span 5">
+          7
+        </div>
+        <div class="layout__rectangle" style="grid-column: 1 / 3; grid-row: 8 / span 7">8</div>
+        <div class="layout__rectangle" style="grid-column: 11 / 13; grid-row: 8 / span 5">9</div>
+        <div class="layout__rectangle" style="grid-column: 13 / 15; grid-row: 8 / span 5">10</div>
+
+        <div class="layout__rectangle layout__rectangle--black" style="grid-column: 3 / 7; grid-row: 13 / span 4">
+          11
+        </div>
+        <div class="layout__rectangle" style="grid-column: 7 / 11; grid-row: 13 / span 2">12</div>
+        <div class="layout__rectangle" style="grid-column: 11 / 15; grid-row: 13 / span 2">13</div>
+        <div class="layout__rectangle layout__rectangle--yellow" style="grid-column: 1 / 3; grid-row: 15 / span 4">
+          14
+        </div>
+        <div class="layout__rectangle" style="grid-column: 7 / 11; grid-row: 15 / span 2">15</div>
+        <div class="layout__rectangle layout__rectangle--blue" style="grid-column: 11 / 15; grid-row: 15 / span 3">
+          16
+        </div>
+        <div class="layout__rectangle layout__rectangle--red" style="grid-column: 15 / 16; grid-row: 15 / span 4">
+          17
+        </div>
+        <div class="layout__rectangle" style="grid-column: 3 / 7; grid-row: 17 / span 2">18</div>
+        <div class="layout__rectangle layout__rectangle--black" style="grid-column: 7 / 11; grid-row: 17 / span 1">
+          19
+        </div>
+        <div class="layout__rectangle" style="grid-column: 7 / 15; grid-row: 18 / span 1">20</div>
+      </div>
+    </section>
+  </body>
+</html>

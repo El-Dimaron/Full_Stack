@@ -1,0 +1,119 @@
+Flex
+https://css-tricks.com/snippets/css/complete-guide-to-css-flexbox-layout/
+
+flex container
+  Батьківський елемент, до якого застосовується властивість display: flex, щоб визначити гнучкий макет для дочірніх елементів.
+  Використовується для того, щоб елементи в середині могли гнучко реагувати на розмір області відображення, вирівнюватися та розподіляти простір між собою.
+
+flex items
+  Дочірні елементи в межах flex контейнера.
+  Використовуються для створення гнучких макетів, де кожен елемент може автоматично адаптуватися до розмірів контейнера та інших елементів.
+
+
+
+order
+  Використовується для зміни порядку розташування flex-елементів у контейнері.
+  За замовчуванням порядок відповідає HTML коду. Проте за допомогою order можна змінити цей порядок, не змінюючи сам HTML.
+
+                                      Flexbox properties
+
+
+                                  Properties for the Parent
+                                      (flex container)
+
+display: flex;
+  This defines a flex container; inline or block depending on the given value. It enables a flex context for all its direct children.
+
+flex-direction: row (default) | row-reverse | column | column-reverse;
+  This establishes the main-axis, thus defining the direction flex items are placed in the flex container.
+
+flex-wrap: nowrap (default) | wrap | wrap-reverse;
+  By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property.
+
+flex-flow
+  Shorthand for the flex-direction and flex-wrap properties (flex-flow: column wrap;);
+
+
+justify-content: flex-start | flex-end | center | space-between | space-evenly | space-around;
+https://css-tricks.com/snippets/css/complete-guide-to-css-flexbox-layout/#aa-justify-content
+
+  Defines the alignment along the main axis.
+    flex-start (default): items are packed toward the start of the flex-direction.
+
+    flex-end: items are packed toward the end of the flex-direction.
+
+    center: items are centered along the line
+
+    space-between: first item is on the start line, last item on the end line and other items are evenly distributed in the line;
+
+    space-evenly: items are distributed so that the spacing between any two items (and the space to the edges) is equal.
+
+    space-around: items are evenly distributed in the line with equal space around them. Note that visually the spaces aren’t equal, since all the items have equal space on both sides.
+
+
+align-items: stretch | flex-start | flex-end | center | baseline;
+https://css-tricks.com/snippets/css/complete-guide-to-css-flexbox-layout/#aa-align-items
+
+  stretch (default): stretch to fill the container
+  flex-start: items are placed at the start of the cross axis.
+  flex-end: items are placed at the end of the cross axis.
+  center: items are centered in the cross-axis
+  baseline: items are aligned such as their baselines align
+
+
+align-content: flex-start | flex-end | center | space-between | space-around | space-evenly | stretch | baseline
+https://css-tricks.com/snippets/css/complete-guide-to-css-flexbox-layout/#aa-align-content
+  This property only takes effect on multi-line flexible containers, where flex-wrap is set to either wrap or wrap-reverse.
+
+
+gap
+  Controls the space between flex items.
+
+    .container {
+      display: flex;
+      ...
+      gap: 10px;
+      gap: 10px 20px; /* row-gap column gap */
+      row-gap: 10px;
+      column-gap: 20px;
+    }
+
+
+
+                                  Properties for the Children
+                                          (flex items)
+
+order
+  By default, flex items are laid out in the source order.
+  However, the order property controls the order in which they appear in the flex container.
+
+flex-grow
+  Defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion.
+  If all items have flex-grow set to 1, the remaining space in the container will be distributed equally to all children. If one of the children has a value of 2, that child would take up twice as much of the space as either one of the others (or it will try, at least).
+  Negative numbers are invalid.
+    .item {
+      flex-grow: 4; /* default 0 */
+    }
+
+flex-shrink
+  Defines the ability for a flex item to shrink if necessary.
+  Negative numbers are invalid.
+    .item {
+      flex-shrink: 3;
+      /* default 1 */
+    }
+
+flex-basis: auto (default);
+  Defines the default size of an element before the remaining space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or a keyword.
+  If set to 0, the extra space around content isn’t factored in. If set to auto, the extra space is distributed based on its flex-grow value.
+  https://www.w3.org/TR/css-flexbox-1/images/rel-vs-abs-flex.svg
+
+flex
+  Shorthand for flex-grow, flex-shrink and flex-basis combined.
+  Common use case: flex: 1 1 0; - for even distribution of items with varying length.
+
+align-self: auto | flex-start | flex-end | center | baseline | stretch;
+  Allows the default alignment (or the one specified by align-items) to be overridden for individual flex items.
+
+
+
