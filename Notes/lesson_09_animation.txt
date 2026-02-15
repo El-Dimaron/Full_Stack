@@ -1,0 +1,71 @@
+CSS анімація
+
+Базова анімація - це transition
+transition = анімований міст між двома станами стилю
+
+transition — це властивість, яка дозволяє плавно анімувати зміну стилів між двома станами елемента.
+  Найчастіше використовується для hover-ефектів, фокусів, активних станів кнопок, карток, меню тощо.
+
+Властивість transition - це скорочення від наступних властивостей:
+  transition-property
+    sets the CSS properties to which a transition effect should be applied.
+
+  transition-duration
+    sets the length of time a transition animation should take to complete. By default, the value is 0s, meaning that no animation will occur.
+
+  transition-timing-function
+    sets how intermediate values are calculated for CSS properties being affected by a transition effect.
+    Default is linear, but any other over-time-changes settings can be set up.
+
+  transition-delay
+    duration to wait before starting a property's transition effect when its value changes
+
+  transition-behavior
+    Not widely used
+
+
+Базовий синтаксис transition:
+  transition: property duration timing-function delay;
+
+    Example:
+      transition: background 0.3s ease;
+        При наведенні колір плавно зміниться за 0.3 секунди, замість різкого стрибка.
+
+Важливі нюанси
+  ✔ transition працює тільки коли значення змінюється
+  ✔ Не всі властивості анімуються (наприклад display — ні)
+  ✔ Для продуктивності краще анімувати:
+    - transform
+    - opacity
+      (вони використовують GPU і не лагатимуть)
+
+
+
+Анімації у CSS зазвичай виконуються за допомогою двох основних компонентів:
+
+  @keyframes
+    Правило, яке визначає анімацію, задаючи стилі для різних моментів анімації (наприклад, початок, середина та кінець).
+  animation
+    Властивість, яка застосовує анімацію до елемента, задаючи тривалість, затримку, кількість повторень та інші параметри.
+
+
+@keyframes
+  Дозволяє створити анімацію, визначаючи стилі для елемента в різні моменти часу.
+  Кожен момент анімації, або "кадр" (keyframe), задається у відсотках від загальної тривалості анімації, де 0% - це початок, а 100% - кінець анімації.
+
+
+Приклад:
+  @keyframes example {
+    0%   { background-color: red; left: 0; top: 0; }
+    25%  { background-color: yellow; left: 200px; top: 0; }
+    50%  { background-color: blue; left: 200px; top: 200px; }
+    75%  { background-color: green; left: 0; top: 200px; }
+    100% { background-color: red; left: 0; top: 0; }
+  }
+
+  div {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    animation: example 5s infinite;
+  }
