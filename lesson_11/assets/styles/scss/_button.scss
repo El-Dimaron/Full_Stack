@@ -1,0 +1,13 @@
+@use "global";
+
+%main-button {
+  background-color: global.$color-accent-main;
+  color: global.$color-text-tertiary;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+%main-button:hover {
+  background-color: darken(global.$color-accent-main, 5%);
+}

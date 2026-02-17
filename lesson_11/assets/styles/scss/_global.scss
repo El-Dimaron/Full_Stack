@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+$color-accent-main: #34547a;
+$color-surface-primary: #eeeff1;
+$color-surface-secondary: #ffffff;
+$color-text-primary: #000000;
+$color-text-secondary: #727272;
+$color-text-tertiary: #ffffff;
+
+html,
+body {
+  margin: 0;
+  font-family: "Roboto";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.layout__content {
+  flex: 1;
+}
+
+.content {
+  margin: 0 min(15%, 400px);
+  box-sizing: border-box;
+}
+
+.content--centered {
+  justify-content: center;
+}

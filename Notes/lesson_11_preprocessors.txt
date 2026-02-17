@@ -1,0 +1,161 @@
+Preprocessors are a way to make writing styles more comfortable: logically dividing them into separate files, using more advanced variables, mixing (~style functions) etc and then combing it all into a single css file to be used by browser.
+
+There two most popular preprocessors:
+  1. Sass (Syntactically Awesome Stylesheets):
+    https://sass-lang.com
+
+  2. Less (Leaner Style Sheets):
+    https://lesscss.org
+
+Sass has two syntaxes:
+  SCSS (.scss) is used most commonly. It’s a superset of CSS, which means all valid CSS is also valid SCSS.
+  Sass (.sass) (the indented syntax) is more unusual: it uses indentation rather than curly braces to nest statements, and newlines instead of semicolons to separate them.
+
+
+For the start, well focus on the Sass syntax of Sass preprocessor.
+
+Basic commands:
+  sass style.scss style.css
+    Compiling a single file
+
+  sass --watch style.scss style.css
+    A compile process is done automatically
+
+  sass --watch scss:css
+    Automatically compiles all files in the scss folder for changes, and compile CSS to the css folder.
+
+
+                                                        Variables
+You can store things like colors, font stacks, or any CSS value you think you’ll want to reuse.
+Sass uses the $ symbol to make something a variable.
+
+  Example:
+    $font-stack: Helvetica, sans-serif;
+    $primary-color: #333;
+
+    body {
+      font: 100% $font-stack;
+      color: $primary-color;
+    }
+
+When the Sass is processed, it takes the variables we define for the $font-stack and $primary-color and outputs normal CSS with our variable values placed in the CSS.
+
+
+                                                        Nesting
+
+Sass will let you nest your CSS selectors in a way that follows the same visual hierarchy of your HTML. Be aware that overly nested rules will result in over-qualified CSS that could prove hard to maintain and is generally considered bad practice.
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+
+
+                                                        Partials
+
+You can create partial Sass files that contain little snippets of CSS that you can include in other Sass files. This is a great way to modularize your CSS and help keep things easier to maintain. A partial is a Sass file named with a leading underscore. You might name it something like _partial.scss. The underscore lets Sass know that the file is only a partial file and that it should not be generated into a CSS file. Sass partials are used with the @use rule.
+
+
+                                                        Modules
+
+You don’t have to write all your Sass in a single file. You can split it up however you want with the @use rule. This rule loads another Sass file as a module, which means you can refer to its variables, mixins, and functions in your Sass file with a namespace based on the filename. Using a file will also include the CSS it generates in your compiled output!
+
+  Example:
+    @use 'base';
+
+    .inverse {
+      background-color: base.$primary-color;
+      color: white;
+    }
+
+In @use we need to include the path to the file and the file name itself (without a leading underline if its partial and without the file extension). Sass is smart and will figure it out for you.
+
+
+                                                        Mixins
+
+Some things in CSS are a bit tedious to write, especially with CSS3 and the many vendor prefixes that exist. A mixin lets you make groups of CSS declarations that you want to reuse throughout your site. It helps keep your Sass very DRY. You can even pass in values to make your mixin more flexible. Here’s an example for theme.
+
+  Example:
+    @mixin theme($theme: DarkGray) {
+      background: $theme;
+      box-shadow: 0 0 1px rgba($theme, .25);
+      color: #fff;
+    }
+
+    .info {
+      @include theme;
+    }
+    .alert {
+      @include theme($theme: DarkRed);
+    }
+    .success {
+      @include theme($theme: DarkGreen);
+    }
+
+To create a mixin you use the @mixin directive and give it a name. We’ve named our mixin theme. We’re also using the variable $theme inside the parentheses so we can pass in a theme of whatever we want. After you create your mixin, you can then use it as a CSS declaration starting with @include followed by the name of the mixin.
+
+
+                                                  Extend/Inheritance
+
+Using @extend lets you share a set of CSS properties from one selector to another.
+A placeholder class is a special type of class that only prints when it is extended, and can help keep your compiled CSS neat and clean.
+
+  Example:
+    /* This CSS will print because %message-shared is extended. */
+    %message-shared {
+      border: 1px solid #ccc;
+      padding: 10px;
+      color: #333;
+    }
+
+    // This CSS won't print because %equal-heights is never extended.
+    %equal-heights {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .message {
+      @extend %message-shared;
+    }
+
+    .success {
+      @extend %message-shared;
+      border-color: green;
+    }
+
+What the above code does is tells .message and .success to behave just like %message-shared. That means anywhere that %message-shared shows up, .message and .success will too. The magic happens in the generated CSS, where each of these classes will get the same CSS properties as %message-shared. This helps you avoid having to write multiple class names on HTML elements.
+
+You can extend most simple CSS selectors in addition to placeholder classes in Sass, but using placeholders is the easiest way to make sure you aren’t extending a class that’s nested elsewhere in your styles, which can result in unintended selectors in your CSS.
+
+Note that the CSS in %equal-heights isn’t generated, because %equal-heights is never extended.
+
+
+                                                        Operators
+
+Doing math in your CSS is very helpful. Sass has a handful of standard math operators like +, -, *, math.div(), and %. In our example we’re going to do some simple math to calculate widths for an article and aside
+
+  @use "sass:math"
+
+  .container
+    display: flex
+
+  article[role="main"]
+    width: math.div(600px, 960px) * 100%
+
+  aside[role="complementary"]
+    width: math.div(300px, 960px) * 100%
+    margin-left: auto
+
+
+

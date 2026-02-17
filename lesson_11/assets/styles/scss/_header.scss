@@ -1,0 +1,30 @@
+@use "global";
+
+.main-menu {
+  width: 100%;
+  background-color: global.$color-surface-primary;
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  color: global.$color-text-primary;
+  text-transform: uppercase;
+  padding-block: 5rem;
+  gap: 50px;
+}
+
+.nav__item {
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.nav__item:hover {
+  color: global.$color-text-secondary;
+}
+
+.nav__item-active {
+  color: global.$color-accent-main;
+  cursor: default;
+}
