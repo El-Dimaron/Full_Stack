@@ -3,22 +3,21 @@
 .footer {
   background-color: global.$color-accent-main;
   color: global.$color-text-tertiary;
-}
 
-.footer__content {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding-block: 50px;
-}
+  &__content {
+    @include global.flex-position();
+    gap: 20px;
+    padding-block: 50px;
+  }
 
-.footer__name {
-  font-size: 21px;
-  font-weight: 500;
-}
+  &__name {
+    font-size: 21px;
+    font-weight: 500;
+  }
 
-.footer__copyright {
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.64;
+  &__copyright {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.64;
+  }
 }

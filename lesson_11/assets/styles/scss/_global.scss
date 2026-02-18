@@ -1,4 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@font-face {
+  font-family: "Roboto";
+  src: url(../../fonts/Roboto-Regular.ttf) format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(../../fonts/Roboto-Medium.ttf) format("truetype");
+  font-weight: 500;
+}
 
 $color-accent-main: #34547a;
 $color-surface-primary: #eeeff1;
@@ -6,6 +16,32 @@ $color-surface-secondary: #ffffff;
 $color-text-primary: #000000;
 $color-text-secondary: #727272;
 $color-text-tertiary: #ffffff;
+
+@mixin flex-position($direction: column, $align-i: flex-start, $justify-c: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align-i;
+  justify-content: $justify-c;
+}
+
+@mixin text-centered($text-align: center, $padding-block: 100px, $gap: 50px, $line-height: 1.64) {
+  text-align: $text-align;
+  padding-block: $padding-block;
+  gap: $gap;
+  line-height: $line-height;
+}
+
+@mixin title-content($font-size: 32px, $font-weight: 500) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color-text-primary;
+}
+
+@mixin paragraph-content($font-size: 16px, $font-weight: 400) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color-text-secondary;
+}
 
 html,
 body {
@@ -27,17 +63,23 @@ p {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-}
 
-.layout__content {
-  flex: 1;
+  &__content {
+    flex: 1;
+  }
 }
 
 .content {
   margin: 0 min(15%, 400px);
   box-sizing: border-box;
-}
 
-.content--centered {
-  justify-content: center;
+  &--centered {
+    justify-content: center;
+  }
+
+  &__group {
+    display: flex;
+    justify-content: space-between;
+    overflow: auto;
+  }
 }

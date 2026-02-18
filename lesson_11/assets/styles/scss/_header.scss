@@ -13,18 +13,18 @@
   text-transform: uppercase;
   padding-block: 5rem;
   gap: 50px;
-}
 
-.nav__item {
-  cursor: pointer;
-  font-size: 1rem;
-}
+  &__item {
+    cursor: pointer;
+    font-size: 1rem;
+  }
 
-.nav__item:hover {
-  color: global.$color-text-secondary;
-}
+  &__item:hover {
+    color: global.$color-text-secondary;
+  }
 
-.nav__item-active {
-  color: global.$color-accent-main;
-  cursor: default;
+  &__item-active {
+    color: global.$color-accent-main;
+    cursor: default;
+  }
 }

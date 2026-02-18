@@ -46,6 +46,7 @@ Web fonts (embedded fonts)
         url('/fonts/CustomFont.woff') format('woff');
   }
 
+
   body {
     font-family: 'CustomFont', sans-serif;
   }
