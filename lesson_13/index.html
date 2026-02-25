@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/css/reset.css" />
+    <link rel="stylesheet" href="./styles/css/style.css" />
+    <title>Psychology</title>
+  </head>
+  <body class="layout">
+    <!-- Dmytro -->
+    <header class="hero">
+      <img class="hero__background" src="./images/psycho-main-image.jpg" alt="Background Psycho Image" />
+      <div class="content">
+        <div class="nav">
+          <a class="logo-link" href="#"><img class="logo-icon" src="./images/logo/psycho-logo.png" alt="Logo" /></a>
+
+          <ul class="nav__list">
+            <li class="nav__item"><a class="nav__link nav__link--active" href="#">Головна</a></li>
+            <li class="nav__item"><a class="nav__link" href="#">Події</a></li>
+            <li class="nav__item"><a class="nav__link" href="#">Контакти</a></li>
+            <li class="nav__item"><a class="nav__link" href="#">Блог</a></li>
+          </ul>
+        </div>
+        <div class="welcome">
+          <div class="welcome__title-block">
+            <h1 class="welcome__title">Ваш особистий психолог</h1>
+            <h2 class="welcome__title">У Кривому Розі</h2>
+          </div>
+          <p class="welcome__paragraph">Особисті, сімейні та групові консультації</p>
+          <button class="button welcome__button">Більше</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout__content">
+      <!-- Vlad -->
+      <section class="services">
+        <div class="content container">
+          <div class="services__item">
+            <div class="icon-container">
+              <svg class="services__icon">
+                <use href="./images/sprite.svg#goal"></use>
+              </svg>
+            </div>
+            <h3 class="services__title">Особисті консультації</h3>
+            <p class="services__text">
+              Досягнення поставленої мети буває складним завданням, але за правильної підтримки немає нічого неможливого
+            </p>
+          </div>
+
+          <div class="services__item">
+            <div class="icon-container">
+              <svg class="services__icon">
+                <use href="./images/sprite.svg#family"></use>
+              </svg>
+            </div>
+            <h3 class="services__title">Сімейна терапія</h3>
+            <p class="services__text">
+              У будь-якої родини бувають кризові ситуації, тому в такі моменти важливо підтримувати одне одного.
+            </p>
+          </div>
+
+          <div class="services__item">
+            <div class="icon-container">
+              <svg class="services__icon">
+                <use href="./images/sprite.svg#network"></use>
+              </svg>
+            </div>
+            <h3 class="services__title">Сенситивні групи</h3>
+            <p class="services__text">
+              Групові заняття — чудове місце, щоб навчитися спілкуватися з оточуючими людьми та розкрити свій потенціал
+            </p>
+          </div>
+        </div>
+      </section>
+      <div></div>
+      <div></div>
+
+      <!-- Ihor -->
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <!-- Andrii -->
+      <div></div>
+      <div></div>
+      <div></div>
+      <!-- Dmytro -->
+    </div>
+    <div class="footer">
+      <div class="content">
+        <nav class="footer__container">
+          <div class="footer__logo"><img src="./images/logo/psycho-logo.png" alt="Logo" /></div>
+          <div class="footer__nav">
+            <ul class="footer__list">
+              <li class="footer__item">
+                <a class="footer__link" href="#"
+                  ><img class="footer__icon" src="./images/icons/instagram.png" alt="" /><span class="footer__details"
+                    >@phyholog_sergei</span
+                  ></a
+                >
+              </li>
+              <li class="footer__item">
+                <a class="footer__link" href="#"
+                  ><img src="./images/icons/viber.png" alt="" /><span>+380 99 123 45 67</span></a
+                >
+              </li>
+              <li class="footer__item">
+                <a class="footer__link" href="#"
+                  ><img src="./images/icons/telegram.png" alt="" /><span>@phyholog_sergei</span></a
+                >
+              </li>
+              <li class="footer__item">
+                <a class="footer__link" href="#"
+                  ><img src="./images/icons/phone.png" alt="" /><span>+380 99 123 45 67</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- Dmytro: хедер, бородатий чоловік, футер -->
+<!-- Vlad: особисті консультації, трохи про мене, записатися на консультацію -->
+<!-- Ihor: 120 хвилин, відгуки клієнтів, останні статті -->
+<!-- Andrii: часті запитання, гугл карта (фото або айфрейм, як сам вирішиш), записатися зі знижкою -->
+
+<!--
+Команда для автоматичного компайлінгу scss:
+sass --watch assets/styles/scss:assets/styles/css
+-->

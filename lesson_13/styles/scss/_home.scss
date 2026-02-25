@@ -1,0 +1,170 @@
+@use "global";
+@use "sass:color";
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 768px;
+
+  &__background {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-fit: cover;
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    z-index: 1;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-block: 30px;
+
+    &__list {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    &__link {
+      color: global.$accent-color-tertiary;
+      font-size: 18px;
+      font-weight: 700;
+
+      &--active {
+        color: global.$accent-color-primary;
+        border-bottom: 2px solid global.$accent-color-primary;
+      }
+
+      &:not(&--active):hover {
+        color: color.adjust(global.$accent-color-tertiary, $lightness: -10%);
+      }
+    }
+  }
+
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-content: center;
+    max-width: 50%;
+    gap: 55px;
+    padding-block: 110px 160px;
+    color: global.$text-color-primary;
+
+    &__paragraph {
+      max-width: 65%;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 36px;
+    }
+
+    &__button {
+      align-self: flex-start;
+      max-width: 65%;
+    }
+  }
+}
+
+.services {
+  background-color: global.$background-color-primary;
+
+  .container {
+    width: 100%;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    gap: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 300px;
+    gap: 20px;
+
+    .icon-container {
+      height: auto;
+      cursor: pointer;
+    }
+
+    .icon-container:hover .services__icon {
+      color: color.adjust(global.$icon-color-primary, $lightness: -25%);
+      transform: scale(1.05);
+    }
+  }
+
+  &__title {
+    color: global.$accent-color-secondary;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  &__text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: global.$text-color-secondary;
+  }
+
+  &__icon {
+    width: 56px;
+    height: 56px;
+    color: global.$icon-color-primary;
+    transform: scale(1);
+    transition: 0.8s;
+    padding-bottom: 10px;
+  }
+}
+
+.footer {
+  background-color: global.$accent-color-secondary;
+
+  &__container {
+    padding-block: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  &__link {
+    color: global.$text-color-primary;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &:hover {
+      color: color.adjust(global.$text-color-primary, $lightness: -5%);
+    }
+  }
+}
