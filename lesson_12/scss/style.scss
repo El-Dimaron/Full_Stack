@@ -1,0 +1,51 @@
+@use "sass:color";
+
+.body {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  &__figure {
+    fill: red;
+    fill: none;
+    stroke-width: 1px;
+    stroke: rgb(0, 0, 0);
+    cursor: pointer;
+
+    &--square {
+      fill: rgb(209, 233, 255);
+      stroke: rgb(30, 76, 119);
+      stroke-width: 5px;
+      transition: 0.3s;
+
+      &:hover {
+        fill: color.adjust(rgb(209, 233, 255), $lightness: -10%);
+        stroke: color.adjust(rgb(30, 76, 119), $lightness: -15%);
+      }
+    }
+
+    &--rectangle {
+      fill: rgb(219, 255, 209);
+      stroke-width: 6px;
+      stroke: rgb(70, 186, 38);
+    }
+
+    &--circle {
+      fill: rgb(247, 209, 255);
+      stroke-width: 4px;
+      stroke: rgb(180, 93, 197);
+    }
+
+    &--ellipse {
+      fill: rgb(255, 209, 239);
+      stroke-width: 3px;
+      stroke: rgb(159, 47, 120);
+    }
+  }
+}
