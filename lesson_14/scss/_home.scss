@@ -1,0 +1,93 @@
+@use "global";
+@use "sass:color";
+
+header {
+  background-color: color.adjust(#fff, $lightness: -3%);
+  box-shadow: 0 1px 20px 1px #e4e4e4;
+
+  .nav__link {
+    color: global.$accent-color-tertiary;
+
+    &--active {
+      color: global.$accent-color-primary;
+      border-bottom: 2px solid global.$accent-color-primary;
+    }
+
+    &:not(&--active):hover,
+    &:not(&--active):focus {
+      color: color.adjust(global.$accent-color-tertiary, $lightness: -30%);
+    }
+
+    &--events:hover .list-group--embedded {
+      display: flex;
+    }
+  }
+}
+
+.list-group {
+  &-item {
+    border-width: 0 !important;
+    padding: 0;
+    position: relative;
+    background-color: transparent;
+  }
+
+  &--embedded {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    border-radius: 5px;
+    padding: 0;
+    min-width: 120px;
+
+    & li {
+      background-color: color.adjust(
+        global.$accent-color-tertiary,
+        $lightness: +30%
+      );
+      padding: 2px 5px;
+
+      &:hover a {
+        color: color.adjust(global.$accent-color-tertiary, $lightness: -30%);
+      }
+
+      & a {
+        color: color.adjust(global.$accent-color-tertiary, $lightness: 0%);
+      }
+    }
+  }
+}
+
+.list-group-item:hover .list-group--embedded,
+.list-group-item:focus-within .list-group--embedded {
+  display: flex;
+  flex-direction: column;
+}
+
+.item__image {
+  max-height: 500px;
+  border: 3px solid global.$accent-color-tertiary;
+  border-radius: 10px;
+  transform: scale(1);
+  transition: transform 1s;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+.button__form {
+  background-color: global.$accent-color-secondary;
+}
+
+.carousel-item__image {
+  width: 100%;
+  object-fit: contain;
+  max-height: 550px;
+}
+
+.footer {
+  padding: 0;
+  background-color: global.$accent-color-secondary;
+  box-shadow: 0 -1px 20px 1px#e4e4e4;
+}

@@ -1,0 +1,40 @@
+@use "sass:color";
+
+$accent-color-primary: #6de1e3;
+$accent-color-secondary: #2d5e5e;
+$accent-color-tertiary: #85aaab;
+
+$text-color-primary: #ffffff;
+$text-color-secondary: #000000;
+
+$background-color-primary: #ffffff;
+
+$icon-color-primary: #4a5e5e;
+
+a {
+  text-decoration: none;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: "Montserrat";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: "Oswald";
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 72px;
+  color: $accent-color-secondary;
+}
+
+.content {
+  flex: 1;
+}

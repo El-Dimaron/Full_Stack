@@ -1,0 +1,125 @@
+Bootstrap - popular open-source front-end framework used to build responsive and mobile-first websites quickly.
+https://getbootstrap.com/
+
+    It provides ready-made:
+        ✅ CSS styles
+        ✅ Layout system (Grid)
+        ✅ UI components
+        ✅ JavaScript plugins
+
+    Instead of writing everything from scratch, you use Bootstrap’s prebuilt classes.
+
+
+    🔹 1. The Grid System (Layout)
+
+        Bootstrap uses a 12-column grid system that makes layouts responsive.
+
+        Example:
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">Left</div>
+                    <div class="col-6">Right</div>
+                </div>
+            </div>
+    
+        This automatically adapts to screen sizes.
+    
+    🔹 2. Prebuilt Components
+
+        Bootstrap gives you ready UI elements like:
+            Buttons
+            Cards
+            Navbar
+            Forms
+            Modals
+            Alerts
+            Dropdowns
+
+        Example button:
+            <button class="btn btn-primary">Click me</button>
+
+        No custom CSS needed.
+    
+
+    🔹 3. Built-in Styling
+
+        Instead of writing:
+
+            button {
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+        You just use:
+            class="btn btn-success"
+
+    🔹 4. JavaScript Features
+
+        Bootstrap includes JS functionality like:
+            Modals (popups)
+            Tooltips
+            Collapsible menus
+            Carousels
+    
+
+    🔹 Why Developers Use It
+        ✅ Fast development
+        ✅ Consistent design
+        ✅ Mobile-friendly by default
+        ✅ Good documentation
+        ✅ Huge community
+
+    🔹 Downsides
+        ⚠️ Many websites look similar
+        ⚠️ Extra unused CSS can make files larger
+        ⚠️ Less flexible than writing custom CSS
+    
+
+
+Layout System in Bootstrap
+
+    Bootstrap layout is built on a 12-column responsive grid system.
+
+    🔹 Basic Structure
+        <div class="container">
+            <div class="row">
+                <div class="col-6">Left</div>
+                <div class="col-6">Right</div>
+            </div>
+        </div>
+
+
+    🧩 Three Main Layout Classes
+        1. .container
+            Centers content and adds horizontal padding.
+                .container → fixed width depending on screen
+                .container-fluid → full width (100%)
+        
+        2. .row
+            Creates a horizontal group of columns.
+        
+        3. .col-*
+            Defines column width.
+            Bootstrap divides space into 12 parts:
+                col-12      100%
+                col-6       50%
+                col-4       33%
+                col-3       25%
+        
+    📱 Responsive Breakpoints
+
+        Bootstrap uses breakpoints:
+            Prefix	    Screen Size
+            col-sm-	    ≥576px
+            col-md-	    ≥768px
+            col-lg-	    ≥992px
+            col-xl-	    ≥1200px
+            col-xxl-	≥1400px
+
+            Example:
+                <div class="col-12 col-md-6 col-lg-4">
+                Mobile → full width
+                Tablet → half
+                Desktop → one-third
+    
+    
