@@ -1,0 +1,171 @@
+@use "sass:color";
+
+@font-face {
+  font-family: "Raleway";
+  src: url("../../fonts/Raleway-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("../../fonts/Raleway-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("../../fonts/Raleway-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+$accent-main-primary: #1a7df0;
+$accent-main-secondary: #ffffff;
+
+$accent-aux-primary: #ffe711;
+$accent-aux-secondary: #005bc5;
+$accent-aux-tertiary: #333333;
+
+html,
+body {
+  margin: 0;
+  font-family: "Raleway";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: $accent-aux-tertiary;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 65px;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 42px;
+}
+
+h3,
+h4,
+h5 {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+p,
+button {
+  color: $accent-aux-tertiary;
+}
+
+.text-xl {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.text-lg {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.text-s {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+}
+
+.ticker {
+  font-weight: 400;
+  font-size: 32px;
+}
+
+.button {
+  min-width: 350px;
+  font-weight: 400;
+  font-size: 24px;
+  padding: 15px 68px;
+  border-radius: 100px;
+  cursor: pointer;
+
+  &--primary {
+    background-color: $accent-aux-primary;
+
+    &:hover {
+      background-color: #f9d100;
+    }
+  }
+
+  &--secondary {
+    color: $accent-main-secondary;
+    background-color: $accent-main-primary;
+
+    &:hover {
+      background-color: #005bc5;
+    }
+  }
+
+  &--transparent {
+    background-color: transparent;
+    outline: 1px solid $accent-main-primary;
+    outline-offset: -1px;
+
+    &:hover {
+      color: $accent-main-primary;
+    }
+  }
+
+  &--transparent-bg {
+    min-width: 275px;
+    color: $accent-main-secondary;
+    background-color: transparent;
+    outline: 1px solid $accent-main-secondary;
+    outline-offset: -1px;
+
+    &:hover {
+      outline-color: $accent-aux-primary;
+      color: $accent-aux-primary;
+    }
+  }
+
+  &--transparent-xs {
+    padding: 10px 31px;
+    font-size: 18px;
+    background-color: transparent;
+    outline: 1px solid #333333;
+    outline-offset: -1px;
+
+    &:hover {
+      outline-color: $accent-main-primary;
+      color: $accent-main-primary;
+    }
+  }
+}
+
+.menu {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+a {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  color: #333333;
+  border-bottom: 1px solid #333333;
+  transition: 0.3s;
+
+  &:hover {
+    color: $accent-main-primary;
+    border-color: $accent-main-primary;
+  }
+}
+
+// .content {
+//   flex: 1;
+// }

@@ -1,0 +1,85 @@
+@use "global";
+@use "sass:color";
+
+body {
+  background-image: url(../../images/home-background.png);
+  background-size: cover;
+}
+
+.header {
+  padding: 12px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &__container {
+    padding-bottom: 12px;
+    border-bottom: 1px solid black;
+  }
+
+  &__top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    max-width: 380px;
+  }
+
+  &__social-list {
+    display: flex;
+    gap: 18px;
+  }
+
+  &__social-link,
+  &__misc-link,
+  &__sections-link {
+    border-bottom: none;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    max-width: 600px;
+  }
+
+  &__misc-list {
+    display: flex;
+    gap: 35px;
+  }
+
+  &__misc-inner-container {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  &__bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__sections-list {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  &__sections-link {
+    display: flex;
+    align-items: center;
+  }
+}
