@@ -28,6 +28,9 @@ $accent-aux-primary: #ffe711;
 $accent-aux-secondary: #005bc5;
 $accent-aux-tertiary: #333333;
 
+$container-padding: 12px 80px;
+$max-width: 1920px;
+
 html,
 body {
   margin: 0;
@@ -67,22 +70,19 @@ button {
 .text-xl {
   font-weight: 400;
   font-size: 20px;
+  line-height: 150%;
 }
 
 .text-lg {
   font-weight: 400;
   font-size: 18px;
+  line-height: 150%;
 }
 
 .text-s {
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
-}
-
-.ticker {
-  font-weight: 400;
-  font-size: 32px;
 }
 
 .button {
