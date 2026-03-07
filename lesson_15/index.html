@@ -68,7 +68,9 @@
     <section
       class="hero bg-[#a9a8a2] lg:bg-[url(./images/psycho-main-image.jpg)] min-h-[768px] bg-cover bg-[center_30%] flex flex-col items-center"
     >
-      <header class="base-padding w-full flex flex-col lg:flex-row justify-between items-center gap-[24px]">
+      <header
+        class="base-padding w-full flex flex-col lg:flex-row justify-between items-center gap-[24px]"
+      >
         <picture>
           <img src="./images/psycho-logo.png" alt="Logo" />
         </picture>
@@ -76,7 +78,9 @@
           <ul class="flex gap-[13px]">
             <li><a class="nav-link nav-link--active" href="#">Головна</a></li>
             <li><a class="nav-link hover:text-[#6de1e3]" href="#">Події</a></li>
-            <li><a class="nav-link hover:text-[#6de1e3]" href="#">Контакти</a></li>
+            <li>
+              <a class="nav-link hover:text-[#6de1e3]" href="#">Контакти</a>
+            </li>
             <li><a class="nav-link hover:text-[#6de1e3]" href="#">Блог</a></li>
           </ul>
         </nav>
@@ -84,32 +88,51 @@
       <div
         class="base-padding w-full lg:py-[110px] flex flex-col items-center text-center gap-[55px] lg:items-start lg:text-left"
       >
-        <h1 class="base-title max-w-[500px]">Ваш особистий психолог <br />У Кривому Розі</h1>
-        <p class="base-text max-w-[255px]">Особисті, сімейні та групові консультації</p>
+        <h1 class="base-title max-w-[500px]">
+          Ваш особистий психолог <br />У Кривому Розі
+        </h1>
+        <p class="base-text max-w-[255px]">
+          Особисті, сімейні та групові консультації
+        </p>
         <button class="base-button">Більше</button>
       </div>
     </section>
     <section class="base-padding w-full pt-[60px] flex justify-self-center">
       <div class="w-full flex flex-wrap justify-evenly items-center gap-[90px]">
-        <div class="max-w-[300px] text-center flex flex-col items-center gap-[20px]">
-          <svg class="pb-[10px]"><use href="./images/sprite.svg#goal"></use></svg>
+        <div
+          class="max-w-[300px] text-center flex flex-col items-center gap-[20px]"
+        >
+          <svg class="pb-[10px]">
+            <use href="./images/sprite.svg#goal"></use>
+          </svg>
           <h2 class="base-title services-title">Особисті консультації</h2>
           <p class="services-text">
-            Досягнення поставленої мети буває складним завданням, але за правильної підтримки немає нічого неможливого
+            Досягнення поставленої мети буває складним завданням, але за
+            правильної підтримки немає нічого неможливого
           </p>
         </div>
-        <div class="max-w-[300px] text-center flex flex-col items-center gap-[20px]">
-          <svg class="pb-[10px]"><use href="./images/sprite.svg#family"></use></svg>
+        <div
+          class="max-w-[300px] text-center flex flex-col items-center gap-[20px]"
+        >
+          <svg class="pb-[10px]">
+            <use href="./images/sprite.svg#family"></use>
+          </svg>
           <h2 class="base-title services-title">Сімейна терапія</h2>
           <p class="services-text">
-            У будь-якої родини бувають кризові ситуації, тому в такі моменти важливо підтримувати одне одного.
+            У будь-якої родини бувають кризові ситуації, тому в такі моменти
+            важливо підтримувати одне одного.
           </p>
         </div>
-        <div class="max-w-[300px] text-center flex flex-col items-center gap-[20px]">
-          <svg class="pb-[10px]"><use href="./images/sprite.svg#network"></use></svg>
+        <div
+          class="max-w-[300px] text-center flex flex-col items-center gap-[20px]"
+        >
+          <svg class="pb-[10px]">
+            <use href="./images/sprite.svg#network"></use>
+          </svg>
           <h2 class="base-title services-title">Сенситивні групи</h2>
           <p class="services-text">
-            Групові заняття — чудове місце, щоб навчитися спілкуватися з оточуючими людьми та розкрити свій потенціал
+            Групові заняття — чудове місце, щоб навчитися спілкуватися з
+            оточуючими людьми та розкрити свій потенціал
           </p>
         </div>
       </div>
@@ -121,21 +144,36 @@
       <div
         class="base-padding py-[60px] flex flex-col items-center gap-[40px] lg:grid lg:grid-cols-2 lg:grid-rows-(auto_1fr_auto) lg:justify-self-center w-full"
       >
-        <h2 class="base-title text-4xl leading-[54px] lg:row-start-1 lg:row-span-1">Трохи про мене</h2>
-        <picture class="lg:row-start-1 lg:row-span-3 lg:col-start-2 lg:place-items-center"
+        <h2
+          class="base-title text-4xl leading-[54px] lg:row-start-1 lg:row-span-1"
+        >
+          Трохи про мене
+        </h2>
+        <picture
+          class="lg:row-start-1 lg:row-span-3 lg:col-start-2 lg:place-items-center"
           ><img src="./images/bricks-photo.jpg" alt="Photo of a man"
         /></picture>
         <p class="max-w-[570px] base-text text-base font-bold leading-[24px]">
-          Далеко-далеко за словесними горами країни голосних і приголосних живуть рибні тексти. Вдалині від усіх живуть
-          вони в буквених будинках на березі Семантика великого мовного океану. Маленький струмок Даль дзюрчить по всій
-          країні та забезпечує її всіма необхідними правилами. Ця парадигматична країна, в якій смажені члени речення
-          залітають прямо.
+          Далеко-далеко за словесними горами країни голосних і приголосних
+          живуть рибні тексти. Вдалині від усіх живуть вони в буквених будинках
+          на березі Семантика великого мовного океану. Маленький струмок Даль
+          дзюрчить по всій країні та забезпечує її всіма необхідними правилами.
+          Ця парадигматична країна, в якій смажені члени речення залітають
+          прямо.
         </p>
-        <div class="flex justify-center lg:justify-start gap-4 w-full max-w-[570px]">
-          <button class="base-button py-[4px] px-[45px] bg-transparent border-[#2D5E5E] border-3">
+        <div
+          class="flex justify-center lg:justify-start gap-4 w-full max-w-[570px]"
+        >
+          <button
+            class="base-button py-[4px] px-[45px] bg-transparent border-[#2D5E5E] border-3"
+          >
             Поставити питання
           </button>
-          <button class="base-button py-[4px] px-[45px] border-[#2D5E5E] border-3">Хочу консультацію</button>
+          <button
+            class="base-button py-[4px] px-[45px] border-[#2D5E5E] border-3"
+          >
+            Хочу консультацію
+          </button>
         </div>
       </div>
     </section>

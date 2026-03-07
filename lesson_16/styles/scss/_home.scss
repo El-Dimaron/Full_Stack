@@ -169,7 +169,6 @@ body {
   margin-top: -42px;
   gap: 30px;
   align-items: center;
-  margin-bottom: 500px;
 
   &__container--outer {
     display: flex;
@@ -267,8 +266,84 @@ body {
   }
 }
 
+.report {
+  max-width: global.$max-width;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: global.$container-padding;
+  gap: 60px;
+  align-items: center;
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  &__horizontal-container {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    p {
+      flex: 1;
+    }
+
+    h3 {
+      flex: 1;
+    }
+  }
+
+  &__title {
+    font-size: 30px;
+    line-height: 130%;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+    column-gap: 150px;
+    row-gap: 50px;
+    padding-inline: 143px;
+  }
+
+  &__list-item h2 {
+    margin-bottom: 5px;
+  }
+
+  &__image-container {
+    position: relative;
+    border-radius: 15px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      border-radius: 15px;
+      inset: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 1280px) {
   .about__container--outer {
     flex-direction: column;
+  }
+
+  .report__list {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+    row-gap: 30px;
+    padding-inline: 0;
   }
 }
