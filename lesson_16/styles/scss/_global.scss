@@ -60,6 +60,7 @@ h4,
 h5 {
   font-weight: 700;
   font-size: 20px;
+  line-height: 120%;
 }
 
 p,
@@ -112,10 +113,12 @@ button {
 
   &--transparent {
     background-color: transparent;
-    outline: 1px solid $accent-main-primary;
+    // outline: 1px solid $accent-main-primary;
+    outline: 1px solid #333333;
     outline-offset: -1px;
 
     &:hover {
+      outline-color: $accent-main-primary;
       color: $accent-main-primary;
     }
   }

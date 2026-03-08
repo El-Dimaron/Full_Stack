@@ -195,6 +195,7 @@ body {
       flex-direction: column;
       gap: 30px;
       flex: 1;
+      // min-height: 720px;
 
       h2 {
         color: white;
@@ -206,11 +207,13 @@ body {
       display: flex;
       flex-direction: column;
       gap: 30px;
+      height: 100%;
     }
 
     &--photos {
       display: flex;
       flex-direction: column;
+      justify-content: space-evenly;
       flex: 1;
       gap: 20px;
     }
@@ -236,6 +239,8 @@ body {
   &__list {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
     gap: 15px;
   }
 
@@ -252,6 +257,7 @@ body {
       height: 21px;
       flex: 0 0 21px;
       display: block;
+      color: global.$accent-aux-primary;
     }
   }
 
@@ -316,22 +322,505 @@ body {
     margin-bottom: 5px;
   }
 
+  &__about {
+    display: flex;
+    gap: 20px;
+  }
+
   &__image-container {
+    flex: 1;
     position: relative;
     border-radius: 15px;
-
-    &::after {
-      content: "";
-      position: absolute;
-      border-radius: 15px;
-      inset: 0;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-    }
+    width: 100%;
+    // max-height: 400px;
   }
 
   &__image {
     display: block;
     width: 100%;
+  }
+
+  &__play {
+    position: absolute;
+    display: flex;
+    place-self: center;
+    inset: 0;
+    width: 108px;
+    height: 108px;
+    cursor: pointer;
+  }
+
+  &__text-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+  &__buttons-container {
+    display: flex;
+    gap: 15px;
+  }
+}
+
+.projects {
+  max-width: global.$max-width;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: global.$container-padding;
+  gap: 60px;
+  align-items: center;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__photos {
+    display: flex;
+    gap: 20px;
+
+    a {
+      border-bottom: 1px solid transparent;
+    }
+
+    &-inner {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 48px;
+      gap: 12px;
+    }
+
+    .colored-rectangle--first {
+      background-color: global.$accent-aux-primary;
+    }
+
+    #black-text {
+      color: black;
+    }
+
+    .colored-rectangle--second {
+      background-color: global.$accent-main-primary;
+    }
+  }
+
+  .photo-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-text {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      line-height: 120%;
+      color: #ffffff;
+    }
+  }
+
+  &__events {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+
+    a {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      border-bottom: none;
+    }
+
+    &-title {
+      font-size: 32px;
+      font-weight: 400;
+    }
+
+    &-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 20px;
+      row-gap: 15px;
+    }
+
+    &-item {
+      display: flex;
+      gap: 23px;
+
+      svg {
+        width: 21px;
+        height: 21px;
+        color: global.$accent-main-primary;
+        flex: 0 0 21px;
+        display: block;
+      }
+    }
+  }
+}
+
+.privileges {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+
+  &__container {
+    padding: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
+    border-radius: 30px;
+    min-height: 490px;
+
+    h2,
+    p {
+      color: white;
+    }
+
+    &--first {
+      background-color: global.$accent-main-primary;
+    }
+
+    &--second {
+      background-color: global.$accent-aux-primary;
+      padding: 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 30px;
+
+      span {
+        display: block;
+        margin-top: 20px;
+      }
+
+      p {
+        color: black;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 15px;
+    height: 100%;
+
+    &-item {
+      display: flex;
+      gap: 23px;
+
+      svg {
+        width: 21px;
+        height: 21px;
+        color: global.$accent-aux-primary;
+        flex: 0 0 21px;
+        display: block;
+      }
+    }
+  }
+
+  &__inner-container {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    h4 {
+      line-height: 120%;
+    }
+  }
+}
+
+.partners {
+  max-width: global.$max-width;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: global.$container-padding;
+  align-items: center;
+  gap: 30px;
+
+  &__chess-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow: hidden;
+    border-radius: 30px;
+  }
+
+  &__chess-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 34px;
+    min-height: 124px;
+
+    span {
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    &--main-color {
+      background-color: global.$accent-main-primary;
+
+      &-transparent {
+        background-color: color.change(
+          global.$accent-main-primary,
+          $alpha: 0.5
+        );
+
+        > * {
+          color: global.$accent-main-secondary;
+        }
+      }
+
+      > * {
+        color: global.$accent-main-secondary;
+      }
+    }
+
+    &--aux-color {
+      background-color: global.$accent-aux-primary;
+
+      &-transparent {
+        background-color: color.change(global.$accent-aux-primary, $alpha: 0.5);
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 20px;
+  }
+}
+
+.news {
+  max-width: global.$max-width;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  padding: global.$container-padding;
+  gap: 30px;
+
+  &__list {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 20px;
+  }
+
+  &__item {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+
+    &-text {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    &-paragraph {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__image-container {
+    flex: 1;
+  }
+
+  &__photo {
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__title {
+    line-height: 120%;
+  }
+}
+
+.team {
+  width: 100%;
+  max-width: global.$max-width;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  padding: global.$container-padding;
+  gap: 30px;
+
+  &__card-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  &__card-item {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 20px;
+  }
+
+  &__card-title {
+    margin-bottom: 5px;
+  }
+
+  &__image-container {
+    max-width: 330px;
+    max-height: 372px;
+  }
+
+  &__card-photo {
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.contacts {
+  width: 100%;
+  background-color: global.$accent-main-primary;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 80px;
+    gap: 30px;
+    width: 100%;
+    max-width: global.$max-width;
+
+    h2 {
+      color: global.$accent-main-secondary;
+    }
+
+    p,
+    span {
+      color: global.$accent-main-secondary;
+    }
+  }
+
+  &__content {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    gap: 10px;
+  }
+
+  &__icons,
+  &__welcome {
+    margin-bottom: 10px;
+  }
+
+  &__paragraph {
+    margin-bottom: 5px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    &--spaced {
+      gap: 25px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    svg {
+      color: global.$accent-main-secondary;
+      width: 24px;
+      height: 24px;
+    }
+
+    a {
+      border-bottom: none;
+      color: global.$accent-main-secondary;
+
+      &:hover svg {
+        color: global.$accent-aux-primary;
+      }
+    }
+  }
+
+  &__map {
+    flex: 1;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.footer {
+  width: 100%;
+  max-width: global.$max-width;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  padding: 60px 80px 85px;
+
+  &__container {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 370px max-content max-content max-content;
+    grid-template-rows: auto auto auto;
+
+    width: 100%;
+  }
+
+  &__nav {
+    display: grid;
+    row-gap: 10px;
+    justify-items: start;
+  }
+
+  .development {
+    display: inline-block;
+    margin-top: 30px;
   }
 }
 
@@ -346,4 +835,56 @@ body {
     row-gap: 30px;
     padding-inline: 0;
   }
+
+  .report__about {
+    flex-direction: column;
+  }
+
+  .report__text-container {
+    align-items: center;
+  }
+
+  .projects__photos {
+    flex-direction: column;
+  }
+
+  .projects__events-list {
+    grid-template-columns: 1fr;
+  }
+
+  .privileges {
+    flex-direction: column;
+  }
+
+  .partners__chess-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .partners__buttons {
+    flex-direction: column;
+    align-self: stretch;
+    padding-inline: 10px;
+  }
+
+  .news__list {
+    flex-direction: column;
+  }
+
+  .contacts__content {
+    flex-direction: column;
+  }
+
+  .footer {
+    padding: 50px 40px 70px;
+
+    &__container {
+      grid-template-columns: repeat(2, max-content);
+      justify-content: space-between;
+      row-gap: 30px;
+    }
+  }
 }
+
+// TODO: Inline grid settings move to css
+// Chess pieces the same height
+// Header (adaptive)
