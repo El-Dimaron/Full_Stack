@@ -113,7 +113,6 @@ button {
 
   &--transparent {
     background-color: transparent;
-    // outline: 1px solid $accent-main-primary;
     outline: 1px solid #333333;
     outline-offset: -1px;
 
@@ -160,7 +159,8 @@ a {
   font-size: 12px;
   line-height: 150%;
   color: #333333;
-  border-bottom: 1px solid #333333;
+  text-decoration: underline;
+  text-underline-offset: 4px;
   transition: 0.3s;
 
   &:hover {
@@ -168,7 +168,3 @@ a {
     border-color: $accent-main-primary;
   }
 }
-
-// .content {
-//   flex: 1;
-// }
