@@ -28,6 +28,86 @@ $accent-aux-primary: #ffe711;
 $accent-aux-secondary: #005bc5;
 $accent-aux-tertiary: #333333;
 
+$button-main-hover: #f9d100;
+
+$accent-logo: #3a59a1;
+
+$dark-accent-main-primary: #4da3ff;
+$dark-accent-main-secondary: #ffffff;
+
+$dark-accent-aux-primary: #ffe711;
+$dark-accent-aux-secondary: #7bbcff;
+$dark-accent-aux-tertiary: #f3f3f3;
+
+$dark-bg: #121212;
+$dark-surface: #1f1f1f;
+
+// White theme
+
+:root {
+  --color-text-bw: #333333;
+  --color-text-bb: #333333;
+  --color-text-wb: #ffffff;
+  --color-text-ww: #ffffff;
+
+  --color-accent-hover: #1a7df0;
+
+  --color-accent-logo: #3a59a1;
+
+  --color-border: #333333;
+
+  --color-button-main: #ffe711;
+  --color-button-main-hover: #f9d100;
+
+  --color-button-secondary: #1a7df0;
+  --color-button-secondary-hover: #005bc5;
+
+  --color-button-transparent-hover: #1a7df0;
+
+  --color-outline-tb: transparent;
+
+  //
+
+  --color-bg: #ffffff;
+  --color-primary: #1a7df0;
+  --color-accent: #ffe711;
+  --color-accent-hover: #f9d100;
+  --color-white: #ffffff;
+}
+
+// Dark theme
+
+body.dark-theme {
+  --color-text-bw: #ffffff;
+  --color-text-bb: #333333;
+  --color-text-wb: #333333;
+  --color-text-ww: #ffffff;
+
+  --color-accent-hover: #f9d100;
+
+  --color-accent-logo: #ffffff;
+
+  --color-border: #ffffff;
+
+  --color-button-main: #ffe91f;
+  --color-button-main-hover: #1a7df0;
+
+  --color-button-secondary: #ffffff;
+  --color-button-secondary-hover: #ffffff;
+
+  --color-button-transparent-hover: #ffe711;
+
+  --color-outline-tb: #000000;
+
+  //
+
+  --color-bg: #121212;
+  --color-primary: #4da3ff;
+  --color-accent: #f9d100;
+
+  --color-white: #ffffff;
+}
+
 $container-padding: 12px 80px;
 $max-width: 1920px;
 
@@ -35,6 +115,7 @@ html,
 body {
   margin: 0;
   font-family: "Raleway";
+  min-height: 100%;
 }
 
 h1,
@@ -42,7 +123,8 @@ h2,
 h3,
 h4,
 h5 {
-  color: $accent-aux-tertiary;
+  // color: $accent-aux-tertiary;
+  color: var(--color-text-bw);
 }
 
 h1 {
@@ -64,8 +146,10 @@ h5 {
 }
 
 p,
+span,
 button {
-  color: $accent-aux-tertiary;
+  // color: $accent-aux-tertiary;
+  color: var(--color-text-bw);
 }
 
 .text-xl {
@@ -95,56 +179,42 @@ button {
   cursor: pointer;
 
   &--primary {
-    background-color: $accent-aux-primary;
+    // background-color: $accent-aux-primary;
+    background-color: var(--color-button-main);
+    color: var(--color-text-bb);
 
     &:hover {
-      background-color: #f9d100;
+      // background-color: #f9d100;
+      background-color: var(--color-button-main-hover);
+      color: var(--color-text-bw);
     }
   }
 
   &--secondary {
-    color: $accent-main-secondary;
-    background-color: $accent-main-primary;
+    // color: $accent-main-secondary;
+    color: var(--color-text-wb);
+    // background-color: $accent-main-primary;
+    background-color: var(--color-button-secondary);
 
     &:hover {
-      background-color: #005bc5;
+      // background-color: #005bc5;
+      background-color: var(--color-button-secondary-hover);
+      outline: 1px solid var(--color-outline-tb);
+      outline-offset: -1px;
     }
   }
 
   &--transparent {
     background-color: transparent;
-    outline: 1px solid #333333;
+    color: var(--color-text-bw);
+    outline: 1px solid var(--color-text-bw);
     outline-offset: -1px;
 
     &:hover {
-      outline-color: $accent-main-primary;
-      color: $accent-main-primary;
-    }
-  }
-
-  &--transparent-bg {
-    min-width: 275px;
-    color: $accent-main-secondary;
-    background-color: transparent;
-    outline: 1px solid $accent-main-secondary;
-    outline-offset: -1px;
-
-    &:hover {
-      outline-color: $accent-aux-primary;
-      color: $accent-aux-primary;
-    }
-  }
-
-  &--transparent-xs {
-    padding: 10px 31px;
-    font-size: 18px;
-    background-color: transparent;
-    outline: 1px solid #333333;
-    outline-offset: -1px;
-
-    &:hover {
-      outline-color: $accent-main-primary;
-      color: $accent-main-primary;
+      // outline-color: $accent-main-primary;
+      // color: $accent-main-primary;
+      outline-color: var(--color-button-transparent-hover);
+      color: var(--color-button-transparent-hover);
     }
   }
 }
@@ -158,13 +228,18 @@ a {
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
-  color: #333333;
+  color: var(--color-text-bw);
   text-decoration: underline;
   text-underline-offset: 4px;
   transition: 0.3s;
 
   &:hover {
-    color: $accent-main-primary;
-    border-color: $accent-main-primary;
+    color: var(--color-accent-hover);
+    // border-color: $accent-main-primary;
   }
 }
+
+// TODO:
+// hover in <a> elements in header (phone number, address and language)
+// span in running line, члени асоціації, ключові партнери,
+// blur the background
