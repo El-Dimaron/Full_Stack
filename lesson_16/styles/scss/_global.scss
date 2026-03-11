@@ -60,6 +60,10 @@ $dark-surface: #1f1f1f;
 
   --color-bg: #ffffff;
 
+  --color-breadcrumbs: #33333380;
+
+  --color-primary: #1a7df0;
+
   --color-button-main: #ffe711;
   --color-button-main-hover: #f9d100;
 
@@ -71,8 +75,6 @@ $dark-surface: #1f1f1f;
   --color-outline-tb: transparent;
 
   //
-
-  --color-primary: #1a7df0;
   --color-accent: #ffe711;
   --color-accent-hover: #f9d100;
   --color-white: #ffffff;
@@ -96,6 +98,8 @@ body.dark-theme {
 
   --color-bg: #333333;
 
+  --color-breadcrumbs: #ffffffb0;
+
   --color-button-main: #ffe91f;
   --color-button-main-hover: #1a7df0;
 
@@ -108,14 +112,14 @@ body.dark-theme {
 
   //
 
-  --color-primary: #4da3ff;
   --color-accent: #f9d100;
 
   --color-white: #ffffff;
 }
 
 $container-padding: 12px 80px;
-$max-width: 1920px;
+// $max-width: 1920px;
+$max-width: 1600px;
 
 html,
 body {
