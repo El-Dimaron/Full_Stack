@@ -56,6 +56,10 @@ $dark-surface: #1f1f1f;
 
   --color-border: #333333;
 
+  --color-svg-basic: #333333;
+
+  --color-bg: #ffffff;
+
   --color-button-main: #ffe711;
   --color-button-main-hover: #f9d100;
 
@@ -68,7 +72,6 @@ $dark-surface: #1f1f1f;
 
   //
 
-  --color-bg: #ffffff;
   --color-primary: #1a7df0;
   --color-accent: #ffe711;
   --color-accent-hover: #f9d100;
@@ -89,6 +92,10 @@ body.dark-theme {
 
   --color-border: #ffffff;
 
+  --color-svg-basic: #ffffff;
+
+  --color-bg: #333333;
+
   --color-button-main: #ffe91f;
   --color-button-main-hover: #1a7df0;
 
@@ -101,7 +108,6 @@ body.dark-theme {
 
   //
 
-  --color-bg: #121212;
   --color-primary: #4da3ff;
   --color-accent: #f9d100;
 
@@ -150,6 +156,10 @@ span,
 button {
   // color: $accent-aux-tertiary;
   color: var(--color-text-bw);
+}
+
+span {
+  transition: 0.3s;
 }
 
 .text-xl {
@@ -237,9 +247,19 @@ a {
     color: var(--color-accent-hover);
     // border-color: $accent-main-primary;
   }
+
+  span {
+    color: inherit;
+  }
+
+  // span:hover {
+  //   color: var(--color-accent-hover);
+  // }
 }
 
+// svg {
+//   color: var(--color-svg-basic);
+// }
+
 // TODO:
-// hover in <a> elements in header (phone number, address and language)
-// span in running line, члени асоціації, ключові партнери,
-// blur the background
+// correct images in about us

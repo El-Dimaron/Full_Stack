@@ -7,8 +7,6 @@
   justify-content: flex-start;
   gap: 88px;
   z-index: -1;
-  background-color: global.$accent-aux-tertiary;
-  background-color: global.$accent-main-secondary;
   background-color: var(--color-text-wb);
 
   background-image: url("../../images/home-background.png");
@@ -32,10 +30,6 @@
   .theme-toggle {
     display: flex;
     background-color: transparent;
-    // border-radius: 10px;
-    // padding: 5px 10px;
-    // background-color: global.$accent-main-primary;
-    // color: global.$accent-main-secondary;
     cursor: pointer;
 
     img {
@@ -168,7 +162,8 @@
   border-top: 5px solid global.$accent-main-primary;
   border-bottom: 5px solid global.$accent-aux-primary;
   overflow: hidden;
-  background-color: global.$accent-main-secondary;
+  // background-color: global.$accent-main-secondary;
+  background-color: var(--color-bg);
 
   &__text {
     font-weight: 400;
@@ -549,13 +544,15 @@
       justify-content: space-between;
       gap: 30px;
 
+      p,
+      span,
+      h4 {
+        color: var(--color-text-bb);
+      }
+
       span {
         display: block;
         margin-top: 20px;
-      }
-
-      p {
-        color: black;
       }
     }
   }
@@ -629,12 +626,14 @@
         background-color: color.change(global.$accent-main-primary, $alpha: 0.5);
 
         > * {
-          color: global.$accent-main-secondary;
+          // color: global.$accent-main-secondary;
+          color: var(--color-text-ww);
         }
       }
 
       > * {
-        color: global.$accent-main-secondary;
+        // color: global.$accent-main-secondary;
+        color: var(--color-text-ww);
       }
     }
 
@@ -643,6 +642,15 @@
 
       &-transparent {
         background-color: color.change(global.$accent-aux-primary, $alpha: 0.5);
+        > * {
+          // color: global.$accent-main-secondary;
+          color: var(--color-text-bb);
+        }
+      }
+
+      > * {
+        // color: global.$accent-main-secondary;
+        color: var(--color-text-bb);
       }
     }
   }
@@ -754,6 +762,10 @@
   align-self: center;
   align-items: center;
 
+  svg {
+    color: var(--color-text-ww);
+  }
+
   &__container {
     display: flex;
     flex-direction: column;
@@ -811,18 +823,15 @@
     gap: 10px;
 
     svg {
-      color: global.$accent-main-secondary;
+      // color: global.$accent-main-secondary;
       width: 24px;
       height: 24px;
     }
+  }
 
-    a {
-      border-bottom: none;
-      color: global.$accent-main-secondary;
-
-      &:hover svg {
-        color: global.$accent-aux-primary;
-      }
+  &__social {
+    svg:hover {
+      color: var(--color-accent-hover);
     }
   }
 
