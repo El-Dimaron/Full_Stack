@@ -12,6 +12,12 @@
 }
 @font-face {
   font-family: "Raleway";
+  src: url("../../fonts/Raleway-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Raleway";
   src: url("../../fonts/Raleway-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
@@ -22,6 +28,7 @@
   --color-text-wb: #ffffff;
   --color-text-ww: #ffffff;
   --color-accent-hover: #1a7df0;
+  --color-accent-span: #1a7df0;
   --color-accent-logo: #3a59a1;
   --color-border: #333333;
   --color-svg-basic: #333333;
@@ -45,6 +52,7 @@ body.dark-theme {
   --color-text-wb: #333333;
   --color-text-ww: #ffffff;
   --color-accent-hover: #f9d100;
+  --color-accent-span: #ffe711;
   --color-accent-logo: #ffffff;
   --color-border: #ffffff;
   --color-svg-basic: #ffffff;
@@ -156,6 +164,16 @@ span {
   outline-color: var(--color-button-transparent-hover);
   color: var(--color-button-transparent-hover);
 }
+.button--transparent-wy {
+  background-color: transparent;
+  color: var(--color-text-bw);
+  outline: 1px solid var(--color-text-bw);
+  outline-offset: -1px;
+}
+.button--transparent-wy:hover {
+  outline-color: var(--color-button-transparent-hover);
+  color: var(--color-button-transparent-hover);
+}
 
 .menu {
   font-weight: 500;
@@ -216,6 +234,9 @@ a span {
 }
 .header a {
   text-decoration: none;
+}
+.header a:hover {
+  color: var(--color-primary);
 }
 .header__desktop {
   display: flex;
@@ -342,9 +363,6 @@ a span {
   font-size: 20px;
   font-weight: 500;
 }
-.header__dropdown-item:hover a {
-  color: var(--color-primary);
-}
 .header__breadcrumbs {
   display: flex;
   align-items: center;
@@ -459,6 +477,9 @@ a span {
   flex: 1 1 0;
   min-width: 0;
 }
+.about__container--no-margin {
+  margin-bottom: 0;
+}
 .about__container {
   display: flex;
   flex-direction: column;
@@ -474,7 +495,8 @@ a span {
   gap: 30px;
   flex: 1;
 }
-.about__container--filled h2 {
+.about__container--filled h2,
+.about__container--filled p {
   color: white;
 }
 .about__container--inner {
@@ -483,6 +505,9 @@ a span {
   flex-direction: column;
   gap: 30px;
   height: 100%;
+}
+.about__container--humanitarian {
+  margin-bottom: 0;
 }
 .about__container--photos {
   display: flex;
@@ -511,13 +536,17 @@ a span {
   height: 100%;
   gap: 15px;
 }
+.about__list--humanitarian {
+  gap: 10px;
+}
+.about__list--humanitarian svg {
+  width: 21px;
+  height: 21px;
+}
 .about__item {
   display: flex;
   align-items: flex-start;
   gap: 23px;
-}
-.about__item p {
-  color: #ffffff;
 }
 .about__item svg {
   width: 21px;
@@ -532,7 +561,10 @@ a span {
   line-height: 130%;
 }
 .about__text span {
-  color: #1a7df0;
+  color: var(--color-accent-span);
+}
+.about__text----humanitarian {
+  color: var(--color-text-bw);
 }
 
 .report {
@@ -736,12 +768,60 @@ a span {
 }
 .privileges__container--second p,
 .privileges__container--second span,
+.privileges__container--second h2,
 .privileges__container--second h4 {
   color: var(--color-text-bb);
 }
 .privileges__container--second span {
   display: block;
   margin-top: 20px;
+}
+.privileges__important {
+  display: flex;
+  gap: 10px;
+  max-width: 420px;
+}
+.privileges__important h4 {
+  color: var(--color-text-ww);
+}
+.privileges__important svg {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+}
+.privileges__hours {
+  padding: 11px 75px;
+  background-color: var(--color-text-ww);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.privileges__hours-text {
+  font-size: 32px;
+}
+.privileges__hours-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.privileges__hours-time {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 130%;
+}
+.privileges__hours p,
+.privileges__hours svg {
+  color: #1a7df0;
+}
+.privileges__hours svg {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
 }
 .privileges__list {
   display: flex;
@@ -765,9 +845,6 @@ a span {
   display: flex;
   flex-direction: column;
   gap: 22px;
-}
-.privileges__inner-container h4 {
-  line-height: 120%;
 }
 
 .partners {
@@ -989,7 +1066,7 @@ a span {
   flex-direction: column;
   align-self: center;
   align-items: center;
-  padding: 60px 80px 85px;
+  padding: 0 80px 85px 80px;
 }
 .footer__container {
   width: 100%;
@@ -1125,6 +1202,12 @@ a span {
   }
   .privileges {
     flex-direction: column;
+  }
+  .privileges__hours {
+    padding-inline: 43px;
+  }
+  .privileges__container {
+    flex: auto;
   }
   .partners__chess-list {
     grid-template-columns: repeat(2, 1fr);

@@ -16,6 +16,13 @@
 
 @font-face {
   font-family: "Raleway";
+  src: url("../../fonts/Raleway-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
   src: url("../../fonts/Raleway-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
@@ -51,6 +58,7 @@ $dark-surface: #1f1f1f;
   --color-text-ww: #ffffff;
 
   --color-accent-hover: #1a7df0;
+  --color-accent-span: #1a7df0;
 
   --color-accent-logo: #3a59a1;
 
@@ -89,6 +97,7 @@ body.dark-theme {
   --color-text-ww: #ffffff;
 
   --color-accent-hover: #f9d100;
+  --color-accent-span: #ffe711;
 
   --color-accent-logo: #ffffff;
 
@@ -219,6 +228,20 @@ span {
   }
 
   &--transparent {
+    background-color: transparent;
+    color: var(--color-text-bw);
+    outline: 1px solid var(--color-text-bw);
+    outline-offset: -1px;
+
+    &:hover {
+      // outline-color: $accent-main-primary;
+      // color: $accent-main-primary;
+      outline-color: var(--color-button-transparent-hover);
+      color: var(--color-button-transparent-hover);
+    }
+  }
+
+  &--transparent-wy {
     background-color: transparent;
     color: var(--color-text-bw);
     outline: 1px solid var(--color-text-bw);
