@@ -28,6 +28,9 @@
   font-style: normal;
 }
 
+$container-padding: 12px 80px;
+$max-width: 1600px;
+
 $accent-main-primary: #1a7df0;
 $accent-main-secondary: #ffffff;
 
@@ -52,6 +55,8 @@ $dark-surface: #1f1f1f;
 // White theme
 
 :root {
+  --padding-container: 12px 80px;
+
   --color-text-bw: #333333;
   --color-text-bb: #333333;
   --color-text-wb: #ffffff;
@@ -80,12 +85,12 @@ $dark-surface: #1f1f1f;
 
   --color-button-transparent-hover: #1a7df0;
 
+  --color-button-transparent-by: #333333;
+  --color-button-transparent-by-hover: #1a7df0;
+
   --color-outline-tb: transparent;
 
-  //
-  --color-accent: #ffe711;
   --color-accent-hover: #f9d100;
-  --color-white: #ffffff;
 }
 
 // Dark theme
@@ -117,18 +122,11 @@ body.dark-theme {
 
   --color-button-transparent-hover: #ffe711;
 
+  --color-button-transparent-by: #ffe711;
+  --color-button-transparent-by-hover: #ffffff;
+
   --color-outline-tb: #000000;
-
-  //
-
-  --color-accent: #f9d100;
-
-  --color-white: #ffffff;
 }
-
-$container-padding: 12px 80px;
-// $max-width: 1920px;
-$max-width: 1600px;
 
 html,
 body {
@@ -142,7 +140,6 @@ h2,
 h3,
 h4,
 h5 {
-  // color: $accent-aux-tertiary;
   color: var(--color-text-bw);
 }
 
@@ -167,7 +164,6 @@ h5 {
 p,
 span,
 button {
-  // color: $accent-aux-tertiary;
   color: var(--color-text-bw);
 }
 
@@ -195,32 +191,38 @@ span {
 
 .button {
   min-width: 350px;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 24px;
   padding: 15px 68px;
   border-radius: 100px;
   cursor: pointer;
 
+  &--small {
+    min-width: 275px;
+    padding: 10px 20px;
+  }
+
+  &--text-small {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+  }
+
   &--primary {
-    // background-color: $accent-aux-primary;
     background-color: var(--color-button-main);
     color: var(--color-text-bb);
 
     &:hover {
-      // background-color: #f9d100;
       background-color: var(--color-button-main-hover);
       color: var(--color-text-bw);
     }
   }
 
   &--secondary {
-    // color: $accent-main-secondary;
     color: var(--color-text-wb);
-    // background-color: $accent-main-primary;
     background-color: var(--color-button-secondary);
 
     &:hover {
-      // background-color: #005bc5;
       background-color: var(--color-button-secondary-hover);
       outline: 1px solid var(--color-outline-tb);
       outline-offset: -1px;
@@ -234,24 +236,20 @@ span {
     outline-offset: -1px;
 
     &:hover {
-      // outline-color: $accent-main-primary;
-      // color: $accent-main-primary;
       outline-color: var(--color-button-transparent-hover);
       color: var(--color-button-transparent-hover);
     }
   }
 
-  &--transparent-wy {
+  &--transparent-by {
     background-color: transparent;
-    color: var(--color-text-bw);
-    outline: 1px solid var(--color-text-bw);
+    color: var(--color-button-transparent-by);
+    outline: 1px solid var(--color-button-transparent-by);
     outline-offset: -1px;
 
     &:hover {
-      // outline-color: $accent-main-primary;
-      // color: $accent-main-primary;
-      outline-color: var(--color-button-transparent-hover);
-      color: var(--color-button-transparent-hover);
+      outline-color: var(--color-button-transparent-by-hover);
+      color: var(--color-button-transparent-by-hover);
     }
   }
 }
@@ -272,21 +270,9 @@ a {
 
   &:hover {
     color: var(--color-accent-hover);
-    // border-color: $accent-main-primary;
   }
 
   span {
     color: inherit;
   }
-
-  // span:hover {
-  //   color: var(--color-accent-hover);
-  // }
 }
-
-// svg {
-//   color: var(--color-svg-basic);
-// }
-
-// TODO:
-// correct images in about us

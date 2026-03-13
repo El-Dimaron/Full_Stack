@@ -189,7 +189,6 @@
     min-width: 240px;
     padding: 15px 20px;
     background-color: var(--color-bg);
-    // top: 45px;
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
@@ -199,10 +198,6 @@
       font-weight: 500;
     }
   }
-
-  // &__dropdown-item:hover a {
-  //   color: var(--color-primary);
-  // }
 
   &__breadcrumbs {
     display: flex;
@@ -215,13 +210,12 @@
 
     a,
     svg {
-      // color: #33333380;
       color: rgba(255, 255, 255, 0.5);
       color: var(--color-breadcrumbs);
     }
 
     a:hover {
-      color: var(--color-accent-hover);
+      color: var(--color-primary);
     }
 
     .breadcrumb-arrow {
@@ -230,21 +224,6 @@
       height: 24px;
       vertical-align: middle;
     }
-
-    // &-item:not(:last-child) a::after {
-    //   content: "";
-    //   display: inline-block;
-    //   width: 16px;
-    //   height: 16px;
-    //   margin-left: 5px;
-    //   vertical-align: middle;
-
-    //   background-image: url("../../images/arrow-right.svg");
-    //   background-size: contain;
-    //   background-repeat: no-repeat;
-    //   background-position: center;
-    //   color: rgba(255, 255, 255, 0.5);
-    // }
   }
 }
 
@@ -252,7 +231,6 @@
   svg {
     width: 128px;
     height: 70px;
-    // color: global.$accent-logo;
     color: var(--color-accent-logo);
   }
 }
@@ -370,7 +348,6 @@
       flex-direction: column;
       gap: 30px;
       flex: 1;
-      // min-height: 720px;
 
       h2,
       p {
@@ -437,13 +414,8 @@
   &__item {
     display: flex;
     align-items: flex-start;
-
     gap: 23px;
 
-    // p {
-    //   color: global.$accent-main-secondary;
-    //   color: var(--color-text-bw);
-    // }
     svg {
       width: 21px;
       height: 21px;
@@ -459,7 +431,6 @@
     line-height: 130%;
 
     & span {
-      // color: global.$accent-main-primary;
       color: var(--color-accent-span);
     }
   }
@@ -517,6 +488,7 @@
 
   &__list-item h2 {
     margin-bottom: 5px;
+    white-space: nowrap;
   }
 
   &__about {
@@ -717,7 +689,7 @@
   &__important {
     display: flex;
     gap: 10px;
-    max-width: 420px;
+    max-width: 470px;
 
     h4 {
       color: var(--color-text-ww);
@@ -837,13 +809,11 @@
         background-color: color.change(global.$accent-main-primary, $alpha: 0.5);
 
         > * {
-          // color: global.$accent-main-secondary;
           color: var(--color-text-ww);
         }
       }
 
       > * {
-        // color: global.$accent-main-secondary;
         color: var(--color-text-ww);
       }
     }
@@ -854,13 +824,11 @@
       &-transparent {
         background-color: color.change(global.$accent-aux-primary, $alpha: 0.5);
         > * {
-          // color: global.$accent-main-secondary;
           color: var(--color-text-bb);
         }
       }
 
       > * {
-        // color: global.$accent-main-secondary;
         color: var(--color-text-bb);
       }
     }
@@ -882,7 +850,6 @@
   gap: 30px;
 
   &__list {
-    margin-bottom: 30px;
     display: flex;
     gap: 20px;
   }
@@ -968,6 +935,7 @@
 .contacts {
   width: 100%;
   background-color: global.$accent-main-primary;
+  padding: var(--padding-container);
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -1034,7 +1002,6 @@
     gap: 10px;
 
     svg {
-      // color: global.$accent-main-secondary;
       width: 24px;
       height: 24px;
     }
@@ -1111,7 +1078,7 @@
   }
 
   &__meta {
-    margin-top: 30px;
+    margin-top: 10px;
 
     &--development {
       grid-column: 2;
@@ -1134,6 +1101,10 @@
 }
 
 @media screen and (max-width: 1280px) {
+  :root {
+    --padding-container: 30px 20px;
+  }
+
   .header {
     &__desktop {
       display: none;
@@ -1205,6 +1176,13 @@
     }
   }
 
+  .hero__buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .about__container--outer {
     flex-direction: column;
   }
@@ -1242,6 +1220,8 @@
 
   .privileges__container {
     flex: auto;
+    min-height: min(460px);
+    min-height: 0;
   }
 
   .partners__chess-list {
@@ -1262,8 +1242,15 @@
     justify-content: center;
   }
 
-  .contacts__content {
-    flex-direction: column;
+  .contacts {
+    &__content {
+      flex-direction: column;
+    }
+
+    &__list {
+      flex-wrap: wrap;
+      // justify-content: center;
+    }
   }
 
   .footer {

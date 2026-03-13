@@ -23,6 +23,7 @@
   font-style: normal;
 }
 :root {
+  --padding-container: 12px 80px;
   --color-text-bw: #333333;
   --color-text-bb: #333333;
   --color-text-wb: #ffffff;
@@ -40,10 +41,10 @@
   --color-button-secondary: #1a7df0;
   --color-button-secondary-hover: #005bc5;
   --color-button-transparent-hover: #1a7df0;
+  --color-button-transparent-by: #333333;
+  --color-button-transparent-by-hover: #1a7df0;
   --color-outline-tb: transparent;
-  --color-accent: #ffe711;
   --color-accent-hover: #f9d100;
-  --color-white: #ffffff;
 }
 
 body.dark-theme {
@@ -63,9 +64,9 @@ body.dark-theme {
   --color-button-secondary: #ffffff;
   --color-button-secondary-hover: #ffffff;
   --color-button-transparent-hover: #ffe711;
+  --color-button-transparent-by: #ffe711;
+  --color-button-transparent-by-hover: #ffffff;
   --color-outline-tb: #000000;
-  --color-accent: #f9d100;
-  --color-white: #ffffff;
 }
 
 html,
@@ -131,11 +132,20 @@ span {
 
 .button {
   min-width: 350px;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 24px;
   padding: 15px 68px;
   border-radius: 100px;
   cursor: pointer;
+}
+.button--small {
+  min-width: 275px;
+  padding: 10px 20px;
+}
+.button--text-small {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
 }
 .button--primary {
   background-color: var(--color-button-main);
@@ -164,15 +174,15 @@ span {
   outline-color: var(--color-button-transparent-hover);
   color: var(--color-button-transparent-hover);
 }
-.button--transparent-wy {
+.button--transparent-by {
   background-color: transparent;
-  color: var(--color-text-bw);
-  outline: 1px solid var(--color-text-bw);
+  color: var(--color-button-transparent-by);
+  outline: 1px solid var(--color-button-transparent-by);
   outline-offset: -1px;
 }
-.button--transparent-wy:hover {
-  outline-color: var(--color-button-transparent-hover);
-  color: var(--color-button-transparent-hover);
+.button--transparent-by:hover {
+  outline-color: var(--color-button-transparent-by-hover);
+  color: var(--color-button-transparent-by-hover);
 }
 
 .menu {
@@ -377,7 +387,7 @@ a span {
   color: var(--color-breadcrumbs);
 }
 .header__breadcrumbs a:hover {
-  color: var(--color-accent-hover);
+  color: var(--color-primary);
 }
 .header__breadcrumbs .breadcrumb-arrow {
   display: inline-block;
@@ -609,6 +619,7 @@ a span {
 }
 .report__list-item h2 {
   margin-bottom: 5px;
+  white-space: nowrap;
 }
 .report__about {
   display: flex;
@@ -779,7 +790,7 @@ a span {
 .privileges__important {
   display: flex;
   gap: 10px;
-  max-width: 420px;
+  max-width: 470px;
 }
 .privileges__important h4 {
   color: var(--color-text-ww);
@@ -914,7 +925,6 @@ a span {
   gap: 30px;
 }
 .news__list {
-  margin-bottom: 30px;
   display: flex;
   gap: 20px;
 }
@@ -988,6 +998,7 @@ a span {
 .contacts {
   width: 100%;
   background-color: #1a7df0;
+  padding: var(--padding-container);
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -1105,7 +1116,7 @@ a span {
   grid-row: 1/span 2;
 }
 .footer__meta {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .footer__meta--development {
   grid-column: 2;
@@ -1124,6 +1135,9 @@ a span {
 }
 
 @media screen and (max-width: 1280px) {
+  :root {
+    --padding-container: 30px 20px;
+  }
   .header__desktop {
     display: none;
   }
@@ -1179,6 +1193,12 @@ a span {
     display: flex;
     gap: 20px;
   }
+  .hero__buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
   .about__container--outer {
     flex-direction: column;
   }
@@ -1208,6 +1228,8 @@ a span {
   }
   .privileges__container {
     flex: auto;
+    min-height: 460px;
+    min-height: 0;
   }
   .partners__chess-list {
     grid-template-columns: repeat(2, 1fr);
@@ -1225,6 +1247,9 @@ a span {
   }
   .contacts__content {
     flex-direction: column;
+  }
+  .contacts__list {
+    flex-wrap: wrap;
   }
   .footer__nav--1, .footer__nav--2, .footer__nav--3 {
     display: none;
