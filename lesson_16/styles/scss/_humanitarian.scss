@@ -1,0 +1,39 @@
+@use "global";
+@use "sass:color";
+
+.hero {
+  &__paragraph--humanitarian {
+    max-width: 700px;
+  }
+}
+
+.about {
+  &__container--humanitarian {
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  &__text--humanitarian {
+    color: var(--color-text-bw);
+
+    svg {
+      width: 21px;
+      height: 21px;
+    }
+  }
+}
+
+@media screen and (max-width: global.$breakpoint-mobile) {
+  .hero {
+    &__paragraph--humanitarian {
+      max-width: 100%;
+    }
+  }
+
+  .about {
+    &__text--humanitarian {
+      font-size: 18px;
+      line-height: 145%;
+    }
+  }
+}

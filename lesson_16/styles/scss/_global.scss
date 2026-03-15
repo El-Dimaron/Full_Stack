@@ -28,8 +28,17 @@
   font-style: normal;
 }
 
+// General layout
+
 $container-padding: 12px 80px;
 $max-width: 1600px;
+
+// Breakpoints
+
+$breakpoint-tablet: 1280px;
+$breakpoint-mobile: 768px;
+
+// Colors
 
 $accent-main-primary: #1a7df0;
 $accent-main-secondary: #ffffff;

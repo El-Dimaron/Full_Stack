@@ -172,13 +172,36 @@
               </svg>
             </label>
           </div>
+          <section class="header__breadcrumbs">
+            <ul class="header__breadcrumbs-list">
+              <li class="header__breadcrumbs-item">
+                <a class="text-lg" href="./index.html">Головна сторінка </a>
+                <svg class="breadcrumb-arrow">
+                  <use href="./images/arrow-right.svg"></use>
+                </svg>
+              </li>
+              <li class="header__breadcrumbs-item"><a class="text-lg" href="#">Гуманітарний центр</a></li>
+            </ul>
+          </section>
 
           <div class="header__mobile-menu">
             <div class="header__mobile-menu-top">
-              <a class="header__lang" href="#">
-                <span>UKR</span>
-                <svg class="header__icon"><use href="./images/sprite.svg#arrow"></use></svg>
-              </a>
+              <div class="header__lang-dropdown">
+                <a class="header__lang" href="#">
+                  <span>UKR</span>
+                  <svg class="header__icon">
+                    <use href="./images/sprite.svg#arrow"></use>
+                  </svg>
+                </a>
+                <ul class="header__misc-dropdown-list">
+                  <li class="header__dropdown-item">
+                    <a class="header__sections-link text-lg" href="#">ESP</a>
+                  </li>
+                  <li class="header__dropdown-item">
+                    <a class="header__sections-link text-lg" href="#">EN</a>
+                  </li>
+                </ul>
+              </div>
               <label for="burger-toggle" class="header__close">
                 <svg class="header__close-icon">
                   <use href="./images/sprite.svg#close"></use>
@@ -489,7 +512,7 @@
 
       <div class="projects">
         <div class="projects__main">
-          <h2 class="projects">Нашi проекти</h2>
+          <h2 class="projects__title">Нашi проекти</h2>
           <div class="projects__photos">
             <div class="projects__photos-inner">
               <a class="photo-link" style="grid-column: 1; grid-row: 1 / span 6" href="#">
