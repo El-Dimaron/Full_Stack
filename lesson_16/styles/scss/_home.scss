@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   align-self: center;
-  padding: global.$container-padding;
+  padding: var(--padding-container);
   gap: 60px;
   align-items: center;
 
@@ -40,28 +40,38 @@
 
   &__list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     align-items: start;
-    column-gap: 150px;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    column-gap: clamp(30px, 10vw, 150px);
+    // column-gap: ціль 10% ширини, але діятимуть обмеження min max 30px і 150px відповідно - тепер не має бути горизонтального скролу
     row-gap: 50px;
-    padding-inline: 143px;
+    padding: 0 140px;
   }
 
   &__list-item h2 {
     margin-bottom: 5px;
-    white-space: nowrap;
   }
 
   &__about {
     display: flex;
     gap: 20px;
+
+    .report__image-container,
+    .report__text-container {
+      flex: 1 1 0;
+      min-width: 0;
+    }
   }
 
   &__image-container {
     flex: 1;
-    position: relative;
     border-radius: 15px;
     width: 100%;
+    min-width: 695px;
+
+    picture {
+      position: relative;
+    }
   }
 
   &__image {
@@ -89,7 +99,15 @@
 
   &__buttons-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
     gap: 15px;
+
+    button {
+      min-width: 340px;
+      flex: 1;
+    }
   }
 }
 
@@ -98,7 +116,7 @@
   display: flex;
   flex-direction: column;
   align-self: center;
-  padding: global.$container-padding;
+  padding: var(--padding-container);
   gap: 60px;
   align-items: center;
 
@@ -165,6 +183,7 @@
 
   &__events {
     display: flex;
+    width: 100%;
     flex-direction: column;
     gap: 30px;
     margin-bottom: 40px;
@@ -338,7 +357,7 @@
   display: flex;
   flex-direction: column;
   align-self: center;
-  padding: global.$container-padding;
+  padding: var(--padding-container);
   align-items: center;
   gap: 30px;
 
@@ -449,9 +468,14 @@
     }
 
     &__buttons {
-      flex-direction: column;
-      align-self: stretch;
-      padding-inline: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+
+      button {
+        min-width: 340px;
+        flex: 1;
+      }
     }
   }
 }

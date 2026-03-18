@@ -638,6 +638,7 @@ a span {
   align-self: center;
   align-items: center;
   padding: 12px 80px;
+  padding: var(--padding-container);
   gap: 30px;
 }
 .team__card-list {
@@ -672,7 +673,6 @@ a span {
 .contacts {
   width: 100%;
   background-color: #1a7df0;
-  padding: var(--padding-container);
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -685,7 +685,8 @@ a span {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 80px;
+  padding: var(--padding-container);
+  padding-block: 60px;
   gap: 30px;
   width: 100%;
   max-width: 1600px;
@@ -752,6 +753,8 @@ a span {
   align-self: center;
   align-items: center;
   padding: 0 80px 85px 80px;
+  padding: var(--padding-container);
+  padding-block: 0 85px;
 }
 .footer__container {
   width: 100%;
@@ -844,6 +847,7 @@ a span {
     width: 32px;
     height: 32px;
     cursor: pointer;
+    color: var(--color-text-bw);
   }
   .header__mobile-menu {
     display: none;
@@ -881,20 +885,20 @@ a span {
   .news__list {
     flex-direction: column;
   }
-  .team__card-list {
-    justify-content: center;
-  }
   .contacts__content {
     flex-direction: column;
   }
   .contacts__list {
     flex-wrap: wrap;
   }
+  .footer {
+    padding-block: 0 24px;
+  }
   .footer__nav--1, .footer__nav--2, .footer__nav--3 {
     display: none;
   }
   .footer__container {
-    grid-template-columns: repeat(2, 52%);
+    grid-template-columns: repeat(2, 50%);
     justify-content: flex-start;
     justify-self: center;
     justify-content: center;
@@ -1117,14 +1121,14 @@ a span {
   .team {
     padding: var(--padding-container);
   }
+  .team__card-list {
+    justify-content: center;
+  }
   .contacts {
     padding: 0;
   }
   .contacts__container {
     padding: var(--padding-container);
-  }
-  .footer {
-    padding: 0 16px 48px;
   }
   .footer__container {
     grid-template-columns: 1fr;
@@ -1170,7 +1174,7 @@ a span {
   display: flex;
   flex-direction: column;
   align-self: center;
-  padding: 12px 80px;
+  padding: var(--padding-container);
   gap: 60px;
   align-items: center;
 }
@@ -1199,25 +1203,32 @@ a span {
 }
 .report__list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   align-items: start;
-  column-gap: 150px;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  column-gap: clamp(30px, 10vw, 150px);
   row-gap: 50px;
-  padding-inline: 143px;
+  padding: 0 140px;
 }
 .report__list-item h2 {
   margin-bottom: 5px;
-  white-space: nowrap;
 }
 .report__about {
   display: flex;
   gap: 20px;
 }
+.report__about .report__image-container,
+.report__about .report__text-container {
+  flex: 1 1 0;
+  min-width: 0;
+}
 .report__image-container {
   flex: 1;
-  position: relative;
   border-radius: 15px;
   width: 100%;
+  min-width: 695px;
+}
+.report__image-container picture {
+  position: relative;
 }
 .report__image {
   display: block;
@@ -1241,7 +1252,14 @@ a span {
 }
 .report__buttons-container {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
   gap: 15px;
+}
+.report__buttons-container button {
+  min-width: 340px;
+  flex: 1;
 }
 
 .projects {
@@ -1249,7 +1267,7 @@ a span {
   display: flex;
   flex-direction: column;
   align-self: center;
-  padding: 12px 80px;
+  padding: var(--padding-container);
   gap: 60px;
   align-items: center;
 }
@@ -1305,6 +1323,7 @@ a span {
 }
 .projects__events {
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 30px;
   margin-bottom: 40px;
@@ -1451,7 +1470,7 @@ a span {
   display: flex;
   flex-direction: column;
   align-self: center;
-  padding: 12px 80px;
+  padding: var(--padding-container);
   align-items: center;
   gap: 30px;
 }
@@ -1537,9 +1556,13 @@ a span {
     grid-template-columns: repeat(2, 1fr);
   }
   .partners__buttons {
-    flex-direction: column;
-    align-self: stretch;
-    padding-inline: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .partners__buttons button {
+    min-width: 340px;
+    flex: 1;
   }
 }
 @media screen and (max-width: 768px) {
