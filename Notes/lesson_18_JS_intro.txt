@@ -1,0 +1,304 @@
+                                        JavaScript Basics
+
+Підключення JS
+  JS файл можна підключити до html документу за допомогою тегу <script>:
+      <script src="./scripts/main.js"></script>
+
+  Тег потрібно додавати внизу html файлу - в кінці тегу <body>.
+      Робиться це через те, що HTML завантажується у порядку появи його у файлі.
+      Якщо JavaScript завантажується першим і йому потрібно взаємодіяти з HTML нижче за нього, він не зможе працювати,
+      бо JavaScript буде завантажений раніше, ніж HTML, з яким потрібно працювати.
+
+  Альтернативно, JS код можна писати напряму в html документі, використовуючи тег <script></script> без атрибуту src.
+      <script>
+      let myHeading = document.querySelector('h1');
+      myHeading.textContent = 'Привіт, Світ!';
+      </script>
+
+
+Comments in JS
+    // → single line comments
+    /* ... */ → multi-line comments
+
+Розділення команд
+  Всі команди в JS мають закінчуватись точкою з комою:
+      var testVariable = "Test";
+    Команди, які розміщені на різних рядках, запустяться і без розділення.
+    Але якщо команди, які не розділені крапкою з комою, будуть написані на одному рядку - виникне помилка.
+  Тому ставити крапку з комою в кінці команди є гарною звичкою.
+
+Variables (змінні) і constants (константи)
+
+  Змінна (let) - це назва певної ячейки в оперативній памʼяті.
+    Тобто, створюючи зміну, ми створюємо зрозумілий для нас (читаємий) ідентифікатор певної ячейки в памʼяті. На одну і ту ж саму ячейку може вказувати як одна, так і більше змінних.
+
+  Змінна оголошується ключовим словом let (або var), за яким слідує будь-яке ім'я, яким ви захочете її назвати:
+      let myVariable;
+
+  Константа (const) - дані, які не можуть бути змінені:
+    const PASSWORD = "admin";
+
+    Константи прийнято писати великими літерами.
+
+
+  Погана практика.
+    Фактично, можна оголосити змінну навіть без зарезервованих слів let/const.
+      Наприклад:
+        x = 5;
+    Для того, щоб обмежити цей підхід (видавати помилку в такому підході) - на початку .js файлу додається наступний рядок:
+      'use strict';
+
+
+  Naming rules and conventions
+
+      Rules (must follow)
+
+          Allowed characters:
+              - Letters (a–z, A–Z)
+              - Digits (0–9) — but not at the beginning
+              - Underscore (_)
+              - Dollar sign ($)
+
+                  let name1;   // valid
+                  let _value;  // valid
+                  let $price;  // valid
+                  let 1age;    // ❌ invalid (cannot start with digit)
+
+          Case-sensitive:
+              userName and username are two different variables.
+
+          No reserved keywords:
+              You can’t name variables let, class, return, if, etc.
+
+          Unicode is allowed:
+              Technically you can use emojis or non-Latin letters:
+
+              let café = "coffee";
+              let 🚀 = "rocket";
+
+              But this is discouraged for maintainability.
+
+      Conventions (best practices)
+
+          camelCase for variables and functions:
+              let firstName = "John";
+              function getUserData() {}
+
+          PascalCase for classes and constructors:
+              class UserProfile {}
+
+          UPPER_CASE with underscores for constants that never change:
+              const MAX_SPEED = 120;
+
+          Meaningful, descriptive names:
+              let priceAfterDiscount;   // good
+              let pad;                  // ❌ unclear
+
+          Booleans start with is, has, can, should:
+              let isAvailable = true;
+              let hasPermission = false;
+
+          Avoid one-letter names, except for small loops:
+              for (let i = 0; i < 10; i++) {}
+
+          Consistency across the project is key - if your team uses camelCase everywhere, stick with it.
+
+  Змінну можна оголосити однією командою, а надати значення іншою.
+      var testVariable;
+      testVariable = "Test";
+
+  Після встановлення значення змінної ви можете змінити його пізніше:
+      var testVariable = "Test";
+      testVariable = "Test 2.0";
+
+
+  Для визначення змінної можна використовувати ключові слова 'var' або 'let'.
+
+  In modern JavaScript you’ll usually see let (and const) instead of var. They all declare variables, but they behave differently.
+
+  var
+
+      Function-scoped
+          If declared inside a function, it’s only visible in that function.
+          But if declared inside a block (if, for, {}), it “escapes” the block.
+
+          if (true) {
+              var x = 10;
+          }
+          console.log(x); // ✅ 10 (leaks out of block)
+
+      Hoisted & initialized with undefined
+          The declaration is moved (“hoisted”) to the top of its scope, so you can reference it before definition (though it’s undefined).
+
+          console.log(y); // undefined
+          var y = 5;
+
+  let (modern, ES6+)
+
+      Block-scoped
+          Stays inside {} where it was declared.
+          if (true) {
+              let a = 20;
+          }
+          console.log(a); // ❌ ReferenceError
+
+      Hoisted but not initialized
+          Exists in a temporal dead zone until execution reaches its declaration.
+
+          console.log(b); // ❌ ReferenceError
+          let b = 30;
+
+
+  Why use let/const instead of var?
+      - Clearer scoping → avoids bugs from leaking variables.
+      - Predictable behavior → no accidental hoisting surprises.
+      - Modern standard → almost all style guides recommend:
+          - Default to const
+          - Use let if reassignment is needed
+          - Avoid var (only use it for legacy code).
+
+  So using let is the modern, best practice way of declaring variables.
+
+
+
+alert()
+
+alert() is a built-in JavaScript function that shows a modal dialog box with a message and an OK button.
+    It’s mainly used for quick debugging or simple notifications in the browser.
+    It pauses script execution until the user clicks OK.
+    Example:
+        alert("Hello, world!");
+
+        This will pop up a small dialog with Hello, world!.
+
+
+
+Data Types
+
+    Primitive Types - stored directly in memory as a single value.
+
+        String → text data
+            let name = "Alice";
+            let greeting = 'Hello';
+            let sentence = `Hi, ${name}`; // template literal
+
+        Number → all numbers (integers, floats, etc.)
+            let age = 25;
+            let price = 19.99;
+            let notANumber = NaN;  // special "Not a Number"
+            let infinity = Infinity;
+
+        Boolean → logical true/false
+            let isActive = true;
+            let hasPermission = false;
+
+        Undefined → a variable declared but not assigned a value
+            let x;
+            console.log(x); // undefined
+
+        Null → intentional "empty" value
+            let user = null; // means "no user"
+
+        BigInt → very large integers (added in ES2020)
+            let big = 1234567890123456789012345678901234567890n;
+
+        Symbol → unique identifiers (often for object keys)
+            let sym1 = Symbol("id");
+            let sym2 = Symbol("id");
+            console.log(sym1 === sym2); // false
+
+
+    Reference Types (Objects) - stored by reference, not by value.
+
+        Array → ordered list of values
+            let colors = ["red", "green", "blue"];
+
+        Object → collections of key–value pairs
+            let user = {name: "Alice", age: 25};
+
+        Function → callable objects
+            function greet() { console.log("Hello"); }
+
+        Date, RegExp, Map, Set, WeakMap, WeakSet, etc. → special built-in objects.
+
+
+Special Notes
+
+JavaScript is dynamically typed: you don’t declare a variable’s type, it’s determined at runtime.
+    let value = 42;       // number
+    value = "forty two";  // now string
+
+You can check a type with typeof:
+    typeof 123;       // "number"
+    typeof "hello";   // "string"
+    typeof null;      // "object" (quirk in JS)
+    typeof [];        // "object"
+    typeof (()=>{});  // "function"
+
+
+
+Operators
+
+Operators let you perform actions on values and variables.
+
+Categories of JavaScript Operators
+    1️⃣ Arithmetic Operators (numbers)
+        let x = 10, y = 3;
+
+        x + y;  // 13 (addition)
+        x - y;  // 7  (subtraction)
+        x * y;  // 30 (multiplication)
+        x / y;  // 3.333... (division)
+        x % y;  // 1  (modulus → remainder)
+        x ** y; // 1000 (exponentiation → 10^3)
+
+    2️⃣ Assignment Operators
+        let a = 5;
+
+        a += 2; // 7 (same as a = a + 2)
+        a -= 2; // 5
+        a *= 2; // 10
+        a /= 2; // 5
+        a %= 2; // 1
+        a **= 2; // 1 (same as a = a ** 2)
+
+    3️⃣ Comparison Operators (return true or false)
+        5 == "5";   // true  (loose equality, type conversion)
+        5 === "5";  // false (strict equality, no type conversion)
+        5 != "5";   // false
+        5 !== "5";  // true
+
+        10 > 5;   // true
+        10 < 5;   // false
+        10 >= 10; // true
+        10 <= 9;  // false
+
+    4️⃣ Logical Operators
+        true && false; // false (AND)
+        true || false; // true  (OR)
+        !true;         // false (NOT)
+
+    5️⃣ Unary Operators (does not reassign the variable)
+        let n = 5;
+        +n; // 5   (plus does nothing special here)
+        -n; // -5  (negation)
+
+        typeof n; // "number"
+        delete obj.prop; // removes a property
+
+    6️⃣ Increment / Decrement
+        let i = 0;
+
+        i++; // post-increment → returns 0, then i = 1
+        ++i; // pre-increment → i = 1, returns 1
+
+        i--; // post-decrement
+        --i; // pre-decrement
+
+    7️⃣ Ternary Operator (Conditional)
+        let age = 18;
+        let status = (age >= 18) ? "Adult" : "Minor"; // "Adult"
+
+    8️⃣ String Operators
+        "Hello" + " " + "World"; // "Hello World"
+        "Hi" + 5; // "Hi5" (number converted to string)
