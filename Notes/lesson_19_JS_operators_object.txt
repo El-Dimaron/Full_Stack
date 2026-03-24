@@ -1,0 +1,419 @@
+Унарні оператори
+  Тип операторів, які застосовуються лише до одного операнда для зміни його стану або значення.
+
+  Приклади унарних операторів:
+
+    - мінус (-)
+      змінює знак числа на протилежний
+
+    - плюс (+)
+      спробує перетворити операнд на число, якщо це можливо
+
+    - декрементація (--)
+      автоматично зменшує значення змінної на одиницю
+
+    - інкрементації (++)
+      автоматично збільшує значення змінної на одиницю
+
+    - typeof
+      визначає тип даних операнда - console.log(typeof "text")
+
+  Префіксний та постфіксний унарні оператори
+    Префіксний інкремент та декремент
+      Префіксний інкремент (++let) або декремент (--let) збільшує або зменшує значення змінної на одиницю перед тим, як повернути значення. Це означає, що спочатку відбувається модифікація значення, а потім воно використовується у виразі.
+
+    Постфіксний інкремент та декремент
+      Постфіксний інкремент (var++) або декремент (var--) спочатку повертає поточне значення змінної, а потім збільшує або зменшує його на одиницю. Це означає, що використання значення відбувається до його модифікації.
+
+
+Бінарні оператори
+  Це оператори, що вимагають два операнди для виконання операції.
+  Вони застосовуються для виконання арифметичних обчислень, порівняння значень, логічних операцій та для присвоєння значень.
+
+  Приклади бінарних операторів:
+    - Арифметичні оператори (наприклад, +, -, *, /, **)
+      Використовуються для виконання математичних обчислень між числами.
+
+    - Оператори порівняння (наприклад, ==, !=, >, <)
+      Використовуються для порівняння двох значень і повертають булеве значення (true або false) в залежності від результату порівняння.
+
+    - Логічні оператори (&&, ||)
+      Використовуються для виконання логічних операцій між двома булевими значеннями або виразами.
+
+    - Оператор присвоєння (=)
+      Використовується для присвоєння значення правого операнда змінній, що є лівим операндом.
+
+  Присвоєння з операцією (синтаксисчний цукор)
+    - Присвоєння з додаванням (+=)
+      var a = 10; a += 5;
+    - Присвоєння з відніманням (-=)
+      var a = 10; a -= 5;
+    - Присвоєння з множенням (*=)
+      var a = 10; a *= 5;
+    - Присвоєння з діленням (/=)
+      var a = 10; a /= 5;
+    - Присвоєння з остачею від ділення (%=)
+      var a = 10; a %= 3;
+
+  Оператори порівняння (оператори відносин)
+    Використовуються для порівняння двох значень чи виразів, результат порівняння - булеве значення: true/false.
+
+    Основні оператори порівняння:
+      === (строго рівно) - перевіряє, чи рівні операнди за значенням та типом (10 === "10" поверне false).
+      == (рівно) - перевіряє, чи рівні операнди за значенням (10 == "10" поверне true).
+      !== (строго не рівно) - перевіряє, чи не рівні операнди за значенням та типом.
+      != (не рівно) - перевіряє, чи не рівні операнди за значенням.
+      > (більше) - перевіряє, чи лівий операнд більший за правий.
+      < (менше) - перевіряє, чи лівий операнд менший за правий.
+      >= (більше або рівно) - перевіряє, чи лівий операнд більший або рівний правому.
+      <= (менше або рівно) - перевіряє, чи лівий операнд менший або рівний правому.
+
+  Логічні оператори
+    && (AND operator) використовується для перевірки, чи істинні обидва операнди. Якщо обидва істинні, результат буде true; інакше - false.
+    || (OR operator) перевіряє, чи істинний хоча б один з операндів. Якщо хоча б один істинний, результат буде true.
+    ! (логічне НЕ) інвертує булеве значення: перетворює true в false та навпаки.
+    ?? (оператор нульового злиття) повертає лівий операнд, якщо він не null і не undefined; інакше повертає правий.
+
+
+The Math Object
+  The JavaScript Math object allows you to perform mathematical tasks.
+  The Math object is static.
+  All methods and properties can be used without creating a Math object first.
+
+  Math Properties (Constants)
+    Math.E        // returns Euler's number
+    Math.PI       // returns PI
+    Math.SQRT2    // returns the square root of 2
+    Math.SQRT1_2  // returns the square root of 1/2
+    Math.LN2      // returns the natural logarithm of 2
+    Math.LN10     // returns the natural logarithm of 10
+    Math.LOG2E    // returns base 2 logarithm of E
+    Math.LOG10E   // returns base 10 logarithm of E
+
+  Math Methods
+    https://www.w3schools.com/js/js_math_reference.asp
+
+    The syntax for Math any methods is: Math.method(number)
+
+    Number to Integer
+      Math.round(x)	Returns x rounded to its nearest integer
+      Math.ceil(x)	Returns x rounded up to its nearest integer
+      Math.floor(x)	Returns x rounded down to its nearest integer
+      Math.trunc(x)	Returns the integer part of x (new in ES6)
+
+    Math.random()
+      https://www.w3schools.com/js/js_random.asp
+      Math.random() returns a random number between 0 (inclusive), and 1 (exclusive).
+      Math.random() used with Math.floor() can be used to return random integers:
+        // Return a random integer from 0 to 9 (both included):
+        Math.floor(Math.random() * 10);
+
+        // Return a random integer from 0 to 10 (both included):
+        Math.floor(Math.random() * 11);
+
+        // Return a random integer from 0 to 99 (both included):
+        Math.floor(Math.random() * 100);
+
+        // Return a random integer between 1 and 10 (both included):
+        Math.floor(Math.random() * 10) + 1;
+
+        This JavaScript function always returns a random integer between min (included) and max:
+          - max excluded:
+            function getRndInteger(min, max) {
+              return Math.floor(Math.random() * (max - min) ) + min;
+            }
+
+          - max included:
+            function getRndInteger(min, max) {
+              return Math.floor(Math.random() * (max - min + 1) ) + min;
+            }
+
+    Math.sign()
+      Math.sign(x) returns if x is negative, null or positive.
+      If x is positive it returns 1
+      If x is negative it returns -1
+      If x is zero, it returns 0
+
+    Math.pow()
+      Math.pow(x, y) - returns the value of x to the power of y:
+        Math.pow(2, 4); // 32
+      Краще використовувати вбудований оператор **:
+        2 ** 4; // 32
+
+    Math.sqrt()
+      Math.sqrt(x) - returns the square root of x:
+        Math.sqrt(64);
+
+    Math.abs()
+      Math.abs(x) - returns the absolute (positive) value of x
+
+
+    Math.sin() / Math.cos()
+      Math.sin(x) / Math.cos(x) return the sine (a value between -1 and 1) of the angle x (given in radians).
+      If you want to use degrees instead of radians, you have to convert degrees to radians:
+        Angle in radians = Angle in degrees x PI / 180.
+
+    Math.min() and Math.max()
+      Math.min() and Math.max() can be used to find the lowest or highest value in a list of arguments:
+        Math.min(0, 150, 30, 20, -8, -200);
+
+      Note: only accepts the raw arguments - does not work with arrays out of the box. If you need to work with the array, use the spread operator '...':
+        Math.min(...testList);
+      This spreads the array into individual arguments:
+        Math.min(1, 2, 3, 4, 5); // → 1
+
+
+    Logarithms
+      Math.log() Method
+        Math.log(x) returns the natural logarithm of x.
+
+      Math.log2() Method
+        Math.log2(x) returns the base 2 logarithm of x.
+
+      The Math.log10() Method
+        Math.log10(x) returns the base 10 logarithm of x.
+
+
+Strings
+  Strings are for storing text
+  Strings are written with quotes
+
+  Приклад:
+    var firstName = 'Іван', lastName = 'Іваненко', age = 25;;
+    var fullName = firstName + ' ' + lastName;
+    // Шаблонні літерали (``)
+    var introduction = `Мене звати ${fullName} і мені ${age} років.`;
+
+  Bracket notation (index notation):
+    1.
+      var letter = "Привіт"[0]; // П
+
+    2.
+      var greeting = 'Привіт, світе!';
+      var letter = greeting[0]; // П
+
+  Strings Methods
+    https://www.w3schools.com/js/js_string_reference.asp
+
+    1. Доступ до символу за індексом:
+      Новий функціонал: []
+      Старий функціонал: charAt()
+
+    2. string.length()
+      Відображає довжину рядку
+
+    3. substring(start, end)
+      Повертає підрядок з рядка між двома індексами.
+
+    4. slice(start, end)
+      Подібно до substring(), але може приймати від'ємні індекси.
+
+    5. indexOf(searchString, startIndex)
+      Повертає індекс першого входження підрядка в рядок.
+
+       lastIndexOf(searchString, startIndex)
+      Повертає індекс останнього входження підрядка.
+
+      Повертають -1, якщо підрядок не було знайдено.
+
+    6. search()
+      Method searches a string for a string (or a regular expression) and returns the position of the match.
+
+      The two methods are NOT equal. These are the differences:
+        The indexOf() method cannot take powerful search values (regular expressions).
+        The search() method cannot take a second start position argument.
+
+    7. match()
+      str.match(regexp)
+        str: The string on which the search is performed.
+        regexp: A regular expression object. If a non-RegExp object is passed, it is implicitly converted to a RegExp using new RegExp(regexp).
+
+        It uses the global (g) and case-insensitive (i) flags.
+
+        The return value depends heavily on the presence or absence of the g (global) flag in the regular expression.
+          Without the g flag: Returns an Array object with detailed information about the first match. This array includes the matched string at index 0, plus additional properties like index (the position of the match), input (the original string), and any groups from capturing parentheses. The result is identical to that of RegExp.prototype.exec() without the global flag.
+
+          With the g flag: Returns an Array containing all complete matched substrings found in the string. It does not include capturing groups or extra properties like index or input. If no matches are found, it returns null.
+
+
+        To find all occurrences of a pattern regardless of case, use both the g and i flags:
+          const str = "JavaScript is a scripting language";
+          const matches = str.match(/scr/gi);
+
+          console.log(matches); // Output: ["Scr", "src"]
+
+    7. replace(oldSubstring, newSubstring)
+      Замінює перше входження підрядка на новий.
+
+      replaceAll()
+        The replaceAll() method allows you to specify a regular expression instead of a string to be replaced.
+
+    8. split(separator)
+      Розбиває рядок на масив рядків за допомогою роздільника.
+
+    9. toUpperCase() та toLowerCase()
+      Змінюють регістр всіх символів рядка.
+
+    10. includes(substring, startIndex)
+      Перевіряє, чи містить рядок заданий підрядок.
+
+  Escape Characters
+
+    The backslash escape character (\) turns special characters into string characters:
+
+      Code	  Result    Description
+      \'        '       Single quote
+      \"        "     	Double quote
+      \\	      \     	Backslash
+
+    Example:
+      \" inserts a double quote in a string:
+      let text = "We are the so-called \"Vikings\" from the north.";
+
+      \' inserts a single quote in a string:
+      let text= 'It\'s alright.';
+
+      \\ inserts a backslash in a string:
+      let text = "The character \\ is called backslash.";
+
+    Six other escape sequences are valid in JavaScript:
+
+      Code	    Result
+       \n	    New Line
+       \t	    Horizontal Tabulator
+       \b	    Backspace
+       \r	    Carriage Return
+
+  Breaking Long Lines
+    For readability, programmers often like to avoid long code lines.
+    A safe way to break up a statement is after an operator.
+
+    A safe way to break up a string is by using string addition:
+    document.getElementById("demo").innerHTML = "Hello " +
+    "Dolly!";
+
+  Template Strings
+    Templates are strings enclosed in backticks (`This is a template string`).
+    Templates allow multiline strings.
+
+    Interpolation
+      Template Strings allow variables in strings.
+      Template strings provide an easy way to interpolate variables in strings.
+
+      Syntax: ${...}
+
+    Expression Substitution
+      Template Strings allow interpolation of expressions in strings:
+      Example
+        let price = 10;
+        let VAT = 0.25;
+
+        let total = `Total: ${(price * (1 + VAT)).toFixed(2)}`;
+
+
+null / undefined
+
+  null
+    Представляє відсутність будь-якого значення або об'єкта.
+    Ми використовуємо null для ініціалізації змінних, які можуть надалі отримати конкретне значення або об'єкт, але на початковому етапі явно не містять ніякого значення. Відповідно, null часто використовується для вказівки на те, що змінна повинна мати "порожнє" або "ніяке" значення.
+
+    null використовується для:
+      Явної вказівки на відсутність значення змінної або об'єкта.
+      Очищення посилань на об'єкти, щоб допомогти зі збіркою сміття (гарбідж колекцією).
+      Відмінності від undefined, яке вказує на те, що змінна була оголошена, але не ініціалізована жодним значенням.
+
+    var user = null;
+
+    if (user === null) {
+        console.log('Користувач не визначений.');
+    } else {
+        console.log(`Користувач: ${user}`);
+    }
+
+    // Пізніше в програмі, користувач отримує значення
+    user = 'Іван Петрович';
+
+    if (user !== null) {
+        console.log(`Користувач: ${user}`); // Виведе: Користувач: Іван Петрович
+    }
+
+
+  undefined
+    Вказує на відсутність визначеного значення.
+    Змінна вважається undefined, якщо вона була оголошена, але їй не було присвоєно жодного значення. Це відрізняється від null, яке є способом явно вказати на відсутність будь-якого значення.
+
+    undefined використовується для:
+      Визначення стану змінних, яким ще не було присвоєно значення.
+      Перевірки наявності властивостей в об'єктах або повернення значення з функцій, коли вони не мають явно визначеного результату.
+
+
+Object
+  Об'єкт - це колекція властивостей, де кожна властивість має ім'я (або ключ) і відповідне їй значення, яке може бути даними або функцією.
+  Об'єкти використовуються для зберігання складних структур даних, представлення сутностей з властивостями та методами та для організації коду у вигляді модулів і просторів імен.
+
+  Створення об'єктів:
+    1. Об'єктний літерал - найпростіший і найбільш поширений спосіб створення об'єктів.
+      var person = {
+          name: 'Іван',
+          age: 30
+      };
+
+    2. Конструктор new Object() - створення об'єкта за допомогою вбудованого конструктора Object.
+      var person = new Object();
+      person.name = 'Іван';
+      person.age = 30;
+
+    3. Object.create(proto) - створює новий об'єкт з вказаним прототипом і властивостями
+      var proto = {
+          greet: function() {
+              console.log('Привіт, ' + this.name);
+          }
+      };
+      var person = Object.create(proto);
+      person.name = 'Іван';
+      person.greet(); // Виведе: Привіт, Іван
+
+
+  Робота з об'єктами:
+    delete - видаляє властивість з об'єкта.
+      delete person.age;
+
+    in - перевіряє, чи існує властивість у об'єкта.
+      console.log('name' in person); // Виведе: true
+
+    Object.freeze() - забороняє зміни в об'єкті, роблячи його незмінним.
+      Object.freeze(person);
+      person.name = 'Петро'; // Зміни не будуть застосовані
+      console.log(person.name); // Виведе: Іван
+
+    Object.assign() - копіює значення всіх властивостей від одного або кількох джерел до цільового об'єкта.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
