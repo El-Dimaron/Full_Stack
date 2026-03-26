@@ -1,0 +1,227 @@
+Перетворення типів
+
+  Явне перетворення типів
+    З використанням конструкторів:
+      JavaScript надає вбудовані конструктори, такі як Number(), String(), і Boolean(), які можна використовувати для явного перетворення типів.
+        const strToNum = Number("456"); // "456" стає числом 456
+        const boolToStr = String(true); // true стає рядком "true"
+        const numToBool = Boolean(0); // 0 стає булевим false
+
+    За допомогою метода toString() та функцій parseInt(), parseFloat():
+      const num = 12345.6789;
+      const numToStr = num.toString(); // Конвертує число в рядок "12345.6789"
+      const strToInt = parseInt("100px"); // Конвертує рядок в ціле число 100, ігноруючи нечислові символи
+      const strToFloat = parseFloat("3.14someText"); // Конвертує рядок в число з плаваючою комою 3.14
+
+  Неявне перетворення типів
+    JavaScript також виконує неявне перетворення типів, коли це необхідно для операцій.
+      const result = "3" + 2; // JavaScript перетворює число 2 в рядок і конкатинує його з "3", результат "32"
+      const comparison = "5" == 5; // JavaScript перетворює рядок "5" в число 5 перед порівнянням, результат true
+
+  Швидке перетворення типів
+    Для швидкого перетворення типів існують короткі вирази:
+      const strToNumQuick = +"42"; // Швидке перетворення рядка "42" в число за допомогою унарного оператора +
+      const numToStrQuick = 123 + ""; // Швидке перетворення числа 123 в рядок за допомогою конкатинації з порожнім рядком
+      const boolToNum = +true; // Швидке перетворення булевого true в число 1
+
+  Перетворення та порівняння
+    Під час порівняння значень різних типів JavaScript може виконувати неявне перетворення типів, що може призвести до неочікуваних результатів.
+    const compare = 0 == false; // true, оскільки 0 і false є "falsy" значеннями
+
+
+Управління потоком виконання
+
+  if
+    Конструкція if використовується для виконання коду, якщо задана умова істинна.
+      if (condition) {
+          // Код, що виконується, якщо умова істинна
+      }
+
+  if ... else
+    if else додає альтернативну дію, яка виконується, якщо умова хибна.
+      if (condition) {
+          // Код, що виконується, якщо умова істинна
+      } else {
+          // Код, що виконується, якщо умова хибна
+      }
+
+  if ... else if ... else
+    Цей варіант використовується для створення кількох умовних гілок.
+      if (condition1) {
+          // Код, що виконується, якщо condition1 істинна
+      } else if (condition2) {
+          // Код, що виконується, якщо condition2 істинна
+      } else {
+          // Код, що виконується, якщо обидві умови хибні
+      }
+
+  switch ... case
+    switch використовується для виконання різних дій на основі різних умов.
+      switch (expression) {
+        case value1:
+            // Виконується, якщо expression дорівнює value1
+            break;
+        case value2:
+            // Виконується, якщо expression дорівнює value2
+            break;
+        default:
+            // Виконується, якщо жоден з вищезазначених випадків не відбувся
+        }
+
+
+Умовний (Тернарний) оператор
+  Це компактна альтернатива стандартній умовній конструкції if ... else.
+  Він названий "тернарним", оскільки включає три частини: умову, вираз, що виконується, якщо умова істинна, і вираз, що виконується, якщо умова хибна.
+
+  Синтаксис тернарного оператора виглядає так:
+    умова ? вираз1 : вираз2;
+
+  Вкладені тернарні оператори для більш складних умов:
+    var marks = 85;
+    var grade = marks >= 90 ? 'A' :
+                marks >= 80 ? 'B' :
+                marks >= 70 ? 'C' :
+                marks >= 60 ? 'D' : 'F';
+    console.log("Оцінка: " + grade);
+
+
+Оператор кома
+  Дозволяє виконати кілька виразів, розділених комою, в одному операторі. В результаті виконання такої конструкції повертається значення останнього виразу.
+  Це зручно використовувати для виконання кількох дій в одному рядку коду або в інструкціях управління, де очікується один вираз, наприклад, в умовах циклів.
+
+  Оператор кома використовується для:
+    Мінімізації коду шляхом виконання декількох операцій в одному місці без необхідності розділення їх на декілька рядків.
+    Ініціалізації або оновлення кількох змінних в циклі.
+
+  Приклад:
+    Ініціалізація кількох змінних:
+      var a = 1, b = 2, c = 3;
+
+    Використання в циклі for:
+      for (var i = 0, j = 10; i <= 10; i++, j--) {
+          console.log(i, j);
+      }
+
+
+Цикли
+
+  'for' loop
+    The for statement creates a loop with 3 optional expressions:
+      for (exp1; exp2; exp3) {
+        // code block to be executed
+      }
+      exp1 is executed (one time) before the execution of the code block.
+      exp2 defines the condition for executing the code block.
+      exp3 is executed (every time) the code block has been executed.
+
+      How to use exp 1
+        exp 1 is used to initialize the variable(s) used in the loop (let i = 0).
+        exp 1 is optional.
+        You can omit exp 1 if the value is set before the loop starts.
+
+      How to use exp 2
+        exp 2 is used to evaluate the condition of the initial variable (i < len).
+        exp 2 is also optional.
+        If exp 2 returns false, the loop will end.
+
+        Note: If you omit exp 2, you must provide a break inside the loop.
+        Otherwise the loop will never end. This will crash your browser.
+
+      How to use exp 3
+        exp 3 increments the value of the initial variable (i++).
+        exp 3 is optional.
+        exp 3 can do anything like negative increment (i--), positive increment (i = i + 15), or anything else.
+        exp 3 can be omitted (if you increment the value inside the loop):
+
+
+  'for in'
+    Перебирає всі перелічувані властивості об'єкта.
+      var obj = {a: 1, b: 2, c: 3};
+      for (var prop in obj) {
+          console.log(prop + ": " + obj[prop]); // Виводить "a: 1", "b: 2", "c: 3"
+      }
+
+  'for of'
+    Перебирає ітеровані об'єкти (включно з масивами, рядками, і Map/Set).
+      var arr = [10, 20, 30];
+      for (var value of arr) {
+          console.log(value); // Виводить 10, 20, 30
+      }
+
+
+  'while' loop
+    The while loop loops through a block of code as long as a specified condition is true.
+    Syntax
+      while (condition) {
+        // code block to be executed
+      }
+
+  'do while' loop
+    The do while loop is a variant of the while loop.
+
+    The do while loop will execute the code block once, before checking if the condition is true, then it will repeat the loop as long as the condition is true. The do while runs at least once, even if the condition is false from the start.
+    This is because the code block is executed before the condition is tested.
+
+    Syntax
+      do {
+      // code block to be executed
+      }
+      while (condition);
+
+
+JavaScript Labels
+  A label provides a name for a statement, or a block of statements, allowing statements to be referenced to, for program flow control, particularly in loops.
+
+  Syntax
+    A label is an identifier followed by a colon (:).
+
+    labelname: statement;
+
+    A label precedes a statement or a block of code.
+
+    labelname: {
+      statements
+    }
+
+
+The Break Statement
+  The break statement "jumps out" of loops and switches.
+  The break statement terminates the execution of a loop or a switch statement.
+
+  Break in Loops
+    When break is encountered in a loop, the loop terminates immediately.
+    The program control is transfered to the statements following the loop.
+    No more loop iterations are executed.
+
+  Break in a Switch
+    In a switch statement, a break statement will exit the switch block after a matching case is executed. Without break, execution would "fall through" to subsequent case blocks.
+    Without break, the code will continue to execute the next case blocks (and the default block if present) even if their values do not match the expression.
+
+  Labeled Break
+    Syntax
+    break labelname;
+
+    break and continue are the only JavaScript statements that can "jump out of" a code block.
+    A code block is a block of code between { and }.
+    Without a label reference, break can only jump out of a loop or a switch.
+    With a label reference, break can jump out of any code block:
+
+
+The Continue Statement
+  Skips the current iteration in a loop.
+  The remaining code in the iteration is skipped and processing moves to the next iteration.
+
+  Continue to Labelname
+    Syntax
+    continue labelname;
+
+    Example
+      let text = "";
+
+      loop1: for (let j = 1; j < 5; j++) {
+        loop2: for (let i = 1; i < 5; i++) {
+          if (i === 3) { continue loop1; }
+          text += i;
+        }
+      }
+
