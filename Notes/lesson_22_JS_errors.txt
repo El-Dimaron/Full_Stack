@@ -1,0 +1,397 @@
+
+Оператор throw
+  Використовується для генерації власних помилок або винятків.
+
+  Коли виконується throw, виконання поточного блоку коду зупиняється, і контроль передається першому відповідному блоку catch у ланцюжку викликів.
+  Якщо блок catch відсутній, програма припиняє виконання з помилкою. Це дозволяє нам керувати помилками та надавати більш зрозумілі повідомлення про помилки.
+
+
+  Приклад коду без обробки помилок:
+    const checkAge = (age) => {
+      if (age < 18) {
+        throw new Error("Вік має бути 18 або більше");
+      }
+      console.log("Вік підтверджено");
+    }
+
+  Приклад коду з обробкою помилок:
+    const validateNumber = (number) => {
+      if (typeof number !== 'number') {
+        throw new Error("Введене значення не є числом");
+      }
+      console.log("Введене значення є числом");
+    }
+
+    try {
+      validateNumber('це не число');
+    } catch (error) {
+      console.error(error.message); // Виведе: "Введене значення не є числом"
+    }
+
+try...catch...finally
+  When an error occurs, JavaScript will stop and generate an error message.
+
+  Note
+  The technical term for this is is: JavaScript throws an exception.
+  JavaScript creates an Error object with two properties: name and message.
+
+  The try...catch...finally statements combo handles errors without stopping JavaScript.
+
+  The try statement defines the code block to run (to try).
+
+  The catch statement defines a code block to handle any error.
+
+  The finally statement defines a code block to run regardless of the result.
+
+  The throw statement defines a custom error.
+
+  Both catch and finally are optional, but you must use one of them.
+
+
+  Syntax
+    try {
+      tryCode - Code block to run
+    }
+    catch(err) {
+      catchCode - Code block to handle errors
+    }
+    finally {
+      finallyCode - Code block to be executed regardless of the try result
+    }
+
+  Example:
+    function divide(a, b) {
+      try {
+        if (b === 0) {
+          throw new Error("Cannot divide by zero");
+        }
+
+        return a / b;
+      } catch (error) {
+        console.log("Oops:", error.message);
+      } finally {
+        console.log("Division attempt finished");
+      }
+    }
+
+    divide(10, 0);
+
+Arrow functions
+  Arrow Functions allow a shorter syntax for function expressions.
+  You can skip the function keyword, the return keyword, and the curly brackets:
+    const multiply = (a, b) => a * b;
+
+  An arrow function is always written as a function expression.
+
+  Examples:
+  Before Arrow
+    const hello = function() {return "Hello World!";}
+
+  With Arrow
+    const hello = () => "Hello World!";
+
+
+  If a function has only one parameter, you can omit the parentheses:
+
+  With Paranthesis
+    const square = (x) => x * x;
+
+  Without Paranthesis
+    const square = x => x * x;  // it will still work but it is better to always use parenthesis
+
+
+  Arrow Function Parameters
+  If you have parameters, you pass them inside the parenthesis.
+
+  If there are no parameters, parentheses are required:
+    const hello = () => "Hello World!";
+
+
+  You can only omit the return keyword and the curly brackets if the function is a single statement.
+  Because of this, it might be a good habit to always keep them:
+    // This will return undefined
+    const myFunction = (x, y) => { x * y };
+
+    // This will return undefined
+    const myFunction = (x, y) => return x * y;
+
+    // This will return the expected result
+    const myFunction = (x, y) => { return x * y };
+
+
+  Arrow Functions Are Not Declarations
+    Arrow functions are always expressions and must be assigned to a variable.
+
+    They cannot be used before they are defined.
+
+      Example
+      hello(); // Error
+
+      const hello = () => "Hello";
+
+
+  Arrow Functions and the 'this' Keyword
+    Arrow functions do not have their own this value.
+
+    They inherit this from the surrounding code.
+
+    Using an arrow function as a method often gives unexpected results.
+
+      const person = {
+        name: "John",
+        greet: () => {
+          return this.name;
+        }
+      };
+
+    In this case, this does not refer to the person object.
+
+
+  When to Use Arrow Functions
+    - For short functions
+    - For callbacks and array methods
+    - When you do not need your own this
+
+  When Not to Use Arrow Functions
+    - As object methods
+    - When you need your own this
+    - When using function declarations
+
+
+  Common Mistakes
+    Forgetting Parentheses Rules
+      Parentheses are required for zero or multiple parameters.
+
+    Using Arrow Functions as Methods
+      Arrow functions do not bind this.
+
+    Expecting Hoisting
+      Arrow functions are not hoisted.
+
+This (Контекст виклику)
+
+  this у JavaScript вказує на "контекст виклику" функції, тобто на той об'єкт, у контексті якого вона була викликана. Значення this залежить від способу виклику функції, а не від того, де вона оголошена.
+
+  Приклад коду:
+    const person = {
+      name: 'Андрій',
+      greet: function() {
+        console.log(`Привіт, мене звати ${this.name}`);
+      }
+    };
+
+    person.greet(); // Виведе: "Привіт, мене звати Андрій"
+
+
+  Проблема втрати контексту
+    Втрата контексту this у JavaScript може відбуватися в кількох ситуаціях, особливо коли функція, що використовує this, викликається поза контекстом свого власника. Ось деякі з найбільш поширених ситуацій:
+
+    1. Виклик методу як звичайної функції: Коли метод об'єкта присвоюється змінною або передається як аргумент і викликається як функція, this втрачає зв'язок зі своїм об'єктом.
+    2. Callback-функції: В контексті асинхронних операцій або подій, this може не вказувати на очікуваний об'єкт, якщо функція передається як callback без збереження контексту.
+    3. Всередині IIFE (негайно викликаної функції): Якщо використовується this всередині IIFE, воно може втратити свій початковий контекст, якщо контекст не було явно прив'язано.
+    4. При використанні в обробниках подій DOM: this в обробниках подій DOM за замовчуванням відсилає до елемента, до якого прив'язаний обробник, що може бути несподіваним у контексті зовнішнього JavaScript-об'єкта.
+
+
+    Приклад коду, проблема втрати контексту в callback-функції:
+
+      const person = {
+        name: 'Андрій',
+        greet: function() {
+          console.log(`Привіт, мене звати ${this.name}`);
+        }
+      };
+
+      setTimeout(person.greet, 1000); // Виведе: "Привіт, мене звати ", бо `this` вказує на глобальний об'єкт або undefined в строгому режимі
+
+
+    ❌ 1. Losing this when extracting a method
+      const user = {
+        name: "Alex",
+        sayHi() {
+          console.log("Hi, I'm " + this.name);
+        }
+      };
+      const func = user.sayHi; // method copied
+      func(); // ❌ this is lost
+
+    👉 Output:
+      Hi, I'm undefined
+
+    👉 Why?
+      this depends on how the function is called
+      func() is just a plain function → this = undefined (in strict mode)
+
+    ❌ 2. Losing this in callbacks
+      const user = {
+        name: "Alex",
+        sayHi() {
+          setTimeout(function () {
+            console.log("Hi, I'm " + this.name);
+          }, 1000);
+        }
+      };
+
+      user.sayHi();
+
+    👉 Output:
+
+      Hi, I'm undefined
+
+    👉 Why?
+
+      function() inside setTimeout has its own this
+      It does NOT inherit from user
+
+    ✅ Fix with arrow function (keeps context)
+      const user = {
+        name: "Alex",
+        sayHi() {
+          setTimeout(() => {
+            console.log("Hi, I'm " + this.name);
+          }, 1000);
+        }
+      };
+
+      user.sayHi();
+
+    👉 Arrow functions do NOT have their own this → they use the outer one (user)
+
+    ❌ 3. Losing this in event handlers
+      const button = {
+        text: "Click me",
+        onClick() {
+          console.log(this.text);
+        }
+      };
+
+      const handler = button.onClick;
+
+      handler(); // ❌ lost this
+
+    👉 Same problem: function is called without object
+
+    ✅ Fix with .bind()
+      const button = {
+        text: "Click me",
+        onClick() {
+          console.log(this.text);
+        }
+      };
+
+      const handler = button.onClick.bind(button);
+
+      handler(); // ✅ "Click me"
+
+      👉 .bind() permanently sets this
+
+    ❌ 4. Losing this in class methods
+      class User {
+        constructor(name) {
+          this.name = name;
+        }
+
+        sayHi() {
+          console.log(this.name);
+        }
+      }
+
+      const user = new User("Alex");
+
+      setTimeout(user.sayHi, 1000); // ❌ lost this
+
+    👉 Output:
+      undefined
+
+    ✅ Fix (bind)
+      setTimeout(user.sayHi.bind(user), 1000);
+
+    🔥 Simple rule to remember
+      👉 this is NOT about where the function is written
+      👉 It is about how the function is called
+
+'use strict'
+  Директива "use strict" в JavaScript вводить строгий режим виконання коду, що допомагає виявляти потенційні помилки шляхом накладання обмежень на певні аспекти синтаксису та поведінки.
+  Використання строгого режиму сприяє кращій оптимізації коду движками JavaScript, забезпечуючи більшу продуктивність. Ми можемо застосовувати "use strict" на початку скрипту або на початку функції, щоб застосувати строгий режим глобально або локально відповідно.
+
+  На початку скрипту:
+    "use strict";
+
+  Це застосовує строгий режим до всього скрипта, впливаючи на усі функції та змінні в ньому.:
+
+  Використання "use strict" в сучасному коді все ще є хорошою практикою з кількох причин:
+
+  1. Покращує безпеку: Строгий режим запобігає деяким небезпечним операціям, таким як неоголошені змінні, що може призвести до непередбачуваних результатів та потенційних помилок у коді.
+  2. Сприяє кращим практикам програмування: Він обмежує використання деяких застарілих конструкцій, змушуючи розробників використовувати більш сучасні та безпечні підходи.
+  3. Полегшує відлагодження: У строгому режимі помилки виявляються швидше, оскільки JavaScript-двигун видає помилки у випадках, які в нормальному режимі були б проігноровані або не помічені.
+  4. Сумісність майбутніх версій: Строгий режим допомагає гарантувати, що код буде сумісним із майбутніми стандартами JavaScript.
+
+Accessors (Аксесори)
+  Аксесори (accessors) в JavaScript — це спеціальні методи, які надають можливість читати або змінювати властивості об'єктів через використання гетерів (getters) та сетерів (setters).
+
+  Гетери використовуються для отримання значення властивості, а сетери — для їхнього встановлення, що дозволяє контролювати процес читання та зміни властивостей, виконуючи додатковий код, наприклад, для перевірки або обробки даних.
+
+  Приклад коду:
+
+    const person = {
+      firstName: 'Андрій',
+      lastName: 'Шевченко',
+
+      // Гетер для повного імені
+      get fullName() {
+        return `${this.firstName} ${this.lastName}`;
+      },
+
+      // Сетер для повного імені
+      set fullName(name) {
+        [this.firstName, this.lastName] = name.split(' ');
+      }
+    };
+
+    console.log(person.fullName); // Читання за допомогою гетера: "Андрій Шевченко"
+
+    person.fullName = 'Іван Франко'; // Запис за допомогою сетера
+    console.log(person.fullName); // Читання після встановлення нового значення: "Іван Франко"
+
+  Аксесори допомагають нам керувати властивостями об'єктів більш гнучко, забезпечуючи додаткову логіку при їх читанні та зміні.
+
+  Переваги, що надають аксесори:
+  1. Інкапсуляція даних: Дозволяють контролювати доступ до внутрішніх властивостей об'єкта, обмежуючи можливість їх прямого змінення ззовні та забезпечуючи додаткову логіку перевірки або обробки при їх читанні та зміні.
+  2. Гнучкість: Спрощують рефакторинг коду, дозволяючи змінити внутрішню структуру об'єкта без необхідності змінювати спосіб доступу до його властивостей ззовні.
+  3. Додаткова логіка: Можна виконувати додаткові операції при зчитуванні або запису властивостей, наприклад, логування доступу до властивостей або автоматичне обчислення значень на основі інших властивостей.
+
+  Дескриптори властивостей
+    Дескриптори властивостей в JavaScript — це спеціальні об'єкти, які дозволяють нам детально контролювати поведінку властивостей об'єкта. Основні атрибути дескрипторів включають:
+
+    value: Значення властивості. Це може бути будь-яке допустиме значення JavaScript.
+
+    writable: Логічне значення, яке визначає, чи може властивість бути змінена. Якщо false, властивість є лише для читання.
+
+    enumerable: Логічне значення, яке визначає, чи з'являється властивість у перелічуваних операціях, таких як цикл for...in або метод Object.keys().
+
+    configurable: Логічне значення, яке визначає, чи можна змінювати дескриптор властивості та чи можна видалити властивість. Якщо встановлено в false, властивість не можна видалити, а також не можна змінити її дескриптори configurable, enumerable, writable (з true на false та навпаки), а також не можна змінити її на гетер або сетер. Однак, якщо writable встановлено в true, можна змінити його на false, але не навпаки.
+
+    Приклад коду:
+      const obj = {};
+
+      Object.defineProperty(obj, 'property1', {
+        value: 42,
+        writable: true, // Властивість може бути змінена
+        enumerable: true, // Властивість буде перелічена в циклах
+        configurable: false // Властивість не може бути видалена, а її дескриптори не можуть бути змінені
+      });
+
+      console.log(obj.property1); // Виведе: 42
+
+      // Зміна властивості буде успішною, оскільки writable: true
+      obj.property1 = 77;
+      console.log(obj.property1); // Значення змінилося на 77
+
+      // Спроба змінити дескриптор writable на false
+      Object.defineProperty(obj, 'property1', {
+        writable: false
+      });
+      console.log(Object.getOwnPropertyDescriptor(obj, 'property1').writable); // true, якщо строгий режим не використовується; інакше TypeError
+
+      // Спроба видалити властивість не спрацює, оскільки configurable: false
+      delete obj.property1;
+      console.log(obj.property1);
