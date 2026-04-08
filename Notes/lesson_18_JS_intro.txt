@@ -159,20 +159,6 @@ Variables (змінні) і constants (константи)
 
   So using let is the modern, best practice way of declaring variables.
 
-
-
-alert()
-
-alert() is a built-in JavaScript function that shows a modal dialog box with a message and an OK button.
-    It’s mainly used for quick debugging or simple notifications in the browser.
-    It pauses script execution until the user clicks OK.
-    Example:
-        alert("Hello, world!");
-
-        This will pop up a small dialog with Hello, world!.
-
-
-
 Data Types
 
     Primitive Types - stored directly in memory as a single value.
@@ -222,19 +208,20 @@ Data Types
         Date, RegExp, Map, Set, WeakMap, WeakSet, etc. → special built-in objects.
 
 
-Special Notes
+Динамічна типізація
+    JavaScript — це динамічно типізована мова, тобто тип змінної визначається автоматично під час виконання коду.
+        let data = 10;      // number
+        data = "Hello";     // тепер string
 
-JavaScript is dynamically typed: you don’t declare a variable’s type, it’s determined at runtime.
-    let value = 42;       // number
-    value = "forty two";  // now string
+    🧩 typeof
+        Оператор typeof використовується для перевірки типу даних.
+        typeof 42;            // "number"
+        typeof "JS";          // "string"
+        typeof true;          // "boolean"
+        typeof undefined;     // "undefined"
+        typeof null;          // ❗ "object" (історична помилка в JS)
 
-You can check a type with typeof:
-    typeof 123;       // "number"
-    typeof "hello";   // "string"
-    typeof null;      // "object" (quirk in JS)
-    typeof [];        // "object"
-    typeof (()=>{});  // "function"
-
+        Зручно використовувати для налагодження або перевірки типу перед операціями.
 
 
 Operators

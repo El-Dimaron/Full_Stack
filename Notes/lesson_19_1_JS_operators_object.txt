@@ -194,6 +194,7 @@ Strings
 
   Strings Methods
     https://www.w3schools.com/js/js_string_reference.asp
+    Важливо: методи не змінюють оригінальний рядок, а повертають нову строку.
 
     1. Доступ до символу за індексом:
       Новий функціонал: []
@@ -242,20 +243,33 @@ Strings
 
           console.log(matches); // Output: ["Scr", "src"]
 
-    7. replace(oldSubstring, newSubstring)
+    8. replace(oldSubstring, newSubstring)
       Замінює перше входження підрядка на новий.
 
       replaceAll()
         The replaceAll() method allows you to specify a regular expression instead of a string to be replaced.
 
-    8. split(separator)
+    9. split(separator)
       Розбиває рядок на масив рядків за допомогою роздільника.
 
-    9. toUpperCase() та toLowerCase()
+    10. toUpperCase() та toLowerCase()
       Змінюють регістр всіх символів рядка.
 
-    10. includes(substring, startIndex)
+    11. includes(substring, startIndex)
       Перевіряє, чи містить рядок заданий підрядок.
+
+    12. trim();
+      Прибирає пробіли з країв
+
+  Конкатенація
+    Приклади:
+      console.log("Age: " + 25);         // "Age: 25"
+      console.log(10 + " apples");       // "10 apples"
+      console.log("Apples: " + 10 + 5);  // "Apples: 105"
+      console.log(10 + 5 + " apples");   // "15 apples"
+
+    JavaScript виконує операції зліва направо.
+    Як тільки він бачить рядок у виразі — далі всі операції трактуються як конкатенація, а не як додавання.
 
   Escape Characters
 
@@ -311,6 +325,36 @@ Strings
         let total = `Total: ${(price * (1 + VAT)).toFixed(2)}`;
 
 
+Numbers
+  JavaScript має один основний числовий тип — number (для цілих і дробових).
+    let x = 10.5;
+
+  Корисні методи:
+    x.toFixed(2);       // округлення до 2 знаків — "10.50"
+    Number.isInteger(10);  // true
+    Number("15");          // 15 (перетворення з рядка)
+    parseInt("42px");      // 42
+    parseFloat("3.14");    // 3.14
+
+  Також є спеціальні значення:
+    Infinity, -Infinity, NaN (“Not a Number”).
+
+
+Boolean
+  Boolean має лише два значення: true або false.
+  Використовується для умов, перевірок, логічних операцій.
+
+  Перетворення до Boolean:
+    Boolean(1);       // true
+    Boolean(0);       // false
+    Boolean("");      // false
+    Boolean("Hi");    // true
+    Boolean(null);    // false
+
+  “Правдиві” (truthy) значення — усе, що не є 0, "", null, undefined, NaN, false.
+  “Хибні” (falsy) — саме ці шість.
+
+
 null / undefined
 
   null
@@ -348,8 +392,26 @@ null / undefined
 
 
 Object
-  Об'єкт - це колекція властивостей, де кожна властивість має ім'я (або ключ) і відповідне їй значення, яке може бути даними або функцією.
+  Об’єкт (object) — це структура даних, що зберігає пару "ключ: значення".
+  Ключі — це імена властивостей, а значення можуть бути будь-якого типу.
+
   Об'єкти використовуються для зберігання складних структур даних, представлення сутностей з властивостями та методами та для організації коду у вигляді модулів і просторів імен.
+
+  🧩 Роль об’єктів у ООП
+    JavaScript базується на об’єктно-орієнтованій парадигмі (ООП).
+
+    ООП означає, що ми можемо:
+      - описувати об’єкти реального світу (користувач, автомобіль, товар тощо);
+      - об’єднувати дані (властивості) і поведінку (методи) в одному місці.
+
+      Приклад:
+        let car = {
+        brand: "Toyota",
+        start() {
+          console.log("Engine started!");
+        }
+      };
+      car.start(); // виклик методу
 
   Створення об'єктів:
     1. Об'єктний літерал - найпростіший і найбільш поширений спосіб створення об'єктів.

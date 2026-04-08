@@ -1,0 +1,189 @@
+Значення за замовчуванням
+  Якщо аргумент не передано, використовується вказане значення:
+    function greet(name = "Guest") {
+      console.log(`Hello, ${name}!`);
+    }
+
+    function myFunction(x, y = 10) {
+    return x + y;
+    }
+
+    myFunction(5); // 15
+
+
+Rest-параметри (...)
+  Rest (...) — це спосіб приймати довільну кількість аргументів у функцію у вигляді масиву.
+
+    function getSum(...args) {
+        let sum = 0;
+        for (let arg of args) {
+            sum += arg;
+        }
+        return sum;
+    }
+
+    let x = getSum(4, 9, 16, 25, 29, 180, 66, 77); // 431
+    let y = getSum(1, 5, 12); // 18
+
+
+    ➡️ ...args збирає всі передані аргументи в масив args.
+
+  Spread-оператор (...) — поєднує масиви або об’єкти:
+
+    const arr1 = [1, 2, 3];
+    const arr2 = [4, 5];
+
+    const combined = [...arr1, ...arr2];
+
+
+  🔸 Rest збирає → Spread поєднує
+
+
+Замикання (Closures)
+  Замикання — це здатність функції запам’ятовувати змінні з зовнішньої області, навіть після завершення її виконання.
+    function createCounter() {
+      let count = 0; // змінна всередині замикання
+
+      return function() {
+        count++;
+        console.log(count);
+      };
+    }
+
+    let counter = createCounter();
+
+    counter(); // 1
+    counter(); // 2
+    counter(); // 3
+
+  ➡️ Функція, що повертається, пам’ятає змінну count навіть після того, як createCounter() вже завершила роботу.
+
+  Це використовується для інкапсуляції даних і створення незалежних станів.
+
+  Інкапсуляція - це один з принципів Об’єктно Орієнтованого Програмування (ООП)
+
+
+Arrow functions
+  Arrow Functions allow a shorter syntax for function expressions.
+  You can skip the function keyword, the return keyword, and the curly brackets:
+    const multiply = (a, b) => a * b;
+
+  An arrow function is always written as a function expression.
+
+  Examples:
+  Before Arrow
+    const hello = function() {return "Hello World!";}
+
+  With Arrow
+    const hello = () => "Hello World!";
+
+
+  If a function has only one parameter, you can omit the parentheses:
+
+  With Paranthesis
+    const square = (x) => x * x;
+
+  Without Paranthesis
+    const square = x => x * x;  // it will still work but it is better to always use parenthesis
+
+
+  Arrow Function Parameters
+  If you have parameters, you pass them inside the parenthesis.
+
+  If there are no parameters, parentheses are required:
+    const hello = () => "Hello World!";
+
+
+  You can only omit the return keyword and the curly brackets if the function is a single statement.
+  Because of this, it might be a good habit to always keep them:
+    // This will return undefined
+    const myFunction = (x, y) => { x * y };
+
+    // This will return undefined
+    const myFunction = (x, y) => return x * y;
+
+    // This will return the expected result
+    const myFunction = (x, y) => { return x * y };
+
+
+  Arrow Functions Are Not Declarations
+    Arrow functions are always expressions and must be assigned to a variable.
+
+    They cannot be used before they are defined.
+
+      Example
+      hello(); // Error
+
+      const hello = () => "Hello";
+
+
+  Arrow Functions and the 'this' Keyword
+    Arrow functions do not have their own this value.
+
+    They inherit this from the surrounding code.
+
+    Using an arrow function as a method often gives unexpected results.
+
+      const person = {
+        name: "John",
+        greet: () => {
+          return this.name;
+        }
+      };
+
+    In this case, this does not refer to the person object.
+
+
+  When to Use Arrow Functions
+    - For short functions
+    - For callbacks and array methods
+    - When you do not need your own this
+
+  When Not to Use Arrow Functions
+    - As object methods
+    - When you need your own this
+    - When using function declarations
+
+
+  Common Mistakes
+    Forgetting Parentheses Rules
+      Parentheses are required for zero or multiple parameters.
+
+    Using Arrow Functions as Methods
+      Arrow functions do not bind this.
+
+    Expecting Hoisting
+      Arrow functions are not hoisted.
+
+  Використання зі структурами даних
+
+    З масивами:
+
+      forEach() — цикл який виконує дію для кожного елемента:
+        let array = [1, 2, 3];
+        array.forEach(n => console.log(n * 2)); // 2, 4, 6
+
+        filter() — створює новий масив з елементів, що відповідають умові:
+
+        const words = ['dog', 'cat', 'elephant', 'parrot', 'snake', 'bear', "polar bear"];
+        const result = words.filter(word => word.length > 6);
+
+      sort() — сортує елементи за правилом:
+        const array = [5, 1, 4, 2];
+        array.sort((a, b) => a - b);
+        console.log(array); // [1, 2, 4, 5]
+
+    з Set:
+      const numbers = new Set([1, 2, 3]);
+      numbers.forEach(n => console.log(n * 2)); // 2, 4, 6
+
+    з Map:
+      const users = new Map([
+        ['Alex', 25],
+        ['Maria', 30],
+      ]);
+      users.forEach((age, name) => console.log(`${name}: ${age}`));
+
+      Результат:
+        Alex: 25
+        Maria: 30
