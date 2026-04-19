@@ -452,6 +452,56 @@ Object
 
 
 
+  Успадкування методів від Object
+    Усі об’єкти в JavaScript автоматично успадковують методи від глобального Object.prototype.
+
+  Деякі з найпоширеніших методів:
+    toString() — повертає рядкове представлення об’єкта.
+      const city = { name: "Київ" };
+      console.log(city.toString()); // [object Object]
+
+    hasOwnProperty(key) — перевіряє, чи має об’єкт власну властивість (а не успадковану).
+      city.hasOwnProperty("name"); // true
+
+    Ці методи доступні будь-якому об’єкту, бо вони йдуть "у спадок" від Object.
+
+  Клонування об’єктів
+    Клонування створює копію об’єкта, щоб зміни в одній версії не впливали на іншу.
+      const original = { name: "Львів", population: 720000 };
+
+      - Object.assign - старий варіант створення копії:
+        const clonedCity = Object.assign({}, original);
+
+      - ...object - сучасний варіант:
+        const clone = { ...original };
+        clone.name = "Київ";
+
+      console.log(original.name); // Львів
+
+  Деструктуризація (Decoupling)
+    Деструктуризація — це спосіб зручно "витягти" властивості об’єкта у змінні.
+      const city = { name: "Київ", population: 3000000, isCapital: true };
+      let { name, population, isCapital } = city;
+      console.log(name); // Київ
+
+    Це робить код коротшим і читабельнішим, особливо коли працюєш з об’єктами, що мають багато властивостей.
+
+  Ключове слово this у об’єктах
+    У методах об’єкта this посилається на сам об’єкт, у якому викликається метод.
+      const city = {
+        name: "Одеса",
+        printInfo() {
+          console.log(`Місто: ${this.name}`);
+        }
+      };
+      city.printInfo(); // Місто: Одеса
+
+    ⚠️ Якщо замість звичайної функції використати стрілочну, this не буде вказувати на об’єкт:
+      const city = {
+        name: "Харків",
+        printInfo: () => console.log(this.name) // undefined
+      };
+
 
 
 
