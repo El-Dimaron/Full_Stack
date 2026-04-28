@@ -1,0 +1,25 @@
+{
+  "name": "full-stack",
+  "version": "1.0.0",
+  "description": "Project for the Full Stack JS training course.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/El-Dimaron/Full_Stack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/El-Dimaron/Full_Stack/issues"
+  },
+  "homepage": "https://github.com/El-Dimaron/Full_Stack#readme",
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}
