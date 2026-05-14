@@ -1,4 +1,4 @@
-const URL = "http://www.omdbapi.com/?apikey=73eb1fea&";
+const URL = "https://www.omdbapi.com/?apikey=73eb1fea&";
 
 let form = document.forms["searchForm"];
 let currentSearchText = "";
@@ -36,6 +36,12 @@ async function processQuery(query, page = 1) {
   currentPage = page;
 
   const result = await searchQuery(query, page);
+
+  if (!result || result.Response === "False") {
+    console.log(result?.Error || "Something went wrong");
+    return;
+  }
+
   displayQuery(result, query);
   displayPagination(result);
 }
