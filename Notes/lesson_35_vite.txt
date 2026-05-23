@@ -1,0 +1,127 @@
+Vite setup
+https://vite.dev/
+
+1. Initialize vite in a project
+  npm create vite@latest
+
+2. Create the config file 'vite.config.ts' in the folder root:
+  import { defineConfig } from "vite";
+  import tailwindcss from "@tailwindcss/vite";
+
+  export default defineConfig({
+    plugins: [],
+  });
+
+
+3. While inside the created vite project folder, install the required dependencies:
+  3.1. Tailwind:
+    https://tailwindcss.com/docs/installation/using-vite
+
+    3.1.1.
+      npm install tailwindcss @tailwindcss/vite
+
+    3.1.2.
+    Add the plugin to the 'vite.config.ts':
+      plugins: [tailwindcss()],
+
+    3.1.3.
+    Import tailwind into the main style file (style.css):
+      @import "tailwindcss";
+
+    3.1.4.
+    Tailwind Prettier
+      npm install -D prettier prettier-plugin-tailwindcss
+
+    3.1.5.
+    Create the file .prettierrc and add the plugin to it:
+      {
+        "plugins": ["prettier-plugin-tailwindcss"]
+      }
+
+
+4. Install eslint:
+  https://eslint.org/docs/latest/use/getting-started
+
+  Command to install eslint and all it basic tools:
+    npm i -D eslint @eslint/js typescript-eslint globals eslint-config-prettier
+
+  Create config file 'eslint.config.ts':
+    import js from "@eslint/js";
+    import globals from "globals";
+    import tseslint from "typescript-eslint";
+    import { defineConfig } from "eslint/config";
+
+    export default defineConfig(
+      {
+        ignores: ["dist/**", "coverage/**", "node_modules/**"],
+      },
+
+      {
+        files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
+        plugins: { js },
+        extends: ["js/recommended"],
+        languageOptions: { globals: globals.browser },
+      },
+      tseslint.configs.recommended,
+    );
+
+  Add the commands into package.json -> scripts:
+    "lint": "eslint .",
+
+5. Add 'vitest' tests:
+  5.1. Install:
+    npm i -D vitest jsdom @vitest/coverage-v8
+
+  5.2. Create config file 'vitest.config.ts':
+    import { defineConfig, configDefaults } from "vitest/config";
+
+    export default defineConfig({
+      test: {
+        globals: true,
+        environment: "jsdom",
+        coverage: {
+          provider: "v8",
+        },
+        exclude: [...configDefaults.exclude, "package/template/*", "dist/"],
+      },
+    });
+
+  5.3. Create test file(s) [name].test.ts inside the src folder.
+    Example:
+    counter.test.ts
+
+    import { test, expect } from "vitest";
+
+    test("base test", () => {
+      expect(true).toBeTruthy();
+    });
+
+
+  5.4. Command to run vitest tests:
+    5.4.1.
+      npx vitest run
+
+    or
+
+    5.4.2.
+      add the script to the package.json file:
+        "scripts": {
+          ...
+          "test": "vitest run"
+          "coverage": "vitest run --coverage"
+        }
+
+      and use the npm command:
+        npm run test
+
+
+
+6. For SASS support install:
+  npm i -D sass
+
+  And import into main.ts file. vite will compile the scss code into css on-the-go.
+
+To launch the server, input the command:
+  npm run dev
+
+
