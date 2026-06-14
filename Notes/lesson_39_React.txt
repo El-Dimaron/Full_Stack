@@ -1,0 +1,44 @@
+
+
+Імена змінних
+
+  PascalCase - назви компонентів:
+    // Компоненти React завжди називаються з великої літери, щоб відрізняти їх від звичайних HTML елементів
+    const UserProfile = () => {
+      return <div>Профіль користувача</div>;
+    };
+
+    const NavigationMenu = () => {
+      return <nav>Меню навігації</nav>;
+    };
+
+  SCREAMING_SNAKE_CASE - назви констант, значення яких не змінюються під час виконання програми:
+    // Константи, які визначені на рівні модуля і не змінюються
+    const API_BASE_URL = 'https://api.example.com';
+    const MAX_ITEMS_PER_PAGE = 10;
+    const DEFAULT_SETTINGS = {
+      theme: 'light',
+      language: 'uk'
+    };
+
+  camelCase - змінні, функції,
+    - пропсів компонентів
+    - користувацьких хуків
+
+    // Приклади використання camelCase в React
+    const UserCard = ({ userName, userAge }) => { // пропси в camelCase
+      // Змінні стану в camelCase
+      const [isLoading, setIsLoading] = useState(false);
+
+      // Функції обробники в camelCase
+      const handleUserClick = () => {
+        console.log('Користувач натиснув кнопку');
+      };
+
+      return (
+        <div onClick={handleUserClick}>
+          {userName}, {userAge} років
+        </div>
+      );
+    };
+
