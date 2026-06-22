@@ -1,0 +1,2 @@
+Command + P - Search bar (searching files by name instead of finding them in exlorer)
+Command + D - (after the keyword is highlighted) to highlight the next occurance of this keyword - will spawn multiple cursors

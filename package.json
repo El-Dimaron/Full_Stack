@@ -21,5 +21,8 @@
   "homepage": "https://github.com/El-Dimaron/Full_Stack#readme",
   "devDependencies": {
     "jest": "^30.3.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8"
   }
 }
