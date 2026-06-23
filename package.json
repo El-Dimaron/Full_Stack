@@ -23,6 +23,7 @@
     "jest": "^30.3.0"
   },
   "dependencies": {
-    "bootstrap": "^5.3.8"
+    "bootstrap": "^5.3.8",
+    "react-error-boundary": "^6.1.2"
   }
 }
