@@ -1,12 +1,17 @@
 import { useState } from "react";
 
 interface Props {
-  items: string[];
+  // items: string[];
+  items: {
+    id: number;
+    title: string;
+    quantity: number;
+  }[];
+
   heading: string;
-  onSelectItem: (item: string) => void;
 }
 
-export function ListGroup({ items, heading, onSelectItem }: Props) {
+export function ListGroup({ items, heading }: Props) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
@@ -17,14 +22,13 @@ export function ListGroup({ items, heading, onSelectItem }: Props) {
         {items.map((item, index) => {
           return (
             <li
-              key={item}
+              key={item.id}
               onClick={() => {
                 setSelectedIndex(index);
-                onSelectItem(item);
               }}
               className={selectedIndex === index ? "list-group-item active" : "list-group-item"}
             >
-              {item}
+              {item.id} - {item.title} [{item.quantity}]
             </li>
           );
         })}
