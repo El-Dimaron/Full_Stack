@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./DataFetcher.css";
+import { useParams } from "react-router";
 
 type Character = {
   id: number;
@@ -10,11 +11,13 @@ type Character = {
   image: string;
 };
 
-type MessageComponentProps = {
-  characterID?: number;
+type Params = {
+  characterID?: string;
 };
 
-const randomNum = Math.ceil(Math.random() * 826);
+function getRandomCharacterId() {
+  return Math.ceil(Math.random() * 826);
+}
 
 async function fetchCharacter(characterID: number): Promise<Character> {
   const response = await axios.get(`https://rickandmortyapi.com/api/character/${characterID}`);
@@ -22,27 +25,35 @@ async function fetchCharacter(characterID: number): Promise<Character> {
   return response.data;
 }
 
-export function MessageComponent({ characterID = randomNum }: MessageComponentProps) {
+export function MessageComponent() {
   const [message, setMessage] = useState<Character | null>(null);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [randomCharacterID, setRandomCharacterID] = useState(() => getRandomCharacterId());
+
+  const { characterID } = useParams<Params>();
+
+  const finalCharacterID = characterID ? Number(characterID) : randomCharacterID;
+
   useEffect(() => {
     async function loadCharacter() {
       try {
-        const character = await fetchCharacter(characterID);
+        setLoading(true);
+        setError(null);
+
+        const character = await fetchCharacter(finalCharacterID);
         setMessage(character);
       } catch {
+        setMessage(null);
         setError("Character not found");
       } finally {
         setLoading(false);
       }
     }
 
-    setTimeout(() => loadCharacter(), 1000);
-
-    // loadCharacter();
-  }, [characterID]);
+    loadCharacter();
+  }, [finalCharacterID]);
 
   if (isLoading) {
     return <p>Is loading...</p>;
@@ -71,6 +82,9 @@ export function MessageComponent({ characterID = randomNum }: MessageComponentPr
           </p>
         </div>
       </div>
+      <button className="random-button" onClick={() => setRandomCharacterID(getRandomCharacterId())}>
+        Randomize character
+      </button>
     </>
   );
 }
