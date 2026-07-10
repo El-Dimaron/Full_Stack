@@ -1,23 +1,8 @@
 import { NavLink } from "react-router";
 import "../App.css";
-import dayIcon from "../assets/day-icon.png";
-import nightIcon from "../assets/night-icon.png";
-import { useContext } from "react";
-import { ThemeContext } from "../context/AppContext";
+import { Theme } from "../features/theme/Theme";
 
 export function Header() {
-  const context = useContext(ThemeContext);
-
-  if (!context) {
-    throw new Error("Something's wrong with the context. Fix it!");
-  }
-
-  const { theme, setTheme } = context;
-
-  const handleClick = () => {
-    console.log(theme);
-    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
-  };
   return (
     <>
       <header>
@@ -52,9 +37,7 @@ export function Header() {
               </NavLink>
             </li>
             <li className="navItem">
-              <button className="header__theme-button" onClick={handleClick}>
-                <img className="theme-icon" src={theme === "dark" ? nightIcon : dayIcon} alt="Mode switcher" />
-              </button>
+              <Theme />
             </li>
           </ul>
         </nav>
