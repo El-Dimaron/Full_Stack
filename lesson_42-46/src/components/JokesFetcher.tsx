@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./DataFetcher.css";
 
 async function fetchJoke(): Promise<string> {
   const response = await axios.get("https://v2.jokeapi.dev/joke/Programming?format=txt");

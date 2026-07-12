@@ -4,7 +4,8 @@ import { App } from "./App";
 import { Home } from "./pages/Home";
 import { Contacts } from "./pages/Contacts";
 import { About } from "./pages/About";
-import { RickAndMorty } from "./pages/RickAndMorty";
+// import { RickAndMorty } from "./pages/RickAndMorty";
+import { RickAndMorty } from "./features/rickandmorty/RickAndMorty";
 import { Jokes } from "./pages/Jokes";
 
 export const router = createBrowserRouter([
@@ -25,14 +26,8 @@ export const router = createBrowserRouter([
         element: <Contacts />,
       },
       {
-        path: "rickandmorty",
+        path: "rickandmorty/:characterID?",
         element: <RickAndMorty />,
-        children: [
-          {
-            path: ":characterID",
-            element: <RickAndMorty />,
-          },
-        ],
       },
       {
         path: "jokes",
