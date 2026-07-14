@@ -12,21 +12,24 @@ const initialState: JokeState = {
   error: null,
 };
 
-export const fetchJoke = createAsyncThunk<string, void, { rejectValue: string }>("joke/fetchJoke", async (thunkAPI) => {
-  try {
-    const response = await fetch("https://v2.jokeapi.dev/joke/Programming?format=txt");
+export const fetchJoke = createAsyncThunk<string, void, { rejectValue: string }>(
+  "joke/fetchJoke",
+  async (_, thunkAPI) => {
+    try {
+      const response = await fetch("https://v2.jokeapi.dev/joke/Programming?format=txt");
 
-    if (!response.ok) {
-      return thunkAPI.rejectWithValue("No joke is found");
+      if (!response.ok) {
+        return thunkAPI.rejectWithValue("No joke is found");
+      }
+
+      const joke: string = await response.text();
+
+      return joke;
+    } catch {
+      return thunkAPI.rejectWithValue("The request could not be completed");
     }
-
-    const joke: string = await response.text();
-
-    return joke;
-  } catch {
-    return thunkAPI.rejectWithValue("The request could not be completed");
-  }
-});
+  },
+);
 
 const jokesSlice = createSlice({
   name: "joke",
