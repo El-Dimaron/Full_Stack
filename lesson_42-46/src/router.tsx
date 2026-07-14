@@ -6,7 +6,7 @@ import { Contacts } from "./pages/Contacts";
 import { About } from "./pages/About";
 // import { RickAndMorty } from "./pages/RickAndMorty";
 import { RickAndMorty } from "./features/rickandmorty/RickAndMorty";
-import { Jokes } from "./pages/Jokes";
+import { Jokes } from "./features/jokes/Jokes";
 
 export const router = createBrowserRouter([
   {

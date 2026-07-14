@@ -15,24 +15,27 @@ export function RickAndMorty() {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
+  const { character, isLoading, error } = useSelector((state: RootState) => state.rickAndMorty);
+
   const { characterID: characterIDFromURL } = useParams<RouteParams>();
 
   const parsedCharacterID = Number(characterIDFromURL);
 
-  const currentCharacterID =
-    Number.isInteger(parsedCharacterID) && parsedCharacterID >= 1 && parsedCharacterID <= 826
-      ? parsedCharacterID
-      : DEFAULT_CHARACTER_ID;
+  const isValidCharacterID = Number.isInteger(parsedCharacterID) && parsedCharacterID >= 1 && parsedCharacterID <= 826;
+
+  const currentCharacterID = isValidCharacterID ? parsedCharacterID : (character?.id ?? DEFAULT_CHARACTER_ID);
 
   const [characterID, setCharacterID] = useState(String(currentCharacterID));
 
-  const { character, isLoading, error } = useSelector((state: RootState) => state.rickAndMorty);
-
   useEffect(() => {
     setCharacterID(String(currentCharacterID));
-    dispatch(fetchCharacter(currentCharacterID));
+
+    if (character?.id !== currentCharacterID) {
+      dispatch(fetchCharacter(currentCharacterID));
+    }
+
     console.log(`Character ID: ${currentCharacterID}`);
-  }, [currentCharacterID, dispatch]);
+  }, [currentCharacterID, character?.id, dispatch]);
 
   const handleSumbit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -69,30 +72,30 @@ export function RickAndMorty() {
             <h2 className="character-title">{character.name}</h2>
             <p className="character-description">Status: {character.status}</p>
             <p className="character-description">Species: {character.species}</p>
-            <div className="character-interactive">
-              <form className="character-form" onSubmit={handleSumbit}>
-                <input
-                  className="character-input"
-                  type="number"
-                  min={1}
-                  max={826}
-                  value={characterID}
-                  onChange={(event) => {
-                    console.log(event.target.value);
-                    setCharacterID(event.target.value);
-                  }}
-                  placeholder="Enter character ID"
-                />
-                <button className="load-button" type="submit">
-                  Load
-                </button>
-              </form>
-              <button className="random-button" onClick={handleLoadCharacter}>
-                Randomize character
-              </button>
-            </div>
           </>
         )}
+        <div className="character-interactive">
+          <form className="character-form" onSubmit={handleSumbit}>
+            <input
+              className="character-input"
+              type="number"
+              min={1}
+              max={826}
+              value={characterID}
+              onChange={(event) => {
+                console.log(event.target.value);
+                setCharacterID(event.target.value);
+              }}
+              placeholder="Enter character ID"
+            />
+            <button className="load-button" type="submit">
+              Load
+            </button>
+          </form>
+          <button className="random-button" onClick={handleLoadCharacter}>
+            Randomize character
+          </button>
+        </div>
       </div>
     </>
   );
