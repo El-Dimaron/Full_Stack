@@ -1,0 +1,128 @@
+.forms {
+  display: flex;
+  flex-direction: column;
+  min-width: min(500px, 90%);
+}
+
+.form-container {
+  background-color: #1f2937;
+  border-radius: 10px;
+  padding: 30px 20px;
+
+  margin-bottom: 50px;
+}
+
+.form-title {
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+.form-element {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 20px;
+}
+
+.form-subelement {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-input {
+  border-radius: 20px;
+  border: 1px solid #4b5563;
+  padding: 11px 14px;
+  background-color: #111827;
+  color: #ffffff;
+}
+
+.form-input--error {
+  border-color: #8b5cf6;
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
+}
+
+.form-input:focus {
+  outline: 2px solid #8b5cf6;
+}
+
+.form-input::-webkit-inner-spin-button,
+.form-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.form-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 11px 18px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}
+
+.form-button:hover {
+  transform: translateY(-2px);
+}
+
+.form-button:active {
+  transform: translateY(0);
+}
+
+.form-button:focus-visible {
+  outline: 2px solid #a78bfa;
+  outline-offset: 3px;
+}
+
+.form-error {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+  padding: 4px 6px;
+
+  border: 2px solid #8b8b8b;
+  border-radius: 2px;
+
+  background-color: #3b3b3b;
+  color: #ffffff;
+
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.form-error::before {
+  content: "";
+
+  position: absolute;
+  top: -7px;
+  left: 42px;
+
+  width: 10px;
+  height: 10px;
+
+  background-color: #3b3b3b;
+  border-top: 2px solid #8b8b8b;
+  border-left: 2px solid #8b8b8b;
+
+  transform: rotate(45deg);
+}
+
+.form-error__message {
+  position: relative;
+  z-index: 1;
+}

@@ -14,6 +14,11 @@ export function Header() {
               </NavLink>
             </li>
             <li className="navItem">
+              <NavLink className={({ isActive }) => (isActive ? "navLink navLinkActive" : "navLink")} to="/forms">
+                Forms
+              </NavLink>
+            </li>
+            <li className="navItem">
               <NavLink
                 className={({ isActive }) => (isActive ? "navLink navLinkActive" : "navLink")}
                 to="/rickandmorty"

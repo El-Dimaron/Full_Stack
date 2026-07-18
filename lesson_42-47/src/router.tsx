@@ -4,6 +4,7 @@ import { App } from "./App";
 import { Home } from "./pages/Home";
 import { Contacts } from "./pages/Contacts";
 import { About } from "./pages/About";
+import { Forms } from "./pages/Forms";
 // import { RickAndMorty } from "./pages/RickAndMorty";
 import { RickAndMorty } from "./features/rickandmorty/RickAndMorty";
 import { Jokes } from "./features/jokes/Jokes";
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "forms",
+        element: <Forms />,
       },
       {
         path: "about",

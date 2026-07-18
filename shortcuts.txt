@@ -1,0 +1,19 @@
+Command + P - Search bar (searching files by name instead of finding them in exlorer)
+Command + D - (after the keyword is highlighted) to highlight the next occurance of this keyword - will spawn multiple cursors
+
+React
+rafce - basic component creation shortcut
+
+Emmet
+
+. - Dot after the element determines the class
+> - More than means the following element will be an html child
++ - Plus means the following element will be an adjacent html element
+
+Example:
+  Shortcut:
+    div.form-element>label.form-label+input.form-input
+
+  Output:
+    <label htmlFor="" className="form-label"></label>
+    <input type="text" className="form-input" />
