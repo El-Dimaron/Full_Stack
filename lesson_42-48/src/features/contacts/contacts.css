@@ -1,0 +1,140 @@
+.app-container {
+  --contacts-card-bg: #1f2937;
+  --contacts-text: #f9fafb;
+  --contacts-secondary-text: #d1d5db;
+  --contacts-icon-bg: #374151;
+  --contacts-accent: #818cf8;
+  --contacts-border: rgba(255, 255, 255, 0.08);
+  --contacts-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.app-container.light {
+  --contacts-card-bg: #ffffff;
+  --contacts-text: #111827;
+  --contacts-secondary-text: #6b7280;
+  --contacts-icon-bg: #eef2ff;
+  --contacts-accent: #6366f1;
+  --contacts-border: #e5e7eb;
+  --contacts-shadow: 0 14px 30px rgba(15, 23, 42, 0.1);
+}
+
+.contacts-page {
+  width: 100%;
+  padding: 40px 20px;
+}
+
+.contacts-container {
+  width: min(100%, 620px);
+  margin: 0 auto;
+}
+
+.contacts-heading {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contacts-heading h1.ant-typography {
+  margin-bottom: 6px;
+  color: var(--contacts-text);
+}
+
+.contacts-paragraph {
+  color: var(--contacts-text);
+}
+
+.contacts-heading p.ant-typography {
+  margin-bottom: 0;
+  color: var(--contacts-secondary-text);
+}
+
+.contacts-card {
+  border: 1px solid var(--contacts-border);
+  border-radius: 18px;
+
+  background-color: var(--contacts-card-bg);
+
+  box-shadow: var(--contacts-shadow);
+}
+
+.contacts-card .ant-card-body {
+  padding: 24px;
+}
+
+.contacts-list {
+  width: 100%;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+
+  background-color: var(--contacts-icon-bg);
+  color: var(--contacts-accent);
+
+  font-size: 19px;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact-content .ant-typography {
+  margin: 0;
+  color: var(--contacts-text);
+}
+
+.contact-content a.ant-typography {
+  color: var(--contacts-accent);
+}
+
+.contact-content a.ant-typography:hover {
+  color: var(--contacts-accent);
+  text-decoration: underline;
+}
+
+.contacts-card .ant-divider {
+  border-color: var(--contacts-border);
+}
+
+.contact-qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.contact-qr h4.ant-typography {
+  margin: 0 0 4px;
+  color: var(--contacts-text);
+}
+
+.contact-qr p.ant-typography {
+  margin: 0 0 18px;
+  color: var(--contacts-secondary-text);
+}
+
+@media (max-width: 576px) {
+  .contacts-page {
+    padding: 28px 16px;
+  }
+
+  .contacts-card .ant-card-body {
+    padding: 20px;
+  }
+}

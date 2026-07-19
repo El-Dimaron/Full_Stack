@@ -4,6 +4,7 @@ import { RouterProvider } from "react-router";
 import { router } from "./router";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
+import "antd/dist/reset.css";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
