@@ -42,8 +42,6 @@ export function RickAndMorty() {
 
     const id = Number(characterID);
 
-    console.log(id);
-
     if (!Number.isInteger(id) || id < 1 || id > 826) {
       return;
     }
