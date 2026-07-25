@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../../app/store";
 import { fetchCharacter, getRandomCharacterId } from "./rickAndMortySlice";
-import { useEffect, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router";
 import "./RickAndMorty.scss";
 
@@ -49,13 +49,10 @@ export function RickAndMorty() {
     navigate(`/rickandmorty/${id}`);
   };
 
-  const handleLoadCharacter = () => {
+  const handleRandomCharacter = useCallback(() => {
     const randomID = getRandomCharacterId();
-
-    setCharacterID(String(randomID));
-
     navigate(`/rickandmorty/${randomID}`);
-  };
+  }, [navigate]);
 
   return (
     <>
@@ -90,7 +87,7 @@ export function RickAndMorty() {
               Load
             </button>
           </form>
-          <button className="random-button" onClick={handleLoadCharacter}>
+          <button className="random-button" onClick={handleRandomCharacter}>
             Randomize character
           </button>
         </div>
