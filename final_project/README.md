@@ -1,75 +1,109 @@
-# React + TypeScript + Vite
+# Bondini Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small educational e-commerce project built with React + TypeScript.
 
-Currently, two official plugins are available:
+The project implements a basic product catalog with the ability to create, edit, delete, search, and paginate products.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Product catalog browsing
+- Creating new products
+- Editing products
+- Deleting products
+- Product search with debounce
+- Product catalog pagination
+- Light / Dark theme
+- Data persistence using Local Storage
+- Success notifications
+- 404 page
+- Responsive UI
+- Unit tests
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React
+- TypeScript
+- Vite
+- Redux Toolkit
+- React Redux
+- React Router
+- SCSS
+- Ant Design
+- Vitest
+- React Testing Library
+- Local Storage
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```text
+src/
+├── app/
+│ ├── hooks.ts
+│ └── store.ts
+│
+├── assets/
+│ └── images/
+│
+├── components/
+│ ├── Header.tsx
+│ └── Footer.tsx
+│
+├── features/
+│ ├── items/
+│ ├── theme/
+│ └── contacts/
+│
+├── pages/
+│ ├── Home.tsx
+│ ├── Shop.tsx
+│ ├── CreateItem.tsx
+│ ├── UpdateItem.tsx
+│ ├── Contacts.tsx
+│ └── NotFound.tsx
+│
+└── router.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Clone the repository and install dependencies:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
 ```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+## Testing
+
+Run tests in watch mode:
+
+```bash
+npm run test
+```
+
+Run tests once:
+
+```bash
+npm run test:run
+```
+
+Run test coverage:
+
+```bash
+npm run coverage
+```
+
+## Data Storage
+
+Products and selected theme are stored locally in the browser using `localStorage`.
+
+Redux Toolkit is used as the main application state manager, while `localStorage` provides persistence between page reloads.
+
+## Status
+
+The project is created for educational purposes and is still under development.
