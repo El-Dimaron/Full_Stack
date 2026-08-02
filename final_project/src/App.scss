@@ -1,0 +1,162 @@
+.ubuntu-light {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-medium {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ubuntu-bold {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ubuntu-light-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.ubuntu-regular-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ubuntu-medium-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.ubuntu-bold-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+:root {
+  /* Text and icons */
+  --color-text-strong: #111827;
+  --color-text-primary: #27272f;
+  --color-text-secondary: #464654;
+  --color-text-muted: #6b7280;
+  --color-text-footer: #ffffff;
+  --color-text-placeholder: #d2d9e5;
+  --color-text-dark: #000000;
+
+  --color-text-delete: #a75a5a;
+  --color-text-edit: #1d1d1d;
+  --color-text-available: #5d856a;
+  --color-text-preorder: #9b7b48;
+  --color-text-unavailable: #a75a5a;
+
+  /* Surfaces */
+  --color-page-bg: #ffffff;
+  --color-surface-primary: #ffffff;
+  --color-surface-secondary: #f5f5f5;
+  --color-placeholder-bg: #3a3a45;
+
+  /* Footer */
+  --color-footer-bg: #464654;
+
+  /* Borders */
+  --color-border-light: #f5f5f5;
+  --color-border-hover: #dcdcdc;
+  --color-border-focus: #b5b5b5;
+
+  /* General */
+  --color-success: #4f7d60;
+
+  /* Transparent */
+  --color-transparent: transparent;
+
+  /* Paths */
+  --test-image: "../../assets/images/test_image.png";
+}
+
+.main-page.dark {
+  /* Text and icons */
+  --color-text-strong: #f8fafc;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #d1d5db;
+  --color-text-muted: #9ca3af;
+  --color-text-footer: #ffffff;
+  --color-text-placeholder: #6b7280;
+  --color-text-dark: #f8fafc;
+
+  --color-text-delete: #f08b8b;
+  --color-text-edit: #ffffff;
+  --color-text-available: #7fba91;
+  --color-text-preorder: #d3a65d;
+  --color-text-unavailable: #e47b7b;
+
+  /* Surfaces */
+  --color-page-bg: #111113;
+  --color-surface-primary: #18181b;
+  --color-surface-secondary: #27272a;
+  --color-placeholder-bg: #d5d7e1;
+
+  /* Footer */
+  --color-footer-bg: #0f0f11;
+
+  /* Borders */
+  --color-border-light: #2f2f35;
+  --color-border-hover: #3f3f46;
+  --color-border-focus: #71717a;
+
+  /* General */
+  --color-success: #7fba91;
+
+  /* Transparent */
+  --color-transparent: transparent;
+
+  /* Paths */
+  --test-image: "../../assets/images/test_image_dark.png";
+}
+
+body {
+  font-family: "Ubuntu", "sans-serif";
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.main-page {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-height: 100vh;
+
+  background-color: var(--color-page-bg);
+  color: var(--color-text-secondary);
+}
+
+main {
+  flex: 1;
+  max-width: min(1200px, 90%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-block: 30px;
+}
+
+.page {
+  max-width: min(1200px, 90%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
