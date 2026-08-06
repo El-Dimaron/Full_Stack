@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { useState, type FormEvent } from "react";
 import "./items.scss";
 import { useNavigate } from "react-router";
+import { successToast } from "../../components/toast/custom_toast";
 
 const initialFormState: NewItem = {
   name: "",
@@ -42,17 +43,12 @@ export function ItemForm({ item }: ItemFormProps) {
       dispatch(updateItem({ id: item.id, ...preparedItem }));
       navigate("/shop", {
         replace: true,
-        state: {
-          message: `Успішно оновлено ${item.name}`,
-        },
       });
+      successToast(`Успішно оновлено: ${preparedItem.name}`);
     } else {
       dispatch(addItem(preparedItem));
-      navigate("/shop", {
-        state: {
-          message: `Успішно створено ${formData.name.trim()}`,
-        },
-      });
+      navigate("/shop", { replace: true });
+      successToast(`Успішно створено: ${formData.name.trim()}`);
     }
   };
 

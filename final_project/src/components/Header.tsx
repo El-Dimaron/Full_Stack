@@ -5,6 +5,7 @@ import { NavLink } from "react-router";
 import { Theme } from "../features/theme/Theme";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setSearchQuery } from "../features/items/itemSlice";
+import { FiShoppingCart } from "react-icons/fi";
 
 export function Header() {
   const searchQuery = useAppSelector((state) => state.items.searchQuery);
@@ -66,20 +67,7 @@ export function Header() {
             </li>
             <li className="nav-item">
               <button className="cart-button" type="button" aria-label="Cart">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="cart-icon"
-                >
-                  <circle cx="9" cy="20" r="1.5" />
-                  <circle cx="18" cy="20" r="1.5" />
-                  <path d="M3 4h2l2.4 10.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H7" />
-                </svg>
+                <FiShoppingCart className="cart-icon" />
               </button>
             </li>
             <li className="nav-item">

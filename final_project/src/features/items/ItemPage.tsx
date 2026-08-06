@@ -2,18 +2,24 @@ import { addItem, addItems, removeItem, removeItems, type Item } from "./itemSli
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { NavLink } from "react-router";
 import { getPaginationPages } from "./pagination";
-import placeholder_image_svg from "../../assets/images/test_image.svg";
+import placeholderImage from "../../assets/images/test_image.svg";
 import "./items.scss";
 import { useEffect, useState } from "react";
 import { testItems } from "./testItems";
+import { removeToast, successToast } from "../../components/toast/custom_toast";
+import { FiPlus } from "react-icons/fi";
 
-type ItemPageProps = {
-  onSuccess: (message: string) => void;
-};
-
-export function ItemPage({ onSuccess }: ItemPageProps) {
+export function ItemPage() {
   const dispatch = useAppDispatch();
   const items = useAppSelector((state) => state.items.list);
+
+  function getDiscountedPrice(price: number, discount: number) {
+    if (!discount) {
+      return price;
+    }
+
+    return Math.round(price * (1 - discount / 100));
+  }
 
   const searchQuery = useAppSelector((state) => state.items.searchQuery);
 
@@ -53,54 +59,51 @@ export function ItemPage({ onSuccess }: ItemPageProps) {
         availability: "In stock",
         sizes: ["S", "M", "L"],
         colors: ["Black", "White"],
-        image: placeholder_image_svg,
+        image: placeholderImage,
       }),
     );
+    successToast("Тестовий товар успішно додано");
   };
 
   const handleAddTestItems = () => {
     dispatch(addItems(testItems));
+    successToast(`Тестові товари (${testItems.length} штук) успішно додані`);
   };
 
   const handleRemoveItem = (item: Item) => {
     dispatch(removeItem(item.id));
-    console.log(item.id);
-    onSuccess(`Успішно видалено: ${item.name}`);
+    removeToast(`Успішно видалено: ${item.name}`);
   };
 
   const handleRemoveItems = () => {
+    if (!items.length) {
+      return;
+    }
+
     dispatch(removeItems());
-    onSuccess(`Усі товари успішно видалено`);
+    removeToast("Усі товари успішно видалено");
   };
 
   return (
     <>
       <div className="test-buttons">
         <NavLink className="create-item-button" to="/create-item">
-          <svg className="create-item-button__icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
+          <FiPlus className="create-item-button__icon" aria-hidden="true" />
           Додати товар
         </NavLink>
 
         <button aria-label="Add item button" className="create-item-button" onClick={handleAddTestItem}>
-          <svg className="create-item-button__icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
+          <FiPlus className="create-item-button__icon" aria-hidden="true" />
           Додати тестовий товар
         </button>
 
         <button aria-label="Add item button" className="create-item-button" onClick={handleAddTestItems}>
-          <svg className="create-item-button__icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
+          <FiPlus className="create-item-button__icon" aria-hidden="true" />
           Додати тестові товари
         </button>
 
         <button aria-label="Add item button" className="create-item-button" onClick={handleRemoveItems}>
-          <svg className="create-item-button__icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
+          <FiPlus className="create-item-button__icon" aria-hidden="true" />
           Видалити всі товари
         </button>
       </div>
@@ -125,17 +128,30 @@ export function ItemPage({ onSuccess }: ItemPageProps) {
       <ul className="items-list">
         {currentItems.map((item) => (
           <li className="item-card" key={item.id}>
-            <div className="item-card__image-container">
-              {item.image !== placeholder_image_svg ? (
-                <img className="item-card__image" src={item.image} alt={item.name} />
-              ) : (
-                <div className="item-card__image item-card__placeholder" aria-label="Placeholder image" />
-              )}
-            </div>
+            <NavLink className="item-card__image-link" to={`/item/${item.id}`}>
+              <div className="item-card__image-container">
+                {item.image !== placeholderImage ? (
+                  <img className="item-card__image" src={item.image} alt={item.name} />
+                ) : (
+                  <div
+                    className="item-card__image item-card__placeholder"
+                    aria-label="Placeholder image"
+                    style={{
+                      WebkitMaskImage: `url(${placeholderImage})`,
+                      maskImage: `url(${placeholderImage})`,
+                    }}
+                  />
+                )}
+              </div>
+            </NavLink>
 
             <div className="item-card__info">
               <div className="item-card__header">
-                <h2 className="item-card__title">{item.name}</h2>
+                <h2 className="item-card__title">
+                  <NavLink className="item-card__title-link" to={`/item/${item.id}`}>
+                    {item.name}
+                  </NavLink>
+                </h2>
 
                 <span
                   className={`item-card__availability ${
@@ -159,7 +175,15 @@ export function ItemPage({ onSuccess }: ItemPageProps) {
               </div>
 
               <div className="item-card__footer">
-                <p className="item-card__price">{item.price} грн.</p>
+                <div className="item-card__price-container">
+                  <div className="item-card__prices">
+                    {item.discount > 0 && <p className="item-card__old-price">{item.price} грн.</p>}
+
+                    <p className="item-card__price">{getDiscountedPrice(item.price, item.discount)} грн.</p>
+                  </div>
+
+                  {item.discount > 0 && <span className="item-card__discount">-{item.discount}%</span>}
+                </div>
 
                 <div className="item-card__actions">
                   <NavLink className="item-card__edit" to={`/update-item/${item.id}`}>
