@@ -1,4 +1,9 @@
-const text = "август березень вересень";
-const matches = text.match(/[абв]/g);
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+}
+const dog = new Animal();
+console.log(dog.name);
 
-console.log(matches);
+console.log(new Date().now);
