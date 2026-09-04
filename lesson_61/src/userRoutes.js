@@ -16,11 +16,10 @@ router.get("/", (req, resp) => {
   try {
     const users = readAllUsers();
 
-    resp.status(200).json(users);
-  } catch {
-    resp.status(500).json({
-      error: "Internal server error",
-    });
+    resp.status(200).render("users", { users });
+  } catch (err) {
+    console.error(err);
+    resp.status(500).json("Internal server error");
   }
 });
 
@@ -63,17 +62,15 @@ router.get("/:id", (req, resp) => {
 
     const user = findUser(id);
 
-    resp.status(200).json(user);
+    resp.status(200).render("user", {
+      user,
+    });
   } catch (err) {
     if (err.message === "User not found") {
-      return resp.status(404).json({
-        error: "User not found",
-      });
+      return resp.status(404).send("User not found");
     }
 
-    resp.status(500).json({
-      error: "Internal server error",
-    });
+    resp.status(500).send("Internal server error");
   }
 });
 

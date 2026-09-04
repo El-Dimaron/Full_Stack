@@ -19,3 +19,21 @@ export function validateUserInput(req, res, next) {
   }
   next();
 }
+
+export function errorHandler(err, req, res, next) {
+  console.error(err);
+
+  if (err.message === "User not found") {
+    return res.status(404).send("User not found");
+  }
+
+  if (err.message === "Article not found") {
+    return res.status(404).send("Article not found");
+  }
+
+  if (err.message === "User already exists") {
+    return res.status(409).send("User already exists");
+  }
+
+  res.status(500).send("Internal server error");
+}
