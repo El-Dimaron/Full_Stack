@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Articles</title>
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Articles</h1>
+
+    <% if (articles.length) { %>
+      <ul>
+        <% articles.forEach((article) => { %>
+          <li>
+            <a href="/articles/<%= article.id %>">
+              <%= article.title %>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p class="empty-message">No articles found</p>
+    <% } %>
+  </div>
+</body>
+</html>

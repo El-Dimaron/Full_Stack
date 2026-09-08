@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= article.title %></title>
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1><%= article.title %></h1>
+
+      <div class="article-details">
+        <p>
+          <strong>ID:</strong>
+          <%= article.id %>
+        </p>
+
+        <p>
+          <strong>Content:</strong>
+        </p>
+
+        <p><%= article.content %></p>
+      </div>
+
+      <a class="back-link" href="/articles"> ← Back to articles </a>
+    </div>
+  </body>
+</html>

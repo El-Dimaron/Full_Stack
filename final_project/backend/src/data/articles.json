@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "Introduction to Node.js",
+    "content": "Node.js allows JavaScript to run outside the browser."
+  },
+  {
+    "id": 2,
+    "title": "Express.js Basics",
+    "content": "Express.js is a framework for building web servers with Node.js."
+  },
+  {
+    "id": 3,
+    "title": "Using Template Engines",
+    "content": "Template engines allow us to generate HTML dynamically."
+  }
+]
