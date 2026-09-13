@@ -1,16 +1,21 @@
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../../app/store";
-import { toggle } from "./themeSlice";
+import { saveTheme, type ThemeType } from "./themeSlice";
 import dayIcon from "../../assets/images/day-icon.png";
 import nightIcon from "../../assets/images/night-icon.png";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 export function Theme() {
-  const theme = useSelector((state: RootState) => state.theme);
-  const dispatch = useDispatch();
+  const theme: ThemeType = useAppSelector((state) => state.theme);
+  const dispatch = useAppDispatch();
+
+  function handleThemeChange() {
+    const newTheme = theme === "light" ? "dark" : "light";
+
+    dispatch(saveTheme(newTheme));
+  }
 
   return (
     <>
-      <button className="header__theme-button" onClick={() => dispatch(toggle())}>
+      <button className="header__theme-button" onClick={handleThemeChange}>
         <img className="theme-icon" src={theme === "dark" ? nightIcon : dayIcon} alt="Mode switcher" />
       </button>
     </>

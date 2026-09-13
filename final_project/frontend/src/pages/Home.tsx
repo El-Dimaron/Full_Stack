@@ -1,4 +1,5 @@
 import "./home.scss";
+import { Users } from "../features/users/DisplayUsers";
 
 export function Home() {
   return (
@@ -16,6 +17,8 @@ export function Home() {
             />
           </svg>
         </div>
+
+        <Users />
 
         <p className="home-card__label">Bondini Team</p>
 

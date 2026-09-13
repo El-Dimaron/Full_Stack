@@ -79,6 +79,12 @@ export function findUser(id, index = false) {
   };
 }
 
+export function findUserByLogin(login) {
+  const users = readUsers();
+
+  return users.find((user) => user.login === login);
+}
+
 export function updateUser(id, userData) {
   const { index } = findUser(id, true);
   const users = readUsers();

@@ -203,5 +203,10 @@
     "id": 42,
     "login": "Batmana",
     "password": "iamthenight2026"
+  },
+  {
+    "id": 43,
+    "login": "Dima",
+    "password": "123456"
   }
 ]
