@@ -1,9 +1,10 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import { readAllUsers, registerUser, findUserByLogin } from "../services/userService.js";
+import { registerUser, findUserByEmail } from "../services/userService.js";
 import { configDotenv } from "dotenv";
 import { fileURLToPath } from "url";
 import path from "path";
+import passport from "passport";
 
 const router = express.Router();
 
@@ -18,6 +19,7 @@ function generateToken(user) {
     {
       id: user.id,
       login: user.login,
+      email: user.email,
     },
     process.env.JWT_SECRET,
     { expiresIn: "1h" },
@@ -26,11 +28,9 @@ function generateToken(user) {
 
 router.post("/register", (req, res, next) => {
   try {
-    const { login, password } = req.body;
+    const { login, email, password } = req.body;
 
-    const users = readAllUsers();
-
-    const existingUser = users.find((user) => user.login === login);
+    const existingUser = findUserByEmail(email);
 
     if (existingUser) {
       return res.status(409).json({
@@ -38,7 +38,7 @@ router.post("/register", (req, res, next) => {
       });
     }
 
-    const newUser = registerUser(login, password);
+    const newUser = registerUser(login, email, password);
 
     const token = generateToken(newUser);
 
@@ -47,38 +47,39 @@ router.post("/register", (req, res, next) => {
     res.status(201).json({
       id: newUser.id,
       login: newUser.login,
+      email: newUser.email,
     });
   } catch (error) {
     next(error);
   }
 });
 
-router.post("/login", (req, res, next) => {
-  try {
-    const { login, password } = req.body;
+router.post("/login", passport.authenticate("local"), (req, res) => {
+  res.status(200).json({
+    id: req.user.id,
+    login: req.user.login,
+    email: req.user.email,
+  });
+});
 
-    const user = findUserByLogin(login);
-
-    if (!user || user.password !== password) {
-      return res.status(401).json({
-        message: "Invalid login or password",
-      });
+router.post("/logout", (req, res) => {
+  req.logout((error) => {
+    if (error) {
+      return next(error);
     }
 
-    const token = generateToken(user);
+    req.session.destroy((error) => {
+      if (error) {
+        return next(error);
+      }
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      maxAge: COOKIE_1_HR,
-    });
+      res.clearCookie("connect.sid");
 
-    res.status(200).json({
-      id: user.id,
-      login: user.login,
+      res.status(200).json({
+        message: "Logged out successfully",
+      });
     });
-  } catch (error) {
-    next(error);
-  }
+  });
 });
 
 export default router;

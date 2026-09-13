@@ -76,9 +76,9 @@ router.get("/:id", (req, resp) => {
 
 router.post("/", validateUserInput, (req, resp) => {
   try {
-    const { login, password } = req.body;
+    const { login, email, password } = req.body;
 
-    const newUser = registerUser(login, password);
+    const newUser = registerUser(login, email, password);
 
     resp.status(201).json(newUser);
   } catch (err) {

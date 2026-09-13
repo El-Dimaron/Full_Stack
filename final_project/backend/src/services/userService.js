@@ -32,7 +32,7 @@ export function readAllUsers() {
   return usersList.map((user) => ({ id: user.id, login: user.login }));
 }
 
-export function registerUser(login, password) {
+export function registerUser(login, email, password) {
   const users = readUsers();
 
   const isUserExist = users.some((user) => user.login === login);
@@ -48,6 +48,7 @@ export function registerUser(login, password) {
   const newUser = {
     id: currentId,
     login,
+    email,
     password,
   };
 
@@ -77,6 +78,12 @@ export function findUser(id, index = false) {
     user,
     index: userIndex,
   };
+}
+
+export function findUserByEmail(email) {
+  const users = readUsers();
+
+  return users.find((user) => user.email === email);
 }
 
 export function findUserByLogin(login) {
@@ -113,7 +120,7 @@ export function deleteUser(id) {
 // For testing
 
 export function createTestUsers() {
-  const testUsersPath = path.resolve("data", "testUsers.json");
+  const testUsersPath = path.resolve("src/data", "testUsers.json");
 
   const testUsersFile = fs.readFileSync(testUsersPath, "utf-8");
 

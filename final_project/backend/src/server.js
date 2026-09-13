@@ -9,7 +9,7 @@ import { logRequests, errorHandler } from "./middleware/middleware.js";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
-import { authMiddleware } from "./middleware/authMiddleware.js";
+import { authMiddleware, ensureAuthenticated } from "./middleware/authMiddleware.js";
 
 const app = express();
 
@@ -28,6 +28,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+import session from "express-session";
+import passport from "./config/passport.js";
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  }),
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(logRequests);
 
 app.get("/", (req, res) => {
@@ -39,7 +59,7 @@ app.use("/users", userRouter);
 app.use("/articles", articleRouter);
 
 // Real project
-app.use("/api/users", authMiddleware, userApiRouter);
+app.use("/api/users", ensureAuthenticated, userApiRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/theme", themeRouter);
 app.use("/api/test", testRouter);
