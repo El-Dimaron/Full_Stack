@@ -1,16 +1,9 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import { registerUser, findUserByEmail } from "../services/userService.js";
-import { configDotenv } from "dotenv";
-import { fileURLToPath } from "url";
-import path from "path";
 import passport from "passport";
 
 const router = express.Router();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-configDotenv({ path: path.resolve(__dirname, "../../.env") });
 
 const COOKIE_1_HR = 1000 * 60 * 60;
 

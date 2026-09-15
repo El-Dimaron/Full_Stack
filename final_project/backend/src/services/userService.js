@@ -22,7 +22,7 @@ function readUsers() {
   return JSON.parse(usersList);
 }
 
-function saveUsers(users) {
+export function saveUsers(users) {
   fs.writeFileSync(DB_PATH, JSON.stringify(users, null, 2));
 }
 
@@ -115,18 +115,4 @@ export function deleteUser(id) {
   saveUsers(users);
 
   return deletedUser;
-}
-
-// For testing
-
-export function createTestUsers() {
-  const testUsersPath = path.resolve("src/data", "testUsers.json");
-
-  const testUsersFile = fs.readFileSync(testUsersPath, "utf-8");
-
-  const testUsersList = JSON.parse(testUsersFile);
-
-  saveUsers(testUsersList);
-
-  return testUsersList;
 }
