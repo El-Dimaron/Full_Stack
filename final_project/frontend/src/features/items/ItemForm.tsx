@@ -1,9 +1,9 @@
-import { type Item, type NewItem, addItem, updateItem } from "./itemSlice";
+import { type Item, type NewItem, createItem, updateItem } from "./itemSlice";
 import { useAppDispatch } from "../../app/hooks";
 import { useState, type FormEvent } from "react";
 import "./items.scss";
 import { useNavigate } from "react-router";
-import { successToast } from "../../components/toast/custom_toast";
+import { successToast, errorToast } from "../../components/toast/custom_toast";
 
 const initialFormState: NewItem = {
   name: "",
@@ -24,9 +24,17 @@ export function ItemForm({ item }: ItemFormProps) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<NewItem>(item ?? initialFormState);
+  const [formData, setFormData] = useState<NewItem>(() => {
+    if (!item) {
+      return initialFormState;
+    }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const { id: _id, ...itemData } = item;
+
+    return itemData;
+  });
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!formData.name.trim()) {
@@ -37,18 +45,29 @@ export function ItemForm({ item }: ItemFormProps) {
       return;
     }
 
-    const preparedItem = { ...formData, name: formData.name.trim(), description: formData.description.trim() };
+    const preparedItem: NewItem = { ...formData, name: formData.name.trim(), description: formData.description.trim() };
 
-    if (item) {
-      dispatch(updateItem({ id: item.id, ...preparedItem }));
+    try {
+      if (item) {
+        await dispatch(
+          updateItem({
+            id: item.id,
+            itemData: preparedItem,
+          }),
+        ).unwrap();
+
+        successToast(`Успішно оновлено: ${preparedItem.name}`);
+      } else {
+        await dispatch(createItem(preparedItem)).unwrap();
+
+        successToast(`Успішно створено: ${preparedItem.name}`);
+      }
+
       navigate("/shop", {
         replace: true,
       });
-      successToast(`Успішно оновлено: ${preparedItem.name}`);
-    } else {
-      dispatch(addItem(preparedItem));
-      navigate("/shop", { replace: true });
-      successToast(`Успішно створено: ${formData.name.trim()}`);
+    } catch {
+      errorToast(item ? `Не вдалось оновити: ${preparedItem.name}` : `Не вдалось створити: ${preparedItem.name}`);
     }
   };
 

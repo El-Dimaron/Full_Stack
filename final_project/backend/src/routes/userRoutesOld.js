@@ -1,11 +1,11 @@
 import express from "express";
-import { readAllUsers, findUser, updateUser, deleteUser } from "../services/userService.js";
+import { readAllUsers, findUser, updateUser, deleteUser } from "../services/userServiceOld.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res, next) => {
+router.get("/", (req, res, next) => {
   try {
-    const users = await readAllUsers();
+    const users = readAllUsers();
 
     res.status(200).json(users);
   } catch (error) {
@@ -13,11 +13,11 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", (req, res, next) => {
   try {
-    const { id } = req.params;
+    const id = Number(req.params.id);
 
-    const user = await findUser(id);
+    const user = findUser(id);
 
     res.status(200).json(user);
   } catch (error) {
@@ -27,7 +27,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.patch("/:id", (req, res, next) => {
   try {
-    const { id } = req.params;
+    const id = Number(req.params.id);
 
     const updatedUser = updateUser(id, req.body);
 
@@ -39,7 +39,7 @@ router.patch("/:id", (req, res, next) => {
 
 router.delete("/:id", (req, res, next) => {
   try {
-    const { id } = req.params;
+    const id = Number(req.params.id);
 
     const deletedUser = deleteUser(id);
 

@@ -19,3 +19,9 @@ export function infoToast(message: string) {
     className: "custom-toast custom-toast--info",
   });
 }
+
+export function errorToast(message: string) {
+  toast.error(message, {
+    className: "custom-toast custom-toast--info",
+  });
+}

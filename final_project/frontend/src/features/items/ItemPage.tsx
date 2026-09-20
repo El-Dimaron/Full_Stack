@@ -1,17 +1,27 @@
-import { addItem, addItems, removeItem, removeItems, type Item } from "./itemSlice";
+import { fetchItems, deleteItem, deleteAllItems, type Item } from "./itemSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { NavLink } from "react-router";
 import { getPaginationPages } from "./pagination";
 import placeholderImage from "../../assets/images/test_image.svg";
 import "./items.scss";
 import { useEffect, useState } from "react";
-import { testItems } from "./testItems";
-import { removeToast, successToast } from "../../components/toast/custom_toast";
+import { removeToast, errorToast } from "../../components/toast/custom_toast";
 import { FiPlus } from "react-icons/fi";
 
 export function ItemPage() {
   const dispatch = useAppDispatch();
-  const items = useAppSelector((state) => state.items.list);
+  const { list: items, searchQuery, isLoading, error } = useAppSelector((state) => state.items);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, [dispatch]);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setCurrentPage(1);
+  }, [searchQuery]);
 
   function getDiscountedPrice(price: number, discount: number) {
     if (!discount) {
@@ -20,8 +30,6 @@ export function ItemPage() {
 
     return Math.round(price * (1 - discount / 100));
   }
-
-  const searchQuery = useAppSelector((state) => state.items.searchQuery);
 
   const normalizedQuery = searchQuery.toLowerCase().trim();
 
@@ -33,13 +41,6 @@ export function ItemPage() {
 
   const Items_Per_Page = 24;
 
-  const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setCurrentPage(1);
-  }, [searchQuery]);
-
   const totalPages = Math.ceil(filteredItems.length / Items_Per_Page);
 
   const firstItemIndex = Items_Per_Page * (currentPage - 1);
@@ -49,40 +50,37 @@ export function ItemPage() {
 
   const paginationPages = getPaginationPages(currentPage, totalPages);
 
-  const handleAddTestItem = () => {
-    dispatch(
-      addItem({
-        name: "Нова футболка",
-        description: "Базова бавовняна футболка",
-        price: 799,
-        discount: 10,
-        availability: "In stock",
-        sizes: ["S", "M", "L"],
-        colors: ["Black", "White"],
-        image: placeholderImage,
-      }),
-    );
-    successToast("Тестовий товар успішно додано");
+  const handleRemoveItem = async (item: Item) => {
+    try {
+      await dispatch(deleteItem(item.id)).unwrap();
+
+      removeToast(`Успішно видалено ${item.name}`);
+    } catch {
+      errorToast(`Не вдалось видалити ${item.name}`);
+    }
   };
 
-  const handleAddTestItems = () => {
-    dispatch(addItems(testItems));
-    successToast(`Тестові товари (${testItems.length} штук) успішно додані`);
-  };
-
-  const handleRemoveItem = (item: Item) => {
-    dispatch(removeItem(item.id));
-    removeToast(`Успішно видалено: ${item.name}`);
-  };
-
-  const handleRemoveItems = () => {
+  const handleRemoveItems = async () => {
     if (!items.length) {
       return;
     }
 
-    dispatch(removeItems());
-    removeToast("Усі товари успішно видалено");
+    try {
+      await dispatch(deleteAllItems()).unwrap();
+
+      removeToast("Усі товари успішно видалено");
+    } catch {
+      errorToast(`Не вдалось видалити товари`);
+    }
   };
+
+  if (isLoading) {
+    return <p>Завантаження товарів...</p>;
+  }
+
+  if (error) {
+    return <p>Помилка: {error}</p>;
+  }
 
   return (
     <>
@@ -92,17 +90,7 @@ export function ItemPage() {
           Додати товар
         </NavLink>
 
-        <button aria-label="Add item button" className="create-item-button" onClick={handleAddTestItem}>
-          <FiPlus className="create-item-button__icon" aria-hidden="true" />
-          Додати тестовий товар
-        </button>
-
-        <button aria-label="Add item button" className="create-item-button" onClick={handleAddTestItems}>
-          <FiPlus className="create-item-button__icon" aria-hidden="true" />
-          Додати тестові товари
-        </button>
-
-        <button aria-label="Add item button" className="create-item-button" onClick={handleRemoveItems}>
+        <button aria-label="Delete all items" className="create-item-button" onClick={handleRemoveItems}>
           <FiPlus className="create-item-button__icon" aria-hidden="true" />
           Видалити всі товари
         </button>
@@ -130,7 +118,7 @@ export function ItemPage() {
           <li className="item-card" key={item.id}>
             <NavLink className="item-card__image-link" to={`/item/${item.id}`}>
               <div className="item-card__image-container">
-                {item.image !== placeholderImage ? (
+                {item.image ? (
                   <img className="item-card__image" src={item.image} alt={item.name} />
                 ) : (
                   <div

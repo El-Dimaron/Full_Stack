@@ -5,7 +5,12 @@ import session from "express-session";
 import passport from "./config/passport.js";
 import cookieParser from "cookie-parser";
 
+import chalk from "chalk";
+
+import { connectDatabase } from "./config/database.js";
+
 import userRouter from "./routes/userRoutes.js";
+import itemRouter from "./routes/itemRoutes.js";
 import authRouter from "./routes/authRoutes.js";
 import themeRouter from "./routes/themeRoutes.js";
 import testRouter from "./routes/testRoutes.js";
@@ -13,10 +18,16 @@ import testRouter from "./routes/testRoutes.js";
 import { logRequests, errorHandler } from "./middleware/middleware.js";
 
 import { ensureAuthenticated } from "./middleware/authMiddleware.js";
+import helmet from "helmet";
 
 const app = express();
 
+await connectDatabase();
+
 const port = 3000;
+
+// Helmet
+app.use(helmet());
 
 // General
 app.use(cookieParser());
@@ -54,7 +65,9 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRouter);
 
 // Main routes
-app.use("/api/users", ensureAuthenticated, userRouter);
+// app.use("/api/users", ensureAuthenticated, userRouter);
+app.use("/api/users", userRouter);
+app.use("/api/items", itemRouter);
 app.use("/api/theme", themeRouter);
 
 // Test routes
@@ -73,5 +86,5 @@ app.get("/protected", ensureAuthenticated, (req, res) => {
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`Сервер запущений за адресою http://localhost:${port}`);
+  console.log(`${chalk.green("Server started at:")} ${chalk.cyan(`http://localhost:${port}`)}`);
 });

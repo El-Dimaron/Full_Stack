@@ -1,118 +1,59 @@
-import * as fs from "node:fs";
-import path from "node:path";
+import User from "../models/User.js";
 
-const DB_PATH = new URL("../data/users.json", import.meta.url);
-
-function readUsers() {
-  const isDBExist = fs.existsSync(DB_PATH);
-
-  if (!isDBExist) {
-    fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
-
-    saveUsers([]);
-    return [];
-  }
-
-  const usersList = fs.readFileSync(DB_PATH, "utf-8");
-
-  if (!usersList.trim()) {
-    return [];
-  }
-
-  return JSON.parse(usersList);
+export async function readAllUsers() {
+  return User.find().select("login email");
 }
 
-export function saveUsers(users) {
-  fs.writeFileSync(DB_PATH, JSON.stringify(users, null, 2));
-}
+export async function registerUser(login, email, password) {
+  const existingUser = await User.findOne({
+    $or: [{ login }, { email }],
+  });
 
-export function readAllUsers() {
-  const usersList = readUsers();
-
-  return usersList.map((user) => ({ id: user.id, login: user.login }));
-}
-
-export function registerUser(login, email, password) {
-  const users = readUsers();
-
-  const isUserExist = users.some((user) => user.login === login);
-
-  if (isUserExist) {
+  if (existingUser) {
     throw new Error("User already exists");
   }
 
-  const lastUser = users.at(-1);
-
-  const currentId = lastUser ? Number.parseInt(lastUser.id) + 1 : 1;
-
-  const newUser = {
-    id: currentId,
+  return User.create({
     login,
     email,
     password,
-  };
-
-  users.push(newUser);
-
-  saveUsers(users);
-
-  return newUser;
+  });
 }
 
-export function findUser(id, index = false) {
-  const users = readUsers();
+export async function findUser(id) {
+  const user = await User.findById(id);
 
-  const userIndex = users.findIndex((user) => user.id === id);
-
-  if (userIndex === -1) {
+  if (!user) {
     throw new Error("User not found");
   }
 
-  const user = users[userIndex];
+  return user;
+}
 
-  if (!index) {
-    return user;
+export async function findUserByEmail(email) {
+  return User.findOne({ email });
+}
+
+export async function findUserByLogin(login) {
+  return User.findOne({ login });
+}
+
+export async function updateUser(id, userData) {
+  const user = await User.findByIdAndUpdate(id, userData, { new: true, runValidators: true });
+
+  if (!user) {
+    throw new Error("User not found");
   }
 
-  return {
-    user,
-    index: userIndex,
-  };
+  return user;
 }
 
-export function findUserByEmail(email) {
-  const users = readUsers();
+export async function deleteUser(id) {
+  const user = await User.findByIdAndDelete(id);
 
-  return users.find((user) => user.email === email);
-}
+  if (!user) {
+    throw new Error("User not found");
+  }
 
-export function findUserByLogin(login) {
-  const users = readUsers();
-
-  return users.find((user) => user.login === login);
-}
-
-export function updateUser(id, userData) {
-  const { index } = findUser(id, true);
-  const users = readUsers();
-
-  const updatedUser = {
-    id,
-    ...userData,
-  };
-
-  users.splice(index, 1, updatedUser);
-  saveUsers(users);
-  return updatedUser;
-}
-
-export function deleteUser(id) {
-  const { index } = findUser(id, true);
-  const users = readUsers();
-
-  const [deletedUser] = users.splice(index, 1);
-
-  saveUsers(users);
-
-  return deletedUser;
+  return user;
 }

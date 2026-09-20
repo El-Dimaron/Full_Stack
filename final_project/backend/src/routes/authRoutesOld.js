@@ -1,6 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import { findUserByEmail, registerUser } from "../services/userService.js";
+import { registerUser, findUserByEmail } from "../services/userServiceOld.js";
 import passport from "passport";
 
 const router = express.Router();
@@ -19,11 +19,11 @@ function generateToken(user) {
   );
 }
 
-router.post("/register", async (req, res, next) => {
+router.post("/register", (req, res, next) => {
   try {
     const { login, email, password } = req.body;
 
-    const existingUser = await findUserByEmail(email);
+    const existingUser = findUserByEmail(email);
 
     if (existingUser) {
       return res.status(409).json({
@@ -31,11 +31,11 @@ router.post("/register", async (req, res, next) => {
       });
     }
 
-    const newUser = await registerUser(login, email, password);
+    const newUser = registerUser(login, email, password);
 
-    //  const token = generateToken(newUser);
+    const token = generateToken(newUser);
 
-    // res.cookie("token", token, { httpOnly: true, maxAge: COOKIE_1_HR });
+    res.cookie("token", token, { httpOnly: true, maxAge: COOKIE_1_HR });
 
     res.status(201).json({
       id: newUser.id,

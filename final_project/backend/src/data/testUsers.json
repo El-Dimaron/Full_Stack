@@ -2,201 +2,241 @@
   {
     "id": 1,
     "login": "tony_stark",
-    "password": "IronMan3000"
+    "password": "IronMan3000",
+    "email": "tony_stark@example.com"
   },
   {
     "id": 2,
     "login": "bruce_wayne",
-    "password": "DarkKnight42"
+    "password": "DarkKnight42",
+    "email": "bruce_wayne@example.com"
   },
   {
     "id": 3,
     "login": "peter_parker",
-    "password": "WebSlinger99"
+    "password": "WebSlinger99",
+    "email": "peter_parker@example.com"
   },
   {
     "id": 4,
     "login": "clark_kent",
-    "password": "Krypton123"
+    "password": "Krypton123",
+    "email": "clark_kent@example.com"
   },
   {
     "id": 5,
     "login": "deadpool",
-    "password": "Chimichanga7"
+    "password": "Chimichanga7",
+    "email": "deadpool@example.com"
   },
   {
     "id": 6,
     "login": "rick_sanchez",
-    "password": "PortalGunC137"
+    "password": "PortalGunC137",
+    "email": "rick_sanchez@example.com"
   },
   {
     "id": 7,
     "login": "morty_smith",
-    "password": "AwGeezMorty1"
+    "password": "AwGeezMorty1",
+    "email": "morty_smith@example.com"
   },
   {
     "id": 8,
     "login": "homer_simpson",
-    "password": "DonutLover88"
+    "password": "DonutLover88",
+    "email": "homer_simpson@example.com"
   },
   {
     "id": 9,
     "login": "bart_simpson",
-    "password": "EatMyShorts"
+    "password": "EatMyShorts",
+    "email": "bart_simpson@example.com"
   },
   {
     "id": 10,
     "login": "eric_cartman",
-    "password": "RespectMyAuthoritah"
+    "password": "RespectMyAuthoritah",
+    "email": "eric_cartman@example.com"
   },
   {
     "id": 11,
     "login": "shrek",
-    "password": "SwampKing123"
+    "password": "SwampKing123",
+    "email": "shrek@example.com"
   },
   {
     "id": 12,
     "login": "donkey",
-    "password": "WafflesForever"
+    "password": "WafflesForever",
+    "email": "donkey@example.com"
   },
   {
     "id": 13,
     "login": "po_kungfu",
-    "password": "DragonWarrior9"
+    "password": "DragonWarrior9",
+    "email": "po_kungfu@example.com"
   },
   {
     "id": 14,
     "login": "toothless",
-    "password": "NightFury01"
+    "password": "NightFury01",
+    "email": "toothless@example.com"
   },
   {
     "id": 15,
     "login": "buzz_lightyear",
-    "password": "InfinityBeyond"
+    "password": "InfinityBeyond",
+    "email": "buzz_lightyear@example.com"
   },
   {
     "id": 16,
     "login": "woody_sheriff",
-    "password": "TheresASnake"
+    "password": "TheresASnake",
+    "email": "woody_sheriff@example.com"
   },
   {
     "id": 17,
     "login": "lightning_mcqueen",
-    "password": "KaChow95"
+    "password": "KaChow95",
+    "email": "lightning_mcqueen@example.com"
   },
   {
     "id": 18,
     "login": "gru",
-    "password": "MinionsRule44"
+    "password": "MinionsRule44",
+    "email": "gru@example.com"
   },
   {
     "id": 19,
     "login": "vector",
-    "password": "DirectionMagnitude"
+    "password": "DirectionMagnitude",
+    "email": "vector@example.com"
   },
   {
     "id": 20,
     "login": "wall_e",
-    "password": "PlantFound700"
+    "password": "PlantFound700",
+    "email": "wall_e@example.com"
   },
   {
     "id": 21,
     "login": "harry_potter",
-    "password": "Expelliarmus7"
+    "password": "Expelliarmus7",
+    "email": "harry_potter@example.com"
   },
   {
     "id": 22,
     "login": "hermione_granger",
-    "password": "BooksAndCleverness"
+    "password": "BooksAndCleverness",
+    "email": "hermione_granger@example.com"
   },
   {
     "id": 23,
     "login": "ron_weasley",
-    "password": "ChessMaster99"
+    "password": "ChessMaster99",
+    "email": "ron_weasley@example.com"
   },
   {
     "id": 24,
     "login": "albus_dumbledore",
-    "password": "LemonDrop123"
+    "password": "LemonDrop123",
+    "email": "albus_dumbledore@example.com"
   },
   {
     "id": 25,
     "login": "voldemort",
-    "password": "NoNose777"
+    "password": "NoNose777",
+    "email": "voldemort@example.com"
   },
   {
     "id": 26,
     "login": "frodo_baggins",
-    "password": "OneRingToRule"
+    "password": "OneRingToRule",
+    "email": "frodo_baggins@example.com"
   },
   {
     "id": 27,
     "login": "gandalf",
-    "password": "YouShallNotPass"
+    "password": "YouShallNotPass",
+    "email": "gandalf@example.com"
   },
   {
     "id": 28,
     "login": "aragorn",
-    "password": "KingOfGondor"
+    "password": "KingOfGondor",
+    "email": "aragorn@example.com"
   },
   {
     "id": 29,
     "login": "legolas",
-    "password": "ElfArcher88"
+    "password": "ElfArcher88",
+    "email": "legolas@example.com"
   },
   {
     "id": 30,
     "login": "gimli",
-    "password": "AndMyAxe123"
+    "password": "AndMyAxe123",
+    "email": "gimli@example.com"
   },
   {
     "id": 31,
     "login": "john_wick",
-    "password": "BabaYaga99"
+    "password": "BabaYaga99",
+    "email": "john_wick@example.com"
   },
   {
     "id": 32,
     "login": "neo",
-    "password": "RedPillMatrix"
+    "password": "RedPillMatrix",
+    "email": "neo@example.com"
   },
   {
     "id": 33,
     "login": "terminator",
-    "password": "IllBeBack101"
+    "password": "IllBeBack101",
+    "email": "terminator@example.com"
   },
   {
     "id": 34,
     "login": "jack_sparrow",
-    "password": "RumIsGone44"
+    "password": "RumIsGone44",
+    "email": "jack_sparrow@example.com"
   },
   {
     "id": 35,
     "login": "darth_vader",
-    "password": "DarkSide1977"
+    "password": "DarkSide1977",
+    "email": "darth_vader@example.com"
   },
   {
     "id": 36,
     "login": "luke_skywalker",
-    "password": "TwinSuns77"
+    "password": "TwinSuns77",
+    "email": "luke_skywalker@example.com"
   },
   {
     "id": 37,
     "login": "obi_wan",
-    "password": "HelloThere66"
+    "password": "HelloThere66",
+    "email": "obi_wan@example.com"
   },
   {
     "id": 38,
     "login": "yoda",
-    "password": "DoOrDoNot900"
+    "password": "DoOrDoNot900",
+    "email": "yoda@example.com"
   },
   {
     "id": 39,
     "login": "geralt_rivia",
-    "password": "TossACoin88"
+    "password": "TossACoin88",
+    "email": "geralt_rivia@example.com"
   },
   {
     "id": 40,
     "login": "kratos",
-    "password": "Boy123456"
+    "password": "Boy123456",
+    "email": "kratos@example.com"
   }
 ]
