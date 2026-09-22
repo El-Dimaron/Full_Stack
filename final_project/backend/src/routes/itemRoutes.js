@@ -1,11 +1,19 @@
 import express from "express";
-import { readAllItems, addItem, findItem, updateItem, deleteItem } from "../services/itemService.js";
+import {
+  readItemsSummaries,
+  addItem,
+  findItem,
+  updateItem,
+  deleteItem,
+  resetAllDiscounts,
+  updateItemsAvailability,
+} from "../services/itemService.js";
 
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    const items = await readAllItems();
+    const items = await readItemsSummaries();
 
     res.status(200).json(items);
   } catch (error) {
@@ -65,6 +73,28 @@ router.delete("/:id", (req, res, next) => {
     const deletedItem = deleteItem(id);
 
     res.status(200).json(deletedItem);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.patch("/reset-discounts", async (req, res, next) => {
+  try {
+    const result = await resetAllDiscounts();
+
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.patch("/availability", async (req, res, next) => {
+  try {
+    const { currentAvailability, newAvailability } = req.body;
+
+    const result = await updateItemsAvailability(currentAvailability, newAvailability);
+
+    res.json(result);
   } catch (error) {
     next(error);
   }

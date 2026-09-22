@@ -4,6 +4,10 @@ export async function readAllItems() {
   return Item.find();
 }
 
+export async function readItemsSummaries() {
+  return Item.find().select("-description");
+}
+
 export async function addItem(itemData) {
   const existingItem = await Item.findOne({
     name: itemData.name,
@@ -48,4 +52,26 @@ export async function deleteItem(id) {
   }
 
   return item;
+}
+
+export async function resetAllDiscounts() {
+  return Item.updateMany(
+    {},
+    {
+      $set: {
+        discount: 0,
+      },
+    },
+  );
+}
+
+export async function updateItemsAvailability(currentAvailability, newAvailability) {
+  return Item.updateMany(
+    { availability: currentAvailability },
+    {
+      $set: {
+        availability: newAvailability,
+      },
+    },
+  );
 }

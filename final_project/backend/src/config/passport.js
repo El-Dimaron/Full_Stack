@@ -1,6 +1,6 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import { findUserByEmail, findUser } from "../services/userServiceOld.js";
+import { findUserByEmail, findUser } from "../services/userService.js";
 
 passport.use(
   new LocalStrategy(

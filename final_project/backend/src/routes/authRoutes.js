@@ -33,10 +33,6 @@ router.post("/register", async (req, res, next) => {
 
     const newUser = await registerUser(login, email, password);
 
-    //  const token = generateToken(newUser);
-
-    // res.cookie("token", token, { httpOnly: true, maxAge: COOKIE_1_HR });
-
     res.status(201).json({
       id: newUser.id,
       login: newUser.login,

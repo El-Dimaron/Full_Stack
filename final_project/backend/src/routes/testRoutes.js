@@ -3,7 +3,6 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import * as fs from "node:fs";
 import path from "path";
-import { saveUsers } from "../services/userServiceOld.js";
 import User from "../models/User.js";
 import Item from "../models/Item.js";
 

@@ -8,6 +8,10 @@ import Item from "../src/models/Item.js";
 
 async function seed() {
   try {
+    if (process.env.NODE_ENV !== "dev") {
+      throw new Error("Not allowed");
+    }
+
     await connectDatabase();
 
     // Users test samples
