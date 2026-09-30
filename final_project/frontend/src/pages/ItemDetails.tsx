@@ -6,15 +6,13 @@ import "../features/items/items.scss";
 export function ItemDetails() {
   const { itemId } = useParams();
 
-  const id = Number(itemId);
-
-  const item = useAppSelector((state) => state.items.list.find((item) => item.id === id));
+  const item = useAppSelector((state) => state.items.list.find((item) => item.id === itemId));
 
   if (!item) {
     return <Navigate to="/404" replace />;
   }
 
-  const hasCustomImage = item.image !== placeholderImage;
+  const hasCustomImage = Boolean(item.image);
   console.log(item.image, placeholderImage);
   console.log(hasCustomImage);
 

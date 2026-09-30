@@ -34,6 +34,8 @@ export function ItemForm({ item }: ItemFormProps) {
     return itemData;
   });
 
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -45,20 +47,40 @@ export function ItemForm({ item }: ItemFormProps) {
       return;
     }
 
+    console.log(formData);
+
     const preparedItem: NewItem = { ...formData, name: formData.name.trim(), description: formData.description.trim() };
+
+    const requestData = new FormData();
+
+    requestData.append("name", preparedItem.name);
+    requestData.append("description", preparedItem.description);
+    requestData.append("price", String(preparedItem.price));
+    requestData.append("discount", String(preparedItem.discount));
+    requestData.append("availability", preparedItem.availability);
+
+    requestData.append("sizes", JSON.stringify(preparedItem.sizes));
+
+    requestData.append("colors", JSON.stringify(preparedItem.colors));
+
+    if (imageFile) {
+      requestData.append("image", imageFile);
+    }
 
     try {
       if (item) {
         await dispatch(
           updateItem({
             id: item.id,
-            itemData: preparedItem,
+            formData: requestData,
           }),
         ).unwrap();
 
         successToast(`Успішно оновлено: ${preparedItem.name}`);
       } else {
-        await dispatch(createItem(preparedItem)).unwrap();
+        // await dispatch(createItem(preparedItem)).unwrap();
+
+        await dispatch(createItem(requestData)).unwrap();
 
         successToast(`Успішно створено: ${preparedItem.name}`);
       }
@@ -92,7 +114,7 @@ export function ItemForm({ item }: ItemFormProps) {
         />
       </label>
 
-      <label className="item-form__field">
+      {/* <label className="item-form__field">
         <span>Зображення товару</span>
 
         <input
@@ -117,6 +139,30 @@ export function ItemForm({ item }: ItemFormProps) {
             <img src={formData.image} alt="Попередній перегляд товару" />
           </div>
         )}
+      </label> */}
+
+      <label className="item-form__field">
+        <span>Зображення товару</span>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(event) => {
+            const file = event.currentTarget.files?.[0];
+
+            if (!file) {
+              return;
+            }
+
+            setImageFile(file);
+
+            const previewUrl = URL.createObjectURL(file);
+
+            setFormData((currentData) => ({
+              ...currentData,
+              image: previewUrl,
+            }));
+          }}
+        />
       </label>
 
       <label className="item-form__field">

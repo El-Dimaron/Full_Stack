@@ -4,6 +4,10 @@ export async function readAllItems() {
   return Item.find();
 }
 
+export function getItemsCursor() {
+  return Item.find().select("name price discount availability sizes colors image").cursor();
+}
+
 export async function readItemsSummaries() {
   return Item.find().select("-description");
 }
@@ -74,4 +78,52 @@ export async function updateItemsAvailability(currentAvailability, newAvailabili
       },
     },
   );
+}
+
+export async function getItemsStats() {
+  const result = await Item.aggregate([
+    {
+      $group: {
+        _id: null,
+
+        totalItems: {
+          $sum: 1,
+        },
+
+        averagePrice: {
+          $avg: "$price",
+        },
+
+        minimumPrice: {
+          $min: "$price",
+        },
+
+        maximumPrice: {
+          $max: "$price",
+        },
+
+        averageDiscount: {
+          $avg: "$discount",
+        },
+
+        totalPrice: {
+          $sum: "$price",
+        },
+      },
+    },
+
+    {
+      $project: {
+        _id: 0,
+        totalItems: 1,
+        averagePrice: 1,
+        minimumPrice: 1,
+        maximumPrice: 1,
+        averageDiscount: 1,
+        totalPrice: 1,
+      },
+    },
+  ]);
+
+  return result[0];
 }

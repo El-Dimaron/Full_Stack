@@ -5,10 +5,8 @@ import { useAppSelector } from "../app/hooks";
 export const UpdateItem = () => {
   const { itemId } = useParams();
 
-  const id = Number(itemId);
-
   const item = useAppSelector((state) => {
-    return state.items.list.find((item) => item.id === id);
+    return state.items.list.find((item) => item.id === itemId);
   });
 
   if (!item) {

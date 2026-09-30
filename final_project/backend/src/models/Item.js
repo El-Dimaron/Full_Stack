@@ -1,17 +1,5 @@
 import mongoose from "mongoose";
 
-// export interface Item {
-//   id: number;
-//   name: string;
-//   description: string;
-//   price: number;
-//   discount: number;
-//   availability: string;
-//   sizes: string[];
-//   colors: string[];
-//   image: string;
-// }
-
 const itemSchema = new mongoose.Schema(
   {
     name: {
@@ -52,7 +40,17 @@ const itemSchema = new mongoose.Schema(
       default: "",
     },
   },
-  { timestamps: true, collection: "items" },
+  {
+    timestamps: true,
+    collection: "items",
+    toJSON: {
+      virtuals: true,
+      versionKey: false,
+      transform: (doc, ret) => {
+        delete ret._id;
+      },
+    },
+  },
 );
 
 const Item = mongoose.model("Item", itemSchema);

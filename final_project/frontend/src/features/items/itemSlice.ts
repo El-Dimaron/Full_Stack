@@ -39,11 +39,10 @@ export const fetchItems = createAsyncThunk<Item[]>("items/fetchItems", async () 
   return response.json();
 });
 
-export const createItem = createAsyncThunk<Item, NewItem>("items/createItem", async (itemData) => {
+export const createItem = createAsyncThunk<Item, FormData>("items/createItem", async (formData) => {
   const response = await fetch(API_ROUTES.items, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(itemData),
+    body: formData,
   });
 
   if (!response) {
@@ -53,15 +52,12 @@ export const createItem = createAsyncThunk<Item, NewItem>("items/createItem", as
   return response.json();
 });
 
-export const updateItem = createAsyncThunk<Item, { id: string; itemData: Partial<NewItem> }>(
+export const updateItem = createAsyncThunk<Item, { id: string; formData: FormData }>(
   "items/updateItems",
-  async ({ id, itemData }) => {
+  async ({ id, formData }) => {
     const response = await fetch(API_ROUTES.item(id), {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(itemData),
+      body: formData,
     });
 
     if (!response.ok) {

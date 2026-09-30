@@ -7,7 +7,7 @@
     "availability": "In stock",
     "sizes": ["S", "M", "L", "XL"],
     "colors": ["Black", "White"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Оверсайз (oversize) футболка",
@@ -17,7 +17,7 @@
     "availability": "In stock",
     "sizes": ["M", "L", "XL"],
     "colors": ["Black", "Grey"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Класичне худі",
@@ -27,7 +27,7 @@
     "availability": "In stock",
     "sizes": ["S", "M", "L"],
     "colors": ["Black", "Beige"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Світшот есеншіал (essential)",
@@ -37,7 +37,7 @@
     "availability": "Preorder",
     "sizes": ["S", "M", "L", "XL"],
     "colors": ["Grey", "Navy"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Прямі джинси",
@@ -47,7 +47,7 @@
     "availability": "In stock",
     "sizes": ["S", "M", "L"],
     "colors": ["Blue", "Black"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Карго (cargo) шорти",
@@ -57,7 +57,7 @@
     "availability": "In stock",
     "sizes": ["M", "L", "XL"],
     "colors": ["Khaki", "Black"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Карго (cargo) штани",
@@ -67,7 +67,7 @@
     "availability": "In stock",
     "sizes": ["M", "L", "XL"],
     "colors": ["Black", "Khaki"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Спортивні штани",
@@ -77,7 +77,7 @@
     "availability": "Out of stock",
     "sizes": ["S", "M", "L"],
     "colors": ["Black", "Grey"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Джинсова куртка",
@@ -87,7 +87,7 @@
     "availability": "In stock",
     "sizes": ["M", "L", "XL"],
     "colors": ["Blue"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Бомбер (bomber) куртка",
@@ -97,7 +97,7 @@
     "availability": "Preorder",
     "sizes": ["S", "M", "L"],
     "colors": ["Black", "Olive"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Пухова жилетка",
@@ -107,7 +107,7 @@
     "availability": "In stock",
     "sizes": ["M", "L", "XL"],
     "colors": ["Black", "Navy"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Класична сорочка",
@@ -117,7 +117,7 @@
     "availability": "In stock",
     "sizes": ["S", "M", "L", "XL"],
     "colors": ["White", "Blue"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Лляна сорочка",
@@ -127,7 +127,7 @@
     "availability": "In stock",
     "sizes": ["S", "M", "L"],
     "colors": ["White", "Beige"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Поло класичний (classic)",
@@ -137,7 +137,7 @@
     "availability": "In stock",
     "sizes": ["M", "L", "XL"],
     "colors": ["Black", "White", "Navy"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Трикотажний светр",
@@ -147,7 +147,7 @@
     "availability": "In stock",
     "sizes": ["S", "M", "L"],
     "colors": ["Beige", "Grey"],
-    "image": "placeholder_image_svg"
+    "image": ""
   },
   {
     "name": "Шорти Basic",
@@ -157,6 +157,6 @@
     "availability": "Out of stock",
     "sizes": ["S", "M", "L", "XL"],
     "colors": ["Black", "Grey"],
-    "image": "placeholder_image_svg"
+    "image": ""
   }
 ]
