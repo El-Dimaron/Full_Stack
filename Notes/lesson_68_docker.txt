@@ -1,0 +1,425 @@
+Docker
+
+1. Dockerfile
+    Dockerfile - це рецепт для збірки image.
+    Створюється в корні папки проєкту.
+
+    Приклад:
+        FROM node:24
+
+        WORKDIR /app
+
+        COPY package.json package-lock.json ./
+
+        RUN npm ci
+
+        COPY . .
+
+        EXPOSE 3000
+
+        CMD [ "npm", "run", "dev" ]
+
+
+    FROM node:24
+        Бере базовий image node:[version] - далі весь image будується на основі цього середовища
+
+    WORKDIR /app
+        Створює робочу папку /app, кладе в неї всі наступні файли і працює відносно неї.
+        WORKDIR впливає не тільки на COPY, а й на RUN, CMD, ENTRYPOINT і відносні шляхи.
+
+    COPY package.json package-lock.json ./
+        Копіює файли з залежностями, альтернативно можна використовувати:
+        COPY package*.json ./
+
+    RUN npm ci
+        Встановлює залежності з package-lock.json, не змінюючи їх версії (більш strict).
+        Якщо папка node_modules/ вже існує в середовищі, де запускається npm ci, npm спочатку її прибирає, а потім створює заново відповідно до package-lock.json.
+        Така команд може покласти створення image, якщо файли package і lock не синхронізовані. Альтернативно, можна використовувати:
+        RUN npm install
+
+    COPY . .
+        Копіює всі файли з папки, в якій лежить Dockerfile всередину папки /app в image.
+        *Note: краще розділяти копіювання залежностей (package), їх встановлення і вже потім копіювання всього іншого.
+        В такому випадку, якщо відбудуться певні зміни без зміни залежностей, Docker не копіюватиме і не перевстановлюватиме залежності.
+
+    EXPOSE 3000
+        Лише додає до image інформацію: цей image передбачає, що application використовує порт 3000.
+        Це можна сприймати майже як документацію всередині image. Людина бачить Dockerfile: EXPOSE 3000 і розуміє, що цей backend очікує роботу на 3000.
+        Деякі Docker-інструменти також можуть читати цю metadata.
+        Але якщо рядка немає, це не завадить вручну зробити: docker run -p 3000:3000 my-backend - все буде працювати.
+
+    CMD [ "npm", "run", "dev" ] - backend
+    CMD [ "npm", "run", "dev", "--", "--host", "0.0.0.0" ] - frontend
+        Команда за замовчуванням при старті container.
+        RUN команд може бути багато і вони всі запускаються у встановленому порядку під час побудови image.
+        А CMD - це дефолтна команда, яка виконується при запуску контейнера.
+        Вона може бути лише одна - якщо записати два CMD підряд, виконається лише та, що йтиме нижче.
+        Також її можна перезаписати при запуску контейнера в терміналі, наприклад: docker run backend node src/server.js
+
+        Примітка для frontend:
+            Vite за замовчуванням може слухати лише localhost всередині контейнера.
+            А нам треба, щоб до dev server можна було достукатися ззовні контейнера через Docker port mapping.
+            
+            vite
+                → localhost:5173
+                → доступний переважно всередині контейнера
+
+            vite --host 0.0.0.0
+                → 0.0.0.0:5173
+                → доступний через Docker network / port mapping
+
+            Альтернативно, можна додати скрипт у package.json і запускати простішою командою в Dockerfile CMD [ "npm", "run", "dev:docker" ]:
+              "scripts": {
+                    "dev:docker": "vite --host 0.0.0.0",
+                },
+
+    Резюме
+        Візьми image з Node 24
+        ↓
+        Створи /app і працюй із неї
+        ↓
+        Поклади package.json та package-lock.json у /app
+        ↓
+        У /app встанови залежності
+        ↓
+        Скопіюй решту backend у /app
+        ↓
+        Задокументуй, що застосунок використовує порт 3000
+        ↓
+        При старті контейнера виконай npm run dev з /app
+
+2. .dockerignore
+    По аналогії з .gitignore, ігнорує файли і папки, які не потрібно додавати до docker image.
+    Створюється в корні папки проєкту, як і Dockerfile.
+
+    Приклад:
+        node_modules
+        npm-debug.log
+        .git
+        .env
+        uploads
+
+3. Створення окремого образу (image):
+    docker build -t fp-backend .
+
+    Простіше робити з поточної папки, тоді можна просто вказати крапочку "." для контексту.
+
+        Пояснення команди:
+            -t [name]
+                The -t flag tags your image with a name.
+
+            .
+                Build context. Lets Docker know where it can find the Dockerfile.
+
+4. Запуск контейнера (без compose)
+    docker run -d --name fp-backend-container --env-file .env -p 3000:3000 fp-backend
+    docker run -d --name fp-frontend-container -p 5173:5173 fp-frontend
+
+        Пояснення команди:
+            docker run
+                базова команда - створює новий контейнер і одразу його запускає (docker create + docker start).
+            
+            -d
+                Detached mode. Опціональний прапорець. Контейнер запуститься у фоні, а консоль не буде зайнята логами.
+
+            --name fp-backend-container
+                Встановлює назву контейнера. Опціональний прапорець. Якщо його не вказати, docker сам придумає якусь прикольну назву (happy_curie, nervous_tesla).
+            
+            --env-file .env
+                Читає і передає змінні середовища в контейнер. При цьому .env не копіюється в image.
+                Docker лише читає файл на host-машині і передає значення в контейнер при запуску.
+            
+            -p 3000:3000
+                Port mapping: HOST_PORT:CONTAINER_PORT
+                localhost:3000 - container:3000 - пов'язує порти, тобто при переході на localhost:3000, ми потрапимо до container:3000
+            
+            fp-backend
+                Вказує, з якого image будувати контейнер. Docker шукає image з таким ім’ям і створює з нього контейнер.
+            
+            Запускати цю команду можна з будь-якого місця (не обов'язково робити це з тієї ж папки, в якій лежить Dockerfile).
+            Але вказувати назву .env файлу потрібно відносно поточного розташування.
+
+
+5. Docker compose
+    Compose потрібен, щоб описати окремі dockerfiles як одну систему і запускати все однією командою.
+    docker-compose.yml - створюється в корні самого проєкту.
+
+    Приклад:
+        services:
+            backend:
+                build:
+                    context: ./backend
+
+                    container_name: fp-backend-container
+
+                    env_file:
+                        - ./backend/.env
+
+                    ports:
+                        -"3000:3000"
+
+                    volumes:
+                        - ./backend:/app
+                        - /app/node_modules
+
+            frontend:
+                build:
+                    context: ./frontend
+
+                    container_name: fp-frontend-container
+
+                    environment:
+                        VITE_BACKEND_URL: http://backend:3000
+
+                    ports:
+                        -"5173:5173"
+
+                    volumes:
+                        - ./frontend:/app
+                        - /app/node_modules
+
+                    depends_on:
+                        - backend
+
+    Compose спрощує створення образів і контейнерів.
+    Тепер замість створення окремих образів і контейнерів з них, нам достатньо лише одноразово це все описати у Compose файлі і запустити його.
+    
+    Зручніше з папки, в якій знаходиться compose файл, щоб додатково не вказувати шлях до останнього:
+        docker compose up --build
+
+    Compose:
+        1. збере backend image;
+        2. збере frontend image;
+        3. створить обидва контейнери;
+        4. створить для них спільну Docker network;
+        5. запустить обидва.
+
+    Тепер сервіси знаходяться в одному Docker network, тому можуть звертатись один до одного за допомогою назв сервісів.
+        Наприклад, frontend-контейнер може звернутися до backend:
+            http://backend:3000 замість http://localhost:3000
+
+        Це можливе через те, що "services: backend:" створює DNS-ім'я: backend усередині compose network.
+    
+    Volume у Docker - це спосіб зберігати дані поза життєвим циклом конкретного контейнера.
+    Контейнер за задумом - тимчасовий. Відповідно, якщо зберегти якісь файли всередину контейнера, то потім при видаленні контейнера видаляться і самі дані.
+    Volume це вирішує. Контейнер може бути: створений, видалений, створений заново - а дані залишаються.
+    В поточному проєкті це актуально для uploads/items/ - бо картинки товарів не повинні зникати після rebuild контейнера.
+
+    До прикладу, в docker compose
+        volumes:
+            - ./backend/uploads:/app/uploads
+    Зв'язує дві директорії (перша локальна, а інша - всередині контейнера):
+        - Якщо backend усередині контейнера створить: /app/uploads/items/photo.jpg - то файл фізично з'явиться на компьютері;
+        - І навпаки.
+    
+    Це називається bind mount - явна прив'язка конкретної папки host-машини.
+    
+    Розшифровка інструкцій compose файлу:
+        services:
+            Сервіси, які Compose має створити й запустити
+        
+        backend:
+            Ім'я сервісу. Воно ж стає DNS-ім'ям усередині compose network, тому інший контейнер може звертатися до: http://backend:3000
+    
+        build:
+            context: ./backend
+                Build context: вказує, в якій папці знаходиться Dockerfile для цього сервісу.
+
+        container_name: fp-backend-container
+            Задає ім'я контейнера.
+
+        env_file:
+            - ./backend/.env
+                Передає змінні середовища з файлу .env у контейнер.
+        
+        environment:
+            VITE_BACKEND_URL:SOMETHING
+                Передає вказані змінні в контейнер
+        
+        ports:
+            - "3000:3000"
+                Прокидує: host:3000 → container:3000
+        
+        volumes:
+            - ./backend/uploads:/app/uploads
+
+        
+        depends_on:
+            - backend
+                Каже Compose запустити backend сервіс перед frontend.
+
+
+Docker команди
+
+    Перевірка
+        docker --version
+        docker compose version
+
+    Images
+        docker images
+            показати локальні images.
+
+        docker build -t fp-backend .
+            зібрати image fp-backend з Dockerfile у поточній папці.
+
+        docker rmi fp-backend
+            видалити image fp-backend.
+    
+    Containers
+        docker ps
+            показати запущені контейнери.
+        
+        docker ps -a
+            показати всі контейнери, включно зі зупиненими.
+        
+        docker run fp-backend
+            створити новий контейнер з image fp-backend і запустити.
+
+        docker stop fp-backend-container
+            зупинити контейнер.
+        
+        docker start fp-backend-container
+            запустити вже існуючий контейнер.
+        
+        docker restart fp-backend-container
+            перезапустити.
+        
+        docker rm fp-backend-container
+            видалити зупинений контейнер.
+        
+        docker rm -f fp-backend-container
+            примусово зупинити й видалити.
+
+
+    Логи та робота всередині контейнера
+        docker logs fp-backend-container
+            Docker покаже наявні логи і завершить команду.
+        
+        docker logs -f fp-backend-container
+            -f = follow - дивитися логи в реальному часі - Docker продовжує слухати нові логи
+        
+        docker exec -it fp-backend-container sh
+            зайти в shell працюючого контейнера - після цього можна керувати файлами всередині контейнера через shell команди
+            Прапорець -it означає: відкрити інтерактивний термінал всередині контейнера (-i interactive (-i залишає stdin відкритим для вводу команд) + -t pseudo TTY (створює нормальний термінальний режим))
+            Після виконання команди потрапляємо до workdir (/app).
+        
+    Інформація
+        docker inspect fp-backend-container
+            детальна інформація про контейнер.
+        
+        docker stats
+            CPU/RAM запущених контейнерів у реальному часі.
+    
+    Volumes
+        docker volume ls
+        docker volume rm volume-name
+    
+    Networks
+        docker network ls
+
+    Очищення
+        docker container prune
+            видалити всі зупинені контейнери.
+        
+        docker image prune
+            прибрати невикористовувані dangling images.
+            dangling image - це такі непотрібні "залишки" старих builds, які більше не мають нормального tag/name і фактично залишились як сироти.
+            Це такий image, який, наприклад, після перебудову залишився локально, але без tag, тобто, фактично, вже не використовується.
+        
+        docker system prune
+            почистити невикористовувані контейнери, networks, build cache тощо.
+
+
+    Коротка резюмешка:
+        docker build  → створює image
+        docker run    → створює НОВИЙ container і запускає його
+        docker start  → запускає ВЖЕ ІСНУЮЧИЙ container
+        docker stop   → зупиняє container
+        docker rm     → видаляє container
+        docker rmi    → видаляє image
+    
+
+    Базовий простий workflow
+        docker build -t fp-backend .
+        docker run -d --name fp-backend-container --env-file .env -p 3000:3000 fp-backend
+        docker ps
+        docker logs -f fp-backend-container
+        docker stop fp-backend-container
+        docker start fp-backend-container
+    
+
+Docker Compose команди
+
+    docker compose up
+        Запустити сервіси
+    
+    docker compose up -d
+        Запустити у фоні
+    
+    docker compose up backend
+    docker compose up -d backend
+        Запустити один сервіс
+    
+    docker compose up --build
+        Перезібрати images і запустити
+    
+    docker compose build backend
+    docker compose build frontend
+        Перебудувати тільки один сервіс
+
+    docker compose up -d --build
+        Перезібрати й запустити у фоні
+
+    docker compose down
+        Зупинити й видалити контейнери, створені Compose
+    
+    docker compose stop
+        Просто зупинити сервіси, не видаляючи контейнери
+    
+    docker compose start
+        Запустити вже створені й зупинені контейнери
+    
+    docker compose restart
+        Перезапустити
+    
+    docker compose ps
+        Подивитися статус сервісів (process status)
+
+    docker compose logs
+        Подивитися логи всіх сервісів
+
+    docker compose logs -f
+        Логи в реальному часі
+
+    docker compose logs backend
+    docker compose logs -f frontend
+        Логи конкретного сервісу
+
+    docker compose exec backend sh
+    docker compose exec frontend sh
+        Увійти в термінал всередині вже запущеного сервісу
+    
+    docker compose config
+        Перевірити, як Docker інтерпретує compose-файл
+
+    docker compose down -v
+        !Видалити контейнери разом із volumes, створеними Compose - обережно з цією командою: -v видаляє volumes, а значить можна втратити збережені в них дані.
+
+
+    Коротке резюме:
+        up       → створити/запустити
+        start    → запустити вже існуючі
+        stop     → зупинити, але не видаляти
+        restart  → перезапустити
+        down     → зупинити і видалити compose-контейнери/network
+        build    → перебудувати images
+        logs     → подивитися логи
+        exec     → зайти/виконати команду всередині сервісу
+
+
+    Простий workflow:    
+        docker compose up -d --build
+        docker compose ps
+        docker compose logs -f
+        docker compose restart
+        docker compose down
