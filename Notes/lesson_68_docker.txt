@@ -88,6 +88,7 @@ Docker
         ↓
         При старті контейнера виконай npm run dev з /app
 
+
 2. .dockerignore
     По аналогії з .gitignore, ігнорує файли і папки, які не потрібно додавати до docker image.
     Створюється в корні папки проєкту, як і Dockerfile.
@@ -99,7 +100,9 @@ Docker
         .env
         uploads
 
-3. Створення окремого образу (image):
+
+Без Docker compose (3, 4):
+3. Створення образу (image):
     docker build -t fp-backend .
 
     Простіше робити з поточної папки, тоді можна просто вказати крапочку "." для контексту.
@@ -111,7 +114,8 @@ Docker
             .
                 Build context. Lets Docker know where it can find the Dockerfile.
 
-4. Запуск контейнера (без compose)
+
+4. Запуск контейнера:
     docker run -d --name fp-backend-container --env-file .env -p 3000:3000 fp-backend
     docker run -d --name fp-frontend-container -p 5173:5173 fp-frontend
 
@@ -145,7 +149,15 @@ Docker
     docker-compose.yml - створюється в корні самого проєкту.
 
     Приклад:
+
         services:
+            mongo:
+                image: mongo:8
+                    container_name: fp-mongo-container
+
+                volumes:
+                    - mongo_data:/data/db
+
             backend:
                 build:
                     context: ./backend
@@ -155,12 +167,18 @@ Docker
                     env_file:
                         - ./backend/.env
 
+                    environment:
+                        MONGODB_URI: mongodb://mongo:27017
+
                     ports:
-                        -"3000:3000"
+                        - "3000:3000"
 
                     volumes:
                         - ./backend:/app
                         - /app/node_modules
+
+                    depends_on:
+                        - mongo
 
             frontend:
                 build:
@@ -172,7 +190,7 @@ Docker
                         VITE_BACKEND_URL: http://backend:3000
 
                     ports:
-                        -"5173:5173"
+                        - "5173:5173"
 
                     volumes:
                         - ./frontend:/app
@@ -180,6 +198,10 @@ Docker
 
                     depends_on:
                         - backend
+
+        volumes:
+            mongo_data:
+
 
     Compose спрощує створення образів і контейнерів.
     Тепер замість створення окремих образів і контейнерів з них, нам достатньо лише одноразово це все описати у Compose файлі і запустити його.
@@ -213,8 +235,11 @@ Docker
         - І навпаки.
     
     Це називається bind mount - явна прив'язка конкретної папки host-машини.
-    
+
     Розшифровка інструкцій compose файлу:
+        volumes:
+            mongo_data:
+
         services:
             Сервіси, які Compose має створити й запустити
         
@@ -233,8 +258,12 @@ Docker
                 Передає змінні середовища з файлу .env у контейнер.
         
         environment:
-            VITE_BACKEND_URL:SOMETHING
-                Передає вказані змінні в контейнер
+            MONGODB_URI: mongodb://mongo:27017
+                Передає вказані змінні в контейнер.
+                mongodb:// - протокол підключення (по аналогії до https)
+                mongo - hostname - DNS назва сервісу, до якого ми підключаємось
+                27017 - MongoDB port
+                /bd_db - опціонально, в кінці змінної можна додати назву бази даних, до якої підключатись (у мене збережена в database.js, тому не додаю)
         
         ports:
             - "3000:3000"
@@ -242,8 +271,19 @@ Docker
         
         volumes:
             - ./backend/uploads:/app/uploads
+                Bind volume - пов'язує папку uploads на пк з такою ж папкою всередині контейнера
 
-        
+        volumes:
+            - mongo_data:/data/db
+                Named volume - сховище, яким керує сам Docker (фізично на компьютері його не видно, воно знаходиться всередині самого Docker)
+                Але теж дозволяє зберегати дані після видалення контейнера.
+                Їх також потрібно додатково оголошувати (як змінну) поза сервісами - на рівні всього compose проєкту (в самому низу docker compose файла):
+                volumes:
+                    mongo_data:
+
+                Інструкція читається як:
+                    створи named volume mongo_data -> підключи його до сервісу mongo -> змонтуй у /data/db
+
         depends_on:
             - backend
                 Каже Compose запустити backend сервіс перед frontend.
