@@ -5,6 +5,7 @@ import { Contacts } from "./pages/Contacts";
 import { CreateItem } from "./pages/CreateItem";
 import { UpdateItem } from "./pages/UpdateItem";
 import { ItemDetails } from "./pages/ItemDetails";
+import { Login } from "./pages/Login";
 import { NotFound } from "./pages/NotFound";
 import { App } from "./App";
 
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+      { path: "/login", element: <Login /> },
       { path: "/shop", element: <Shop /> },
       { path: "/item/:itemId", element: <ItemDetails /> },
       { path: "/create-item", element: <CreateItem /> },

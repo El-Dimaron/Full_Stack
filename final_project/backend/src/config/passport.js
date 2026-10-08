@@ -9,9 +9,9 @@ passport.use(
       passwordField: "password",
     },
 
-    (email, password, done) => {
+    async (email, password, done) => {
       try {
-        const user = findUserByEmail(email);
+        const user = await findUserByEmail(email);
 
         if (!user) {
           return done(null, false, {
@@ -37,9 +37,9 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
+passport.deserializeUser(async (id, done) => {
   try {
-    const user = findUser(id);
+    const user = await findUser(id);
 
     done(null, user);
   } catch (error) {

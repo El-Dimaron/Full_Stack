@@ -2,12 +2,21 @@ import "./App.scss";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Outlet } from "react-router";
-import { useAppSelector } from "./app/hooks";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { fetchTheme } from "./features/theme/themeSlice";
 import { ToastContainer } from "react-toastify";
 import { IdleTracker } from "./components/IdleTracker";
+import { fetchCurrentUser } from "./features/auth/authSlice";
 
 export function App() {
   const theme = useAppSelector((state) => state.theme);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTheme());
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
 
   return (
     <div className={`main-page ${theme}`}>

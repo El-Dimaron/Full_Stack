@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import itemsReducer from "../features/items/itemSlice";
 import themeReducer from "../features/theme/themeSlice";
 import usersReducer from "../features/users/usersSlice";
+import authReducer from "../features/auth/authSlice";
 
 const savedItems = localStorage.getItem("items");
 
@@ -14,6 +15,7 @@ export const store = configureStore({
     items: itemsReducer,
     users: usersReducer,
     theme: themeReducer,
+    auth: authReducer,
   },
 
   preloadedState,

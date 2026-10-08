@@ -19,6 +19,20 @@ function generateToken(user) {
   );
 }
 
+router.get("/me", async (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
+  }
+
+  res.status(200).json({
+    id: req.user.id,
+    login: req.user.login,
+    email: req.user.email,
+  });
+});
+
 router.post("/register", async (req, res, next) => {
   try {
     const { login, email, password } = req.body;

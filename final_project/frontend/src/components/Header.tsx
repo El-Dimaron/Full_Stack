@@ -10,6 +10,9 @@ import { FiShoppingCart } from "react-icons/fi";
 export function Header() {
   const searchQuery = useAppSelector((state) => state.items.searchQuery);
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => {
+    state.auth.user;
+  });
 
   const [inputValue, setInputValue] = useState("");
 
@@ -65,6 +68,17 @@ export function Header() {
                 </button>
               </form>
             </li>
+            {/* <li>
+              {user ? (
+                <>
+                  <span>{user.login}</span>
+
+                  <button onClick={() => dispatch(logout())}>Logout</button>
+                </>
+              ) : (
+                <NavLink to="/login">Login</NavLink>
+              )}
+            </li> */}
             <li className="nav-item">
               <button className="cart-button" type="button" aria-label="Cart">
                 <FiShoppingCart className="cart-icon" />
