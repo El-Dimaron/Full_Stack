@@ -6,12 +6,13 @@ import { Theme } from "../features/theme/Theme";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setSearchQuery } from "../features/items/itemSlice";
 import { FiShoppingCart } from "react-icons/fi";
+import { logout } from "../features/auth/authSlice";
 
 export function Header() {
   const searchQuery = useAppSelector((state) => state.items.searchQuery);
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => {
-    state.auth.user;
+    return state.auth.user;
   });
 
   const [inputValue, setInputValue] = useState("");
@@ -68,7 +69,7 @@ export function Header() {
                 </button>
               </form>
             </li>
-            {/* <li>
+            <li hidden>
               {user ? (
                 <>
                   <span>{user.login}</span>
@@ -78,7 +79,7 @@ export function Header() {
               ) : (
                 <NavLink to="/login">Login</NavLink>
               )}
-            </li> */}
+            </li>
             <li className="nav-item">
               <button className="cart-button" type="button" aria-label="Cart">
                 <FiShoppingCart className="cart-icon" />
