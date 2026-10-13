@@ -1,6 +1,8 @@
 import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
+import bcrypt from "bcrypt";
+import { SALT_ROUNDS } from "../src/config/auth.js";
 
 import { connectDatabase } from "../src/config/database.js";
 import User from "../src/models/User.js";
@@ -21,9 +23,16 @@ async function seed() {
     const testUsersFile = fs.readFileSync(testUsersPath, "utf-8");
     const testUsersList = JSON.parse(testUsersFile);
 
+    const hashedUsers = await Promise.all(
+      testUsersList.map(async (user) => ({
+        ...user,
+        password: await bcrypt.hash(user.password, SALT_ROUNDS),
+      })),
+    );
+
     await User.deleteMany({});
 
-    const createdUsers = await User.insertMany(testUsersList);
+    const createdUsers = await User.insertMany(hashedUsers);
 
     console.log(`Created ${createdUsers.length} test users`);
 

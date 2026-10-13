@@ -7,6 +7,12 @@ type User = {
 };
 
 type LoginData = {
+  identifier: string;
+  password: string;
+};
+
+type RegistrationData = {
+  login: string;
   email: string;
   password: string;
 };
@@ -26,7 +32,7 @@ const initialState: AuthState = {
 export const login = createAsyncThunk<User, LoginData, { rejectValue: string }>(
   "auth/login",
   async (credentials, { rejectWithValue }) => {
-    const response = await fetch("api/auth/login", {
+    const response = await fetch("/api/auth/login", {
       method: "POST",
 
       headers: {
@@ -37,17 +43,39 @@ export const login = createAsyncThunk<User, LoginData, { rejectValue: string }>(
     });
 
     if (!response.ok) {
-      return rejectWithValue("Invalid email or password");
+      return rejectWithValue("Неправильний email або пароль");
     }
 
     return response.json();
   },
 );
 
+export const register = createAsyncThunk<User, RegistrationData, { rejectValue: string }>(
+  "auth/register",
+  async (registrationData, { rejectWithValue }) => {
+    const response = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(registrationData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return rejectWithValue(data.message ?? "Failed to register");
+    }
+
+    return data;
+  },
+);
+
 export const fetchCurrentUser = createAsyncThunk<User, void, { rejectValue: string }>(
   "auth/fetchCurrentUser",
   async (_, { rejectWithValue }) => {
-    const response = await fetch("api/auth/me");
+    const response = await fetch("/api/auth/me");
 
     if (!response.ok) {
       return rejectWithValue("Unauthorized");
@@ -58,7 +86,7 @@ export const fetchCurrentUser = createAsyncThunk<User, void, { rejectValue: stri
 );
 
 export const logout = createAsyncThunk("auth/logout", async () => {
-  const response = await fetch("api/auth/logout", {
+  const response = await fetch("/api/auth/logout", {
     method: "POST",
   });
 
@@ -92,6 +120,24 @@ const authSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload ?? "Login failed";
+      })
+
+      // Cases for the registration
+
+      .addCase(register.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+
+      .addCase(register.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.error = null;
+      })
+
+      .addCase(register.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload ?? "Registration failed";
       })
 
       // Cases for the current user

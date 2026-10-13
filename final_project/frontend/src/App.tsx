@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { fetchTheme } from "./features/theme/themeSlice";
 import { ToastContainer } from "react-toastify";
-import { IdleTracker } from "./components/IdleTracker";
 import { fetchCurrentUser } from "./features/auth/authSlice";
 
 export function App() {
@@ -31,8 +30,6 @@ export function App() {
         draggable
       />
       <Header />
-
-      <IdleTracker />
 
       <main className="page">
         <Outlet />

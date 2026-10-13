@@ -5,7 +5,7 @@ import { getPaginationPages } from "./pagination";
 import placeholderImage from "../../assets/images/test_image.svg";
 import "./items.scss";
 import { useEffect, useState } from "react";
-import { removeToast, errorToast } from "../../components/toast/custom_toast";
+import { removeToast, errorToast } from "../toast/custom_toast";
 import { FiPlus } from "react-icons/fi";
 
 export function ItemPage() {

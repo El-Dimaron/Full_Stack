@@ -1,4 +1,6 @@
 import User from "../models/User.js";
+import bcrypt from "bcrypt";
+import { SALT_ROUNDS } from "../config/auth.js";
 
 export async function readAllUsers() {
   return User.find().select("login email");
@@ -10,13 +12,15 @@ export async function registerUser(login, email, password) {
   });
 
   if (existingUser) {
-    throw new Error("User already exists");
+    throw new Error("Юзер вже існує");
   }
+
+  const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
   return User.create({
     login,
     email,
-    password,
+    password: hashedPassword,
   });
 }
 
@@ -32,6 +36,14 @@ export async function findUser(id) {
 
 export async function findUserByEmail(email) {
   return User.findOne({ email });
+}
+
+export async function findUserByEmailOrLogin(identifier) {
+  const normalizedIdentifier = identifier.trim();
+
+  return User.findOne({
+    $or: [{ email: identifier }, { login: identifier }],
+  });
 }
 
 export async function findUserByLogin(login) {

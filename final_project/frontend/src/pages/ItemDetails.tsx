@@ -65,7 +65,7 @@ export function ItemDetails() {
             </span>
           </div>
 
-          <p className="item-details__description">{item.description || "Опис товару відсутній."}</p>
+          <p className={item.description ? "item-details__description" : "hidden"}>{item.description ?? ""}</p>
 
           <div className="item-details__section">
             <p className="item-details__section-title">Розміри</p>

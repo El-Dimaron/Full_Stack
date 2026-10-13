@@ -1,27 +1,30 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import { findUserByEmail, findUser } from "../services/userService.js";
+import { findUserByEmailOrLogin, findUser } from "../services/userService.js";
+import bcrypt from "bcrypt";
 
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "email",
+      usernameField: "identifier",
       passwordField: "password",
     },
 
-    async (email, password, done) => {
+    async (identifier, password, done) => {
       try {
-        const user = await findUserByEmail(email);
+        const user = await findUserByEmailOrLogin(identifier);
 
         if (!user) {
           return done(null, false, {
-            message: "Invalid email or password",
+            message: "Invalid login/email or password",
           });
         }
 
-        if (user.password !== password) {
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
           return done(null, false, {
-            message: "Invalid email or password",
+            message: "Invalid login/email or password",
           });
         }
 

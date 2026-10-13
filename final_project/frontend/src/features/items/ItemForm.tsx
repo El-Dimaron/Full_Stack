@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { useState, type FormEvent } from "react";
 import "./items.scss";
 import { useNavigate } from "react-router";
-import { successToast, errorToast } from "../../components/toast/custom_toast";
+import { successToast, errorToast } from "../toast/custom_toast";
 
 const initialFormState: NewItem = {
   name: "",

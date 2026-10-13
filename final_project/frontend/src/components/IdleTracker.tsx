@@ -1,5 +1,5 @@
 import { useIdleTimer } from "react-idle-timer";
-import { infoToast } from "./toast/custom_toast";
+import { infoToast } from "../features/toast/custom_toast";
 
 export function IdleTracker() {
   useIdleTimer({

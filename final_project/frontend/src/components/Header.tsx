@@ -6,7 +6,7 @@ import { Theme } from "../features/theme/Theme";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setSearchQuery } from "../features/items/itemSlice";
 import { FiShoppingCart } from "react-icons/fi";
-import { logout } from "../features/auth/authSlice";
+import { AuthMenu } from "../features/auth/AuthMenu";
 
 export function Header() {
   const searchQuery = useAppSelector((state) => state.items.searchQuery);
@@ -69,17 +69,34 @@ export function Header() {
                 </button>
               </form>
             </li>
-            <li hidden>
-              {user ? (
-                <>
-                  <span>{user.login}</span>
-
-                  <button onClick={() => dispatch(logout())}>Logout</button>
-                </>
-              ) : (
-                <NavLink to="/login">Login</NavLink>
-              )}
+            <li>
+              <AuthMenu user={user} />
             </li>
+            {/* <li className="auth-menu">
+              {user ? (
+                <div className="auth-user">
+                  <span className="auth-user__name">{user.login}</span>
+
+                  <button className="auth-user__logout" onClick={() => dispatch(logout())}>
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <ul className="auth-actions">
+                  <li>
+                    <NavLink to="/login" className="auth-action">
+                      Login
+                    </NavLink>
+                  </li>
+
+                  <li>
+                    <NavLink to="/registration" className="auth-action auth-action--primary">
+                      Register
+                    </NavLink>
+                  </li>
+                </ul>
+              )}
+            </li> */}
             <li className="nav-item">
               <button className="cart-button" type="button" aria-label="Cart">
                 <FiShoppingCart className="cart-icon" />
