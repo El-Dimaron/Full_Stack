@@ -19,8 +19,6 @@ vi.mock("../toast/custom_toast", () => ({
 
 const baseUrl = "http://localhost";
 
-const nativeFetch = globalThis.fetch.bind(globalThis);
-
 beforeAll(() => {
   server.listen({ onUnhandledRequest: "error" });
 
