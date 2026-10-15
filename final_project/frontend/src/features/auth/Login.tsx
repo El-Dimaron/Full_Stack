@@ -1,6 +1,6 @@
 import { useNavigate, NavLink } from "react-router";
 import { useAppDispatch } from "../../app/hooks";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { login } from "./authSlice";
 
 import "./auth.scss";
@@ -14,9 +14,16 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const submittingRef = useRef(false);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (submittingRef.current) return;
+
+    submittingRef.current = true;
+    setIsSubmitting(true);
     setError("");
 
     try {
@@ -28,10 +35,12 @@ export function Login() {
       ).unwrap();
 
       successToast("Ви успішно увійшли в акаунт.");
-
       navigate("/");
     } catch (error) {
       setError(typeof error === "string" ? error : "Не вдалося увійти. Перевірте введені дані.");
+    } finally {
+      submittingRef.current = false;
+      setIsSubmitting(false);
     }
   };
   return (
@@ -48,9 +57,11 @@ export function Login() {
             type="text"
             name="identifier"
             autoComplete="username"
+            disabled={isSubmitting}
             value={identifier}
             onChange={(event) => setIdentifier(event.target.value)}
             placeholder="Email або логін"
+            required
           />
         </label>
 
@@ -61,6 +72,7 @@ export function Login() {
             type="password"
             name="password"
             autoComplete="current-password"
+            disabled={isSubmitting}
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             placeholder="Введіть пароль"
@@ -70,8 +82,8 @@ export function Login() {
 
         {error && <p className="auth-form__error">{error}</p>}
 
-        <button className="auth-form__submit" type="submit">
-          Увійти
+        <button className="auth-form__submit" type="submit" disabled={isSubmitting} aria-busy={isSubmitting}>
+          {isSubmitting ? "Вхід..." : "Увійти"}
         </button>
 
         <p className="auth-form__switch">

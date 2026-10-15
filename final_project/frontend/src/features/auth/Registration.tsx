@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router";
 import { useAppDispatch } from "../../app/hooks";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { register } from "./authSlice";
 import { errorToast, successToast } from "../toast/custom_toast";
 
@@ -64,6 +64,9 @@ export function Registration() {
 
   const [loginError, setLoginError] = useState("");
   const [emailError, setEmailError] = useState("");
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const submittingRef = useRef(false);
 
   const passwordRequirements = [
     {
@@ -140,6 +143,8 @@ export function Registration() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (submittingRef.current) return;
+
     const loginValidationError = validateLogin(login);
 
     if (loginValidationError) {
@@ -154,28 +159,31 @@ export function Registration() {
       return;
     }
 
-    const [isLoginAvailable, isEmailAvailable] = await Promise.all([
-      checkLoginAvailability(),
-      checkEmailAvailability(),
-    ]);
-
-    if (!isLoginAvailable || !isEmailAvailable) {
-      return;
-    }
-
-    const passwordValidationError = validatePassword(password);
-
-    if (passwordValidationError) {
-      errorToast(passwordValidationError);
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      errorToast("Паролі не співпадають.");
-      return;
-    }
+    submittingRef.current = true;
+    setIsSubmitting(true);
 
     try {
+      const [isLoginAvailable, isEmailAvailable] = await Promise.all([
+        checkLoginAvailability(),
+        checkEmailAvailability(),
+      ]);
+
+      if (!isLoginAvailable || !isEmailAvailable) {
+        return;
+      }
+
+      const passwordValidationError = validatePassword(password);
+
+      if (passwordValidationError) {
+        errorToast(passwordValidationError);
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        errorToast("Паролі не співпадають.");
+        return;
+      }
+
       await dispatch(
         register({
           login: login.trim(),
@@ -185,10 +193,12 @@ export function Registration() {
       ).unwrap();
 
       successToast("Акаунт успішно створено.");
-
       navigate("/");
     } catch (error) {
       errorToast(typeof error === "string" ? error : "Не вдалося зареєструватися.");
+    } finally {
+      submittingRef.current = false;
+      setIsSubmitting(false);
     }
   };
 
@@ -206,6 +216,7 @@ export function Registration() {
             type="text"
             name="username"
             autoComplete="username"
+            disabled={isSubmitting}
             value={login}
             onChange={(event) => {
               setLogin(event.target.value);
@@ -228,6 +239,7 @@ export function Registration() {
             type="email"
             name="email"
             autoComplete="email"
+            disabled={isSubmitting}
             value={email}
             onChange={(event) => {
               setEmail(event.target.value);
@@ -248,6 +260,7 @@ export function Registration() {
             type="password"
             name="password"
             autoComplete="new-password"
+            disabled={isSubmitting}
             value={password}
             onChange={(event) => {
               const value = event.target.value;
@@ -291,6 +304,7 @@ export function Registration() {
             type="password"
             name="confirmPassword"
             autoComplete="new-password"
+            disabled={isSubmitting}
             value={confirmPassword}
             onChange={(event) => {
               const value = event.target.value;
@@ -312,8 +326,8 @@ export function Registration() {
 
         {passwordMatchError && <span className="auth-form__field-error">{passwordMatchError}</span>}
 
-        <button className="auth-form__submit" type="submit">
-          Зареєструватися
+        <button className="auth-form__submit" type="submit" disabled={isSubmitting} aria-busy={isSubmitting}>
+          {isSubmitting ? "Реєстрація..." : "Зареєструватися"}
         </button>
 
         <p className="auth-form__switch">
